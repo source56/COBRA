@@ -125,7 +125,7 @@ fahs = """◈ : me  {my_mention}  𓇡.
 ◈ : My Bot  {tg_bot}  𓇡.
 ◈ : ping  {ping}  𓇡.
 ◈ : version 7.6  𓇡.
-◈ : Source QHTANI : @VFF34  𓇡."""
+◈ : Source COBRA : @VFF34  𓇡."""
 @iqqhtani.on(admin_cmd(pattern="رابط التنصيب(?: |$)(.*)"))
 async def source(e):
     await edit_or_reply(e, "https://github.com/SAEED5OBR/hemaia",)
