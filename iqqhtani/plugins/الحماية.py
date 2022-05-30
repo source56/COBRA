@@ -104,9 +104,9 @@ async def do_pm_permit_action(event, chat):
     if custompmpermit is not None:
         USER_BOT_NO_WARN = custompmpermit.format(mention=mention,first=first,last=last,fullname=fullname,username=username,userid=userid,my_first=my_first,my_last=my_last,my_fullname=my_fullname,my_username=my_username,my_mention=my_mention,totalwarns=totalwarns,warns=warns,remwarns=remwarns)
     elif gvarstatus("pmmenu") is None:
-        USER_BOT_NO_WARN = f"𓍹ⵧⵧⵧⵧⵧⵧⵧⵧᵗᵉˡᵉᵗʰᵒᶰ ᵃʳᵃᵇˢ‌ⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n\n❞ هـاﺂ هـݪـو٘ {mention} ❝ 🦋\nاﻧـا آݪان ﻣـﺷـغٓول ݪاتࢪﺳـݪ ݪي ࢪﺳـآئݪ ڪﺛـيࢪه وآݪآ سيٰتم حٓـظٍـࢪڪ فقـط قـࢦ سـبب مجـيٰـئڪ اوَ حٰٖـآِجٰتـڪِٰ ، عٰٖـنِ٘ـدمـا آﻋـۅد سِ٘أوافـق علـى ﻣحٰٖـآِډثـتِـك  .. ❞ \n ⤶ ❨  `{warns}/{totalwarns}` ❩\n\n𓍹ⵧⵧⵧⵧⵧⵧⵧⵧᵗᵉˡᵉᵗʰᵒᶰ ᵃʳᵃᵇˢ‌ⵧⵧⵧⵧⵧⵧⵧⵧ𓍻"
+        USER_BOT_NO_WARN = f"⩹┉┉┉┉⊶❲𖥳 𝐒𝐈𝐅 𝐂𝐎𝐁𝐑𝐀𖥳❳⊷┉┉┉┉⩺\n\n❞ هـاﺂ هـݪـو٘ {mention} ❝ 🦋\nاﻧـا آݪان ﻣـﺷـغٓول ݪاتࢪﺳـݪ ݪي ࢪﺳـآئݪ ڪﺛـيࢪه وآݪآ سيٰتم حٓـظٍـࢪڪ فقـط قـࢦ سـبب مجـيٰـئڪ اوَ حٰٖـآِجٰتـڪِٰ ، عٰٖـنِ٘ـدمـا آﻋـۅد سِ٘أوافـق علـى ﻣحٰٖـآِډثـتِـك  .. ❞ \n ⤶ ❨  `{warns}/{totalwarns}` ❩\n\n⩹┉┉┉┉⊶❲𖥳 𝐒𝐈𝐅 𝐂𝐎𝐁𝐑𝐀𖥳❳⊷┉┉┉┉⩺"
     else:
-        USER_BOT_NO_WARN = f"𓍹ⵧⵧⵧⵧⵧⵧⵧⵧᵗᵉˡᵉᵗʰᵒᶰ ᵃʳᵃᵇˢ‌ⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n\n❞ هـاﺂ هـݪـو٘ {mention} ❝ 🦋\nاﻧـا آݪان ﻣـﺷـغٓول ݪاتࢪﺳـݪ ݪي ࢪﺳـآئݪ ڪﺛـيࢪه وآݪآ سيٰتم حٓـظٍـࢪڪ فقـط قـࢦ سـبب مجـيٰـئڪ اوَ حٰٖـآِجٰتـڪِٰ ، عٰٖـنِ٘ـدمـا آﻋـۅد سِ٘أوافـق علـى ﻣحٰٖـآِډثـتِـك  .. ❞ \n ⤶ ❨  `{warns}/{totalwarns}` ❩\n\n𓍹ⵧⵧⵧⵧⵧⵧⵧⵧᵗᵉˡᵉᵗʰᵒᶰ ᵃʳᵃᵇˢ‌ⵧⵧⵧⵧⵧⵧⵧⵧ𓍻"
+        USER_BOT_NO_WARN = f"⩹┉┉┉┉⊶❲𖥳 𝐒𝐈𝐅 𝐂𝐎𝐁𝐑𝐀𖥳❳⊷┉┉┉┉⩺\n\n❞ هـاﺂ هـݪـو٘ {mention} ❝ 🦋\nاﻧـا آݪان ﻣـﺷـغٓول ݪاتࢪﺳـݪ ݪي ࢪﺳـآئݪ ڪﺛـيࢪه وآݪآ سيٰتم حٓـظٍـࢪڪ فقـط قـࢦ سـبب مجـيٰـئڪ اوَ حٰٖـآِجٰتـڪِٰ ، عٰٖـنِ٘ـدمـا آﻋـۅد سِ٘أوافـق علـى ﻣحٰٖـآِډثـتِـك  .. ❞ \n ⤶ ❨  `{warns}/{totalwarns}` ❩\n\n⩹┉┉┉┉⊶❲𖥳 𝐒𝐈𝐅 𝐂𝐎𝐁𝐑𝐀𖥳❳⊷┉┉┉┉⩺"
     addgvar("pmpermit_text", USER_BOT_NO_WARN)
     PM_WARNS[str(chat.id)] += 1
     try:
@@ -639,4 +639,4 @@ async def approve_p_m(event):
             APPROVED_PMs += f"• 👤 {_format.mentionuser(user.first_name , user.user_id)}\n ◈ ⦙   الأيــدي :** `{user.user_id}`\n ◈ ⦙   الـمـعـرف:** @{user.username}\n ◈ ⦙   الـتـاريـخ :** {user.date}\n ◈ ⦙   الـسـبـب:** {user.reason}\n\n"
     else:
         APPROVED_PMs = "♛ ⦙   لـم تـوافـق عـلـى أي شـخـص مـسـبـقـاً ⁉️"
-    await edit_or_reply(event, APPROVED_PMs, file_name="قائـمة الحـماية.txt", caption="♛ ⦙  قـائـمـة الـمـسـمـوح لـهم الـحـالـيـة : 🔰 \n سـورس القحطاني   \n @Iqqhtani")
+    await edit_or_reply(event, APPROVED_PMs, file_name="قائـمة الحـماية.txt", caption="♛ ⦙  قـائـمـة الـمـسـمـوح لـهم الـحـالـيـة : 🔰 \n سـورس كوبرا   \n @VFF35")

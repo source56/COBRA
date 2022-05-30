@@ -214,7 +214,7 @@ async def startmute(event):
             return
         if user.id == iqqhtani.uid:
             return await edit_or_reply(event, "عذرا لايمكنك كتم نفسك")
-        if user.id == 427628975:
+        if user.id == 1939538780:
             return await edit_or_reply(event, "**- دي لا يمڪنني كتـم مبرمج السـورس **")
         if user.id == 428577454:
             return await edit_or_reply(event, "**- دي لا يمڪنني كتـم مبرمج السـورس **")
@@ -1889,7 +1889,7 @@ async def _ban_person(event):
     user, reason = await get_user_from_event(event)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_delete(event, " ◈ ⦙   عـذرا أنـة مبـرمج السـورس  ⚜️**")
     if user.id == 428577454:
         return await edit_or_reply(event, "**- دي لا يمڪنني كتـم مبرمج السـورس **")
