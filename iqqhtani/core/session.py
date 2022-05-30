@@ -13,10 +13,10 @@ loop = None
 if Config.STRING_SESSION:
     session = StringSession(str(Config.STRING_SESSION))
 else:
-    session = "iqqhtanibot"
+    session = "iqthonbot"
 
 try:
-    iqqhtani = CatUserBotClient(
+    iqthon = CatUserBotClient(
         session=session,
         api_id=Config.APP_ID,
         api_hash=Config.API_HASH,
@@ -31,7 +31,7 @@ except Exception as e:
     sys.exit()
 
 
-iqqhtani.tgbot = tgbot = CatUserBotClient(
+iqthon.tgbot = tgbot = CatUserBotClient(
     session="iqTgbot",
     api_id=Config.APP_ID,
     api_hash=Config.API_HASH,
