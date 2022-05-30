@@ -15,7 +15,7 @@ from ..sql_helper.global_collection import del_keyword_collectionlist, get_item_
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 from .klanr import load_module
 from .tools import create_supergroup
-LOGS = logging.getLogger("القحطاني \n ")
+LOGS = logging.getLogger("سورس كوبرا \n ")
 cmdhr = Config.COMMAND_HAND_LER
 async def load_plugins(folder):
     path = f"iqqhtani/{folder}/*.py"
@@ -46,7 +46,7 @@ async def load_plugins(folder):
 async def startupmessage():
     try:
         if BOTLOG:
-            Config.CATUBLOGO = await iqqhtani.tgbot.send_file(BOTLOG_CHATID, "https://up6.cc/2022/05/165152347887371.jpg", caption="♛ ⦙ تـمّ  اعـادة تشـغيل\n القحطاني ✓  :  [ 7.6 ] .\n\n♛ ⦙ للحصول على اوامر السورس\n أرسـل : (  `.اوامري`  ) \n\n♛ ⦙ لمـعرفة كيفية تغير بعض كلايش\n او صور السـورس  أرسـل  :\n (  `.مساعده`  )\n\n♛ ⦙ القناة الرسمية القحطاني : @ghtanisaeed\n♛ ⦙ فارات سورس القحطاني :@ghtanisaeed \n♛ ⦙ كلايش القحطاني:  @ghtanisaeed\n ♛ ⦙التحديثات والاضافات :  @ghtanisaeed\n",                buttons=[(Button.url("مطور القحطاني الرسمي", "https://t.me/SAEED5OBR"),)],            )
+            Config.CATUBLOGO = await iqqhtani.tgbot.send_file(BOTLOG_CHATID, "https://telegra.ph/file/08f476776b6e578dd9f9e.mp4", caption="♛ ⦙ تـمّ  اعـادة تشـغيل\n سورس كوبرا ✓  :  [ 7.6 ] .\n\n♛ ⦙ للحصول على اوامر السورس\n أرسـل : (  `.اوامري`  ) \n\n♛ ⦙ لمـعرفة كيفية تغير بعض كلايش\n او صور السـورس  أرسـل  :\n (  `.مساعده`  )\n\n♛ ⦙ القناة الرسمية سورس كوبرا : @VFF35\n♛ ⦙ فارات سورس سورس كوبرا :@VFF34 \n♛ ⦙ كلايش سورس كوبرا:  @VFF34\n ♛ ⦙التحديثات والاضافات :  @VFF34\n",                buttons=[(Button.url("مطور سورس كوبرا", "https://t.me/QABNADLIB"),)],            )
     except Exception as e:
         LOGS.error(e)
         return None
@@ -99,7 +99,7 @@ async def verifyLoggerGroup():
             LOGS.error(                "♛ ︙حدث استثناء عند محاولة التحقق من PRIVATE_GROUP_BOT_API_ID.\n"                + str(e)            )
     else:
         descript = "♛ ︙ لا تحذف هذه المجموعة أو تغير إلى مجموعة (إذا قمت بتغيير المجموعة ، فسيتم فقد كل شيئ .)"
-        _, groupid = await create_supergroup(            "تخزين القحطاني العام", iqqhtani, Config.TG_BOT_USERNAME, descript        )
+        _, groupid = await create_supergroup(            "تخزين سورس كوبرا العام", iqqhtani, Config.TG_BOT_USERNAME, descript        )
         addgvar("PRIVATE_GROUP_BOT_API_ID", groupid)
         print("♛ ︙ تم إنشاء مجموعة المسـاعدة بنجاح وإضافتها إلى المتغيرات.")
         flag = True
@@ -118,8 +118,8 @@ async def verifyLoggerGroup():
         except Exception as e:
             LOGS.error(                "♛ ︙ حدث استثناء عند محاولة التحقق من PM_LOGGER_GROUP_ID.\n" + str(e)            )
     else:
-        descript = "♛ ︙ وظيفه هذا المجموعة لحفض رسائل التي تكون موجة اليك ان لم تعجبك هذا المجموعة قم بحذفها نهائيأ 👍 \n  الـسورس : - @Iqqhtani"
-        _, groupid = await create_supergroup(            "تخزين القحطاني الخاص", iqqhtani, Config.TG_BOT_USERNAME, descript        )
+        descript = "♛ ︙ وظيفه هذا المجموعة لحفض رسائل التي تكون موجة اليك ان لم تعجبك هذا المجموعة قم بحذفها نهائيأ 👍 \n  الـسورس : - @VFF35"
+        _, groupid = await create_supergroup(            "تخزين سورس كوبرا الخاص", iqqhtani, Config.TG_BOT_USERNAME, descript        )
         addgvar("PM_LOGGER_GROUP_ID", groupid)
         print("♛ ︙ تم إنشاء مجموعة خاصة لـ PRIVATE_GROUP_BOT_API_ID بنجاح وإضافتها إلى المتغيرات.")
         flag = True
