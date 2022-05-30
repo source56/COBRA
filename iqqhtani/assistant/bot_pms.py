@@ -106,13 +106,13 @@ async def bot_start(event):
             start_msg = f"**⌔︙ اهلا وسهلا اخوي  {mention} **\
                         \n**⌔︙ {my_mention}'انا البوت المساعد .**\
                         \n**⌔︙ يمكنك التواصل مع صاحب البوت فقط ارسل رسالتك 👤.**\
-                        \n\n**⌔︙ البوت خاص بسورس :** [القحطاني](https://t.me/SAEED5OBR)"
+                        \n\n**⌔︙ البوت خاص بسورس :** [كوبرا](https://t.me/VFF35)"
         buttons = [
             (
-                Button.url("تنصيب سورسنا", "https://dashboard.heroku.com/new?template=https://github.com/SAEED5OBR/hemaia"),
+                Button.url("تنصيب سورسنا", "https://dashboard.heroku.com/new?template=https://github.com/ERTWF/cobra"),
                 Button.url(
-                    "قناه المساعد",
-                    "https://t.me/ghtanisaeed",
+                    "قروب المساعد",
+                    "https://t.me/faqek",
                 ),
             )
         ]
