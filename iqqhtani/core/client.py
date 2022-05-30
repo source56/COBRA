@@ -141,12 +141,12 @@ class CatUserBotClient(TelegramClient):
                         text += (
                             "︙"
                         )
-                        text += f" عذرا قم بكتابه الأمر بشكل صحيح راجع : @VFF35 ** "
+                        text += f" عذرا قم بكتابه الأمر بشكل صحيح راجع : @Iqqhtani ** "
                         await check.client.send_message(
                             Config.PRIVATE_GROUP_BOT_API_ID, text, link_preview=False
                         )
 
-            from .session import VFF35
+            from .session import iqqhtani
 
             if not func.__doc__ is None:
                 CMD_INFO[command[0]].append((func.__doc__).strip())
@@ -159,18 +159,18 @@ class CatUserBotClient(TelegramClient):
                     except BaseException:
                         LOADED_CMDS.update({command[0]: [wrapper]})
                 if edited:
-                    VFF35.add_event_handler(
+                    iqqhtani.add_event_handler(
                         wrapper,
                         MessageEdited(pattern=REGEX_.regex1, outgoing=True, **kwargs),
                     )
-                VFF35.add_event_handler(
+                iqqhtani.add_event_handler(
                     wrapper,
                     NewMessage(pattern=REGEX_.regex1, outgoing=True, **kwargs),
                 )
                 if allow_sudo and gvarstatus("sudoenable") is not None:
                     if command is None or command[0] in sudo_enabledcmds:
                         if edited:
-                            VFF35.add_event_handler(
+                            iqqhtani.add_event_handler(
                                 wrapper,
                                 MessageEdited(
                                     pattern=REGEX_.regex2,
@@ -178,7 +178,7 @@ class CatUserBotClient(TelegramClient):
                                     **kwargs,
                                 ),
                             )
-                        VFF35.add_event_handler(
+                        iqqhtani.add_event_handler(
                             wrapper,
                             NewMessage(
                                 pattern=REGEX_.regex2,
@@ -194,8 +194,8 @@ class CatUserBotClient(TelegramClient):
                 except BaseException:
                     LOADED_CMDS.update({file_test: [func]})
                 if edited:
-                    VFF35.add_event_handler(func, events.MessageEdited(**kwargs))
-                VFF35.add_event_handler(func, events.NewMessage(**kwargs))
+                    iqqhtani.add_event_handler(func, events.MessageEdited(**kwargs))
+                iqqhtani.add_event_handler(func, events.NewMessage(**kwargs))
             return wrapper
 
         return decorator
@@ -250,17 +250,17 @@ class CatUserBotClient(TelegramClient):
                         text += (
                             "︙"
                         )
-                        text += f" عذرا قم بكتابه الأمر بشكل صحيح راجع : @VFF35 ** "
+                        text += f" عذرا قم بكتابه الأمر بشكل صحيح راجع : @Iqqhtani ** "
                         await check.client.send_message(
                             Config.PRIVATE_GROUP_BOT_API_ID, text, link_preview=False
                         )
 
-            from .session import VFF35
+            from .session import iqqhtani
 
             if edited is True:
-                VFF35.tgbot.add_event_handler(func, events.MessageEdited(**kwargs))
+                iqqhtani.tgbot.add_event_handler(func, events.MessageEdited(**kwargs))
             else:
-                VFF35.tgbot.add_event_handler(func, events.NewMessage(**kwargs))
+                iqqhtani.tgbot.add_event_handler(func, events.NewMessage(**kwargs))
 
             return wrapper
 
