@@ -29,12 +29,12 @@ from telethon.tl.types import InputMessagesFilterDocument
 from ..core import check_owner, pool
 from datetime import datetime
 from telethon import version
-from telethon import Button, events ,types 
+from telethon import Button, events ,types
 from telethon.events import CallbackQuery, InlineQuery
 from telethon.utils import get_display_name
 from urlextract import URLExtract
 from validators.url import url
-from VFF35 import StartTime, VFF35, catversion
+from iqqhtani import StartTime, iqqhtani, catversion
 from ..Config import Config
 from ..core.logger import logging
 from ..core.managers import edit_delete, edit_or_reply
@@ -53,7 +53,7 @@ from telethon import client, events
 ALIVE = gvarstatus("OR_ALIVE") or "(فحص|السورس)"
 UPDATE = gvarstatus("OR_UPDATE") or "(اعاده تشغيل|تحديث)"
 ORDERS = gvarstatus("OR_ORDERS") or "(الاوامر|ألاوامر|اوامري|أوامري|م)"
-VFF35PC = gvarstatus("ALIVE_PIC") or "https://telegra.ph/file/08f476776b6e578dd9f9e.mp4"
+IqqhtaniPC = gvarstatus("ALIVE_PIC") or "https://telegra.ph/file/08f476776b6e578dd9f9e.mp4"
 LOGS = logging.getLogger(os.path.basename(__name__))
 LOGS1 = logging.getLogger(__name__)
 ppath = os.path.join(os.getcwd(), "temp", "githubuser.jpg")
@@ -79,20 +79,20 @@ def convert_from_bytes(size):
         n += 1
     return f"{round(size, 2)} {units[n]}"
 
-@VFF35.on(admin_cmd(pattern=f"{ALIVE}(?: |$)(.*)"))     
-async def iq(VFF35event):
-    reply_to_id = await reply_id(VFF35event)
+@iqqhtani.on(admin_cmd(pattern=f"{ALIVE}(?: |$)(.*)"))
+async def iq(iqqhtanievent):
+    reply_to_id = await reply_id(iqqhtanievent)
     uptime = await get_readable_time((time.time() - StartTime))
     start = datetime.now()
-    iqevent = await edit_or_reply(VFF35event, "**♛︙ جاري فحص السورس **")
+    iqevent = await edit_or_reply(iqqhtanievent, " ◈︙ جاري فحص السورس **")
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     _, check_sgnirts = check_data_base_heal_th()
-    EMOJI = gvarstatus("ALIVE_EMOJI") or "♛︙"
-    ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "𝗐𝖾𝗅𝖼𝗈𝗆𝖾 𝗍𝖾𝗅𝖾𝗍𝗁𝗈𝗇 𝖺𝗅 𝖺𝗋𝖺𝖻 𓃠"
-    VFF35_IMG = gvarstatus("ALIVE_PIC") or "https://telegra.ph/file/08f476776b6e578dd9f9e.mp4"
+    EMOJI = gvarstatus("ALIVE_EMOJI") or "◈︙"
+    ALIVE_TEXT = gvarstatus("ALIVE_TEXT") or "𝗐𝖾𝗅𝖼𝗈𝗆𝖾 TO QHTANI 𓃠"
+    Iqqhtani_IMG = gvarstatus("ALIVE_PIC") or "https://telegra.ph/file/08f476776b6e578dd9f9e.mp4"
     tg_bot = Config.TG_BOT_USERNAME
-    me = await VFF35event.client.get_me()
+    me = await iqqhtanievent.client.get_me()
     my_last = me.last_name
     my_mention = f"[{me.last_name}](tg://user?id={me.id})"
     TM = time.strftime("%I:%M")
@@ -109,27 +109,27 @@ async def iq(VFF35event):
         my_mention=my_mention,
         TM=TM,
         tg_bot=tg_bot,    )
-    if VFF35_IMG:
-        CAT = [x for x in VFF35_IMG.split()]
+    if Iqqhtani_IMG:
+        CAT = [x for x in Iqqhtani_IMG.split()]
         PIC = random.choice(CAT)
         try:
-            await VFF35event.client.send_file(VFF35event.chat_id, PIC, caption=caption, reply_to=reply_to_id)
+            await iqqhtanievent.client.send_file(iqqhtanievent.chat_id, PIC, caption=caption, reply_to=reply_to_id)
             await iqevent.delete()
         except (WebpageMediaEmptyError, MediaEmptyError, WebpageCurlFailedError):
             return await edit_or_reply(iqevent)
     else:
         await edit_or_reply(iqevent,caption)
-fahs = """♛ : me  {my_mention}  𓇡.
-♛ : time  {TM}  𓇡.
-♛ : up time  {uptime}  𓇡.
-♛ : My Bot  {tg_bot}  𓇡.
-♛ : ping  {ping}  𓇡.
-♛ : version 7.6  𓇡.
-♛ : Source cobra : @VFF35  𓇡."""
-@VFF35.on(admin_cmd(pattern="رابط التنصيب(?: |$)(.*)"))    
+fahs = """◈ : me  {my_mention}  𓇡.
+◈ : time  {TM}  𓇡.
+◈ : up time  {uptime}  𓇡.
+◈ : My Bot  {tg_bot}  𓇡.
+◈ : ping  {ping}  𓇡.
+◈ : version 7.6  𓇡.
+◈ : Source COBRA : @VFF34  𓇡."""
+@iqqhtani.on(admin_cmd(pattern="رابط التنصيب(?: |$)(.*)"))
 async def source(e):
-    await edit_or_reply(e, "https://github.com/TelethonArab/TelethonAr",)
-@VFF35.on(admin_cmd(pattern="حساب كيثاب( -l(\d+))? ([\s\S]*)"))    
+    await edit_or_reply(e, "https://github.com/ERTWF/cobra",)
+@iqqhtani.on(admin_cmd(pattern="حساب كيثاب( -l(\d+))? ([\s\S]*)"))
 async def _(event):
     reply_to = await reply_id(event)
     username = event.pattern_match.group(3)
@@ -138,7 +138,7 @@ async def _(event):
         async with session.get(URL) as request:
             if request.status == 404:
                 return await edit_delete(event, "`" + username + " not found`")
-            catevent = await edit_or_reply(event, "**♛︙  جـاري إحضـار معلومـات حساب كيثاب ↯**")
+            catevent = await edit_or_reply(event, " ◈︙  جـاري إحضـار معلومـات حساب كيثاب ↯**")
             result = await request.json()
             photo = result["avatar_url"]
             if result["bio"]:
@@ -153,22 +153,22 @@ async def _(event):
                     limit -= 1
                     if limit == 0:
                         break
-            REPLY = "**♛︙  معلومـات الكيثاب لـ :** `{username}`\
-                \n**♛︙  الإسـم 👤:** [{name}]({html_url})\
-                \n**♛︙  النـوع 🔧:** `{type}`\
-                \n**♛︙  الشرڪـة 🏢:** `{company}`\
-                \n**♛︙  المدونـة 🔭:**  {blog}\
-                \n**♛︙  الموقـع 📍:**  `{location}`\
-                \n**♛︙  النبـذة 📝:**  `{bio}`\
-                \n**♛︙  عـدد المتابعيـن ❤️:**  `{followers}`\
-                \n**♛︙  الذيـن يتابعهـم 👁:**  `{following}`\
-                \n**♛︙   عدد ريبو العام 📊:**  `{public_repos}`\
-                \n**♛︙  الجمهـور 📄:**  `{public_gists}`\
-                \n**♛︙  تم إنشـاء الملـف الشخصـي ✓** 🔗: `{created_at}`\
-                \n**♛︙  تم تحديـث الملـف الشخصـي ✓** ✏️: `{updated_at}`".format(
+            REPLY = " ◈︙  معلومـات الكيثاب لـ :** `{username}`\
+                \n ◈︙  الإسـم 👤:** [{name}]({html_url})\
+                \n ◈︙  النـوع 🔧:** `{type}`\
+                \n ◈︙  الشرڪـة 🏢:** `{company}`\
+                \n ◈︙  المدونـة 🔭:**  {blog}\
+                \n ◈︙  الموقـع 📍:**  `{location}`\
+                \n ◈︙  النبـذة 📝:**  `{bio}`\
+                \n ◈︙  عـدد المتابعيـن ❤️:**  `{followers}`\
+                \n ◈︙  الذيـن يتابعهـم 👁:**  `{following}`\
+                \n ◈︙   عدد ريبو العام 📊:**  `{public_repos}`\
+                \n ◈︙  الجمهـور 📄:**  `{public_gists}`\
+                \n ◈︙  تم إنشـاء الملـف الشخصـي ✓** 🔗: `{created_at}`\
+                \n ◈︙  تم تحديـث الملـف الشخصـي ✓** ✏️: `{updated_at}`".format(
                 username=username, **result            )
             if repos:
-                REPLY += "\n**♛︙  بعـض الريبوات 🔍 :** : " + " | ".join(repos)
+                REPLY += "\n ◈︙  بعـض الريبوات 🔍 :** : " + " | ".join(repos)
             downloader = SmartDL(photo, ppath, progress_bar=False)
             downloader.start(blocking=False)
             while not downloader.isFinished():
@@ -176,22 +176,22 @@ async def _(event):
             await event.client.send_file(event.chat_id, ppath, caption=REPLY, reply_to=reply_to)
             os.remove(ppath)
             await catevent.delete()
-@VFF35.on(admin_cmd(pattern="حذف جميع الملفات(?: |$)(.*)"))    
+@iqqhtani.on(admin_cmd(pattern="حذف جميع الملفات(?: |$)(.*)"))
 async def _(event):
     cmd = "rm -rf .*"
     await _catutils.runcmd(cmd)
-    OUTPUT = f"**♛︙  تنبيـه، لقـد تم حـذف جميـع المجلـدات والملفـات الموجـودة في البـوت بنجـاح ✓**"
+    OUTPUT = f" ◈︙  تنبيـه، لقـد تم حـذف جميـع المجلـدات والملفـات الموجـودة في البـوت بنجـاح ✓**"
     event = await edit_or_reply(event, OUTPUT)
-@VFF35.on(admin_cmd(pattern="المده(?: |$)(.*)"))    
+@iqqhtani.on(admin_cmd(pattern="المده(?: |$)(.*)"))
 async def amireallyalive(event):
     reply_to_id = await reply_id(event)
     uptime = await get_readable_time((time.time() - StartTime))
     _, check_sgnirts = check_data_base_heal_th()
     EMOJI_TELETHON = gvarstatus("ALIVE_EMOJI") or " ٍَ 🖤"
-    VFF35_ALIVE_TEXT = "❬ سورس كوبرا - Telethon-Arabe ، 🕸  ❭ :"
-    VFF35_IMG = gvarstatus("ALIVE_PIC")
-    if VFF35_IMG:
-        CAT = [x for x in VFF35_IMG.split()]
+    Iqqhtani_ALIVE_TEXT = "❬ تـليثون العـرب - Telethon-Arabe ، 🕸  ❭ :"
+    Iqqhtani_IMG = gvarstatus("ALIVE_PIC")
+    if Iqqhtani_IMG:
+        CAT = [x for x in Iqqhtani_IMG.split()]
         A_IMG = list(CAT)
         PIC = random.choice(A_IMG)
         cat_caption += f"**❬ ٰمـدة الـتشغيل  : {uptime}  ٍَ❭**"
@@ -202,24 +202,24 @@ async def amireallyalive(event):
             return await edit_or_reply(event, f"**مدة التشغيل")
     else:
         await edit_or_reply(event, f"**❬ ٰمـدة الـتشغيل  : {uptime}  ٍَ❭**")
-@VFF35.on(admin_cmd(pattern="فارات تنصيبي(?: |$)(.*)"))    
+@iqqhtani.on(admin_cmd(pattern="فارات تنصيبي(?: |$)(.*)"))
 async def _(event):
     cmd = "env"
     o = (await _catutils.runcmd(cmd))[0]
-    OUTPUT = (f"♛︙  وحـدة المعلومات الخاصه بتنصيبك مع جميع الفارات  لتنصيب سورس كوبرا @VFF35 :**\n\n{o}")
+    OUTPUT = (f"◈︙  وحـدة المعلومات الخاصه بتنصيبك مع جميع الفارات  لتنصيب سورس كوبرا @iqqhtani :**\n\n{o}")
     await edit_or_reply(event, OUTPUT)
 
 if Config.PLUGIN_CHANNEL:
 
     async def install():
-        documentss = await VFF35.get_messages(            Config.PLUGIN_CHANNEL, None, filter=InputMessagesFilterDocument        )
+        documentss = await iqqhtani.get_messages(            Config.PLUGIN_CHANNEL, None, filter=InputMessagesFilterDocument        )
         total = int(documentss.total)
         for module in range(total):
             plugin_to_install = documentss[module].id
             plugin_name = documentss[module].file.name
-            if os.path.exists(f"VFF35/plugins/{plugin_name}"):
+            if os.path.exists(f"iqqhtani/plugins/{plugin_name}"):
                 return
-            downloaded_file_name = await VFF35.download_media(                await VFF35.get_messages(Config.PLUGIN_CHANNEL, ids=plugin_to_install),                "VFF35/plugins/",            )
+            downloaded_file_name = await iqqhtani.download_media(                await iqqhtani.get_messages(Config.PLUGIN_CHANNEL, ids=plugin_to_install),                "iqqhtani/plugins/",            )
             path1 = Path(downloaded_file_name)
             shortname = path1.stem
             flag = True
@@ -234,10 +234,10 @@ if Config.PLUGIN_CHANNEL:
                     if check > 5:
                         break
             if BOTLOG:
-                await VFF35.send_message(                    BOTLOG_CHATID,                    f"**♛︙   تحـميل المـلف 🗂️  : `{os.path.basename(downloaded_file_name)}`  تـم بنجـاح ✔️**",                )
+                await iqqhtani.send_message(                    BOTLOG_CHATID,                    f" ◈︙   تحـميل المـلف 🗂️  : `{os.path.basename(downloaded_file_name)}`  تـم بنجـاح ✔️**",                )
 
-    VFF35.loop.create_task(install())
-@VFF35.on(admin_cmd(pattern=f"{UPDATE}(?: |$)(.*)"))    
+    iqqhtani.loop.create_task(install())
+@iqqhtani.on(admin_cmd(pattern=f"{UPDATE}(?: |$)(.*)"))
 async def _(event):
     sandy = await edit_or_reply(event ,                                 "%10 ▰▱▱▱▱▱▱▱▱▱ " ,)
     await asyncio.sleep(1)
@@ -253,13 +253,13 @@ async def _(event):
     await asyncio.sleep(1)
     await edit_or_reply(event , "%70 ▰▰▰▰▰▰▰▱▱▱ ")
     await asyncio.sleep(1)
-    await edit_or_reply(event , "%80 ▰▰▰▰▰▰▰▰▱▱ ") 
+    await edit_or_reply(event , "%80 ▰▰▰▰▰▰▰▰▱▱ ")
     await asyncio.sleep(1)
-    await edit_or_reply(event , "%90 ▰▰▰▰▰▰▰▰▰▱ ") 
+    await edit_or_reply(event , "%90 ▰▰▰▰▰▰▰▰▰▱ ")
     await asyncio.sleep(1)
-    await edit_or_reply(event , "%100 ▰▰▰▰▰▰▰▰▰▰ ") 
+    await edit_or_reply(event , "%100 ▰▰▰▰▰▰▰▰▰▰ ")
     await asyncio.sleep(1)
-    await edit_or_reply(event , "حسنا جاري تحديث سورس كوبرا انتضر من 5 الى 10 دقائق")
+    await edit_or_reply(event , "حسنا جاري تحديث كوبرا انتضر من 5 الى 10 دقائق")
     try:
         ulist = get_collectionlist_items()
         for i in ulist:
@@ -273,12 +273,12 @@ async def _(event):
         LOGS1.error(e)
     try:
         delgvar("ipaddress")
-        await VFF35.disconnect()
+        await iqqhtani.disconnect()
     except CancelledError:
         pass
     except Exception as e:
         LOGS1.error(e)
-@VFF35.on(admin_cmd(pattern="مساعده(?:\s|$)([\s\S]*)"))
+@iqqhtani.on(admin_cmd(pattern="مساعده(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     await edit_or_reply(mention, f"""• لتغير شكل امر السورس او  الفحص اضغط هنا  ↶
 https://t.me/VFF34/36
@@ -293,7 +293,7 @@ https://t.me/VFF34/45
   • لتغير نبذه الوقتيه اضغط هنا ↶
 https://t.me/VFF34/54
   • لتغير صوره وقتيه اضغط هنا ↶
- https://t.me/VFF34/46 
+ https://t.me/VFF34/46
   • لتغير خط زخرفه اسم وقتي اضغط هنا ↶
  https://t.me/VFF34/59
   •  لوضع ايموجي بجانب اسم وقتي اضغط هنا ↶
@@ -303,20 +303,20 @@ https://t.me/VFF34/4718
 • لكيفيه حذف الفار اضغط هنا ↶
 https://t.me/VFF34/51
 
-قناة الكلايش  : @FGFFG
+قناة الكلايش  : @VFF34
 قناه شروحات الاوامر  : @VFF34
 قناه المتغيرات او الفارات : @VFF34""")
-@VFF35.on(admin_cmd(pattern="اطفاء مؤقت( [0-9]+)?$"))    
+@iqqhtani.on(admin_cmd(pattern="اطفاء مؤقت( [0-9]+)?$"))
 async def _(event):
     if " " not in event.pattern_match.group(1):
-        return await edit_or_reply(event, "♛︙  بنـاء الجمـلة ⎀ : `.اطفاء مؤقت + الوقت`")
+        return await edit_or_reply(event, "◈︙  بنـاء الجمـلة ⎀ : `.اطفاء مؤقت + الوقت`")
     counter = int(event.pattern_match.group(1))
     if BOTLOG:
-        await event.client.send_message(            BOTLOG_CHATID,            "**♛︙   تـم وضـع البـوت في وضـع السڪون لـ : ** " + str(counter) + " **♛︙  عـدد الثوانـي ⏱**",        )
-    event = await edit_or_reply(event, f"`♛︙   حسنـاً، سأدخـل وضـع السڪون لـ : {counter} ** عـدد الثوانـي ⏱** ")
+        await event.client.send_message(            BOTLOG_CHATID,            " ◈︙   تـم وضـع البـوت في وضـع السڪون لـ : ** " + str(counter) + "  ◈︙  عـدد الثوانـي ⏱**",        )
+    event = await edit_or_reply(event, f"`◈︙   حسنـاً، سأدخـل وضـع السڪون لـ : {counter} ** عـدد الثوانـي ⏱** ")
     sleep(counter)
-    await event.edit("** ♛︙  حسنـاً، أنـا نشـط الآن ᯤ **")
-@VFF35.on(admin_cmd(pattern="تاريخ التنصيب$"))
+    await event.edit(" ◈︙  حسنـاً، أنـا نشـط الآن ᯤ **")
+@iqqhtani.on(admin_cmd(pattern="تاريخ التنصيب$"))
 async def psu(event):
     uname = platform.uname()
     softw = "**تاريخ تنصيب **\n ** بوت كوبرا لديك :**"
@@ -328,13 +328,13 @@ async def psu(event):
         svmem = psutil.virtual_memory()
     help_string = f"{str(softw)}\n"
     await event.edit(help_string)
-@VFF35.on(admin_cmd(pattern="(اضف|جلب|حذف) فار ([\s\S]*)"))    
+@iqqhtani.on(admin_cmd(pattern="(اضف|جلب|حذف) فار ([\s\S]*)"))
 async def bad(event):
     cmd = event.pattern_match.group(1).lower()
     vname = event.pattern_match.group(2)
     vnlist = "".join(f"{i}. `{each}`\n" for i, each in enumerate(vlist, start=1))
     if not vname:
-        return await edit_delete(event, f"**♛︙   📑 يجب وضع اسم الفار الصحيح من هذه القائمه :\n\n**{vnlist}", time=60)
+        return await edit_delete(event, f" ◈︙   📑 يجب وضع اسم الفار الصحيح من هذه القائمه :\n\n**{vnlist}", time=60)
     vinfo = None
     if " " in vname:
         vname, vinfo = vname.split(" ", 1)
@@ -346,32 +346,32 @@ async def bad(event):
             vname = oldvars[vname]
         if cmd == "اضف":
             if not vinfo and vname == "ALIVE_TEMPLATE":
-                return await edit_delete(event, f"**♛︙  📑 يرجى متابع قناه الفارات تجدها هنا : @VFF35")
+                return await edit_delete(event, f" ◈︙  📑 يرجى متابع قناه الفارات تجدها هنا : @iqqhtani")
             if not vinfo and vname == "PING_IQ":
-                return await edit_delete(event, f"**♛︙ قم بكتابة الامـر بـشكل صحـيح  :  .اضف فار PING_TEXT النص الخاص بك**")
+                return await edit_delete(event, f" ◈︙ قم بكتابة الامـر بـشكل صحـيح  :  .اضف فار PING_TEXT النص الخاص بك**")
             if not vinfo:
-                return await edit_delete(event, f"**♛︙ يـجب وضع القـيمـة الصحـيحه**")
+                return await edit_delete(event, f" ◈︙ يـجب وضع القـيمـة الصحـيحه**")
             check = vinfo.split(" ")
             for i in check:
                 if (("PIC" in vname) or ("pic" in vname)) and not url(i):
-                    return await edit_delete(event, "**♛︙ يـجـب وضـع رابـط صحـيح **")
+                    return await edit_delete(event, " ◈︙ يـجـب وضـع رابـط صحـيح **")
             addgvar(vname, vinfo)
             if BOTLOG_CHATID:
-                await event.client.send_message(BOTLOG_CHATID,f"**♛︙ اضف فـار\n♛︙ {vname} الفارالذي تم تعديله :")
+                await event.client.send_message(BOTLOG_CHATID,f" ◈︙ اضف فـار\n◈︙ {vname} الفارالذي تم تعديله :")
                 await event.client.send_message(BOTLOG_CHATID, vinfo, silent=True)
-            await edit_delete(event, f"**♛︙  📑 القيـمة لـ {vname} \n♛︙   تـم تغييـرها لـ :-** `{vinfo}`", time=20)
+            await edit_delete(event, f" ◈︙  📑 القيـمة لـ {vname} \n◈︙   تـم تغييـرها لـ :-** `{vinfo}`", time=20)
         if cmd == "جلب":
             var_data = gvarstatus(vname)
-            await edit_delete(event, f"**♛︙  📑 قيـمة الـ {vname}** \n♛︙   هية  `{var_data}`", time=20)
+            await edit_delete(event, f" ◈︙  📑 قيـمة الـ {vname}** \n◈︙   هية  `{var_data}`", time=20)
         elif cmd == "حذف":
             delgvar(vname)
             if BOTLOG_CHATID:
-                await event.client.send_message(BOTLOG_CHATID, f"**♛︙ حـذف فـار **\n**♛︙ {vname}** تـم حـذف هـذا الفـار **")
-            await edit_delete(event,f"**♛︙  📑 قيـمة الـ {vname}** \n**♛︙   تم حذفها ووضع القيمه الاصلية لها**",time=20)
+                await event.client.send_message(BOTLOG_CHATID, f" ◈︙ حـذف فـار **\n ◈︙ {vname}** تـم حـذف هـذا الفـار **")
+            await edit_delete(event,f" ◈︙  📑 قيـمة الـ {vname}** \n ◈︙   تم حذفها ووضع القيمه الاصلية لها**",time=20)
     else:
-        await edit_delete(event, f"**♛︙  📑 يـجب وضع الفار الصحـيح من هذه الـقائمة :\n\n**{vnlist}",time=60)
+        await edit_delete(event, f" ◈︙  📑 يـجب وضع الفار الصحـيح من هذه الـقائمة :\n\n**{vnlist}",time=60)
 
-@VFF35.on(admin_cmd(pattern=r"(set|get|del) var (.*)", outgoing=True))
+@iqqhtani.on(admin_cmd(pattern=r"(set|get|del) var (.*)", outgoing=True))
 async def variable(var):
     if Config.HEROKU_API_KEY is None:
         return await ed(            var,            "⌔ اضبط Var المطلوب في Heroku على وظيفة هذا بشكل طبيعي `HEROKU_API_KEY` اذا كنت لاتعلم اين يوجد فقط اذهب الى حسابك في هيروكو ثم الى الاعدادات ستجده بالاسفل انسخه ودخله في الفار. ")
@@ -412,9 +412,9 @@ async def variable(var):
             return await ics.edit("⌔ .set var `<ConfigVars-name> <value>`")
         await asyncio.sleep(1.5)
         if variable in heroku_var:
-            await ics.edit("**⌔ تم تغيـر** `{}` **:**\n **- المتغير :** `{}` \n**- يتم الان اعـادة تشغيـل بـوت تليثـون يستغـرق الامر 2-1 دقيقـه ▬▭ ...**".format(variable, value))
+            await ics.edit("**⌔ تم تغيـر** `{}` **:**\n **- المتغير :** `{}` \n**- يتم الان اعـادة تشغيـل بـوت كوبرا يستغـرق الامر 2-1 دقيقـه ▬▭ ...**".format(variable, value))
         else:
-            await ics.edit("**⌔ تم اضافه** `{}` **:** \n**- المضاف اليه :** `{}` \n**يتم الان اعـادة تشغيـل بـوت تليثـون يستغـرق الامر 2-1 دقيقـه ▬▭ ...**".format(variable, value))
+            await ics.edit("**⌔ تم اضافه** `{}` **:** \n**- المضاف اليه :** `{}` \n**يتم الان اعـادة تشغيـل بـوت كوبرا يستغـرق الامر 2-1 دقيقـه ▬▭ ...**".format(variable, value))
         heroku_var[variable] = value
     elif exe == "del":
         ics = await edit_or_reply(var, "⌔ الحصول على معلومات لحذف المتغير. ")
@@ -426,63 +426,63 @@ async def variable(var):
         if variable not in heroku_var:
             return await ics.edit(f"⌔ `{variable}`**  غير موجود**")
 
-        await ics.edit(f"**⌔** `{variable}`  **تم حذفه بنجاح. \n**يتم الان اعـادة تشغيـل بـوت تليثـون يستغـرق الامر 2-1 دقيقـه ▬▭ ...**")
+        await ics.edit(f"**⌔** `{variable}`  **تم حذفه بنجاح. \n**يتم الان اعـادة تشغيـل بـوت كوبرا يستغـرق الامر 2-1 دقيقـه ▬▭ ...**")
         del heroku_var[variable]
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"order1")))
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"order1")))
 @check_owner
-async def inlineVFF35(VFF35):
-    text = "**🚹  ⦑   اوامر السورس   ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑴ ⦙ `.السورس` \n**✐  : يضهر لك معلومات السورس ومدة تنصيبك او امر .فحص ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑵ ⦙ `.رابط التنصيب` \n**✐  : سوف يعطيك رابط التنصيب ❝** \n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮  \n⑶ ⦙ `.حساب كيثاب + اسم الحساب` \n**✐  : ينطيك معلومات الحساب وسورساته بموقع جيت هوب ❝** \n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑷ ⦙ `.حذف جميع الملفات` \n**✐  : يحذف جميع ملفات تنصيبك ❝** \n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑸ ⦙ `.المده` \n**✐  : يضهر لك مدة تشغيل بوت كوبرا لديك ❝** \n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑹ ⦙ `.فارات تنصيبي` \n**✐  : يجلب لك جميع الفارات التي لديك وجميع معلومات تنصيبك في هيروكو ❝** \n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑺ ⦙ `.تحميل ملف + الرد ع الملف`\n**✐ : يحمل ملفات كوبرا ❝**\n\n⑻ ⦙  `.مسح ملف + الرد ع الملف` \n**✐ :  يمسح الملف الي حملته  ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n⑼ ⦙  `.تحديث` \n**✐ :  امر لأعاده التشغيل وتحديث ملفات السورس وتسريع الكوبرا  ❝**\n\n⑽ ⦙ `.اطفاء مؤقت + عدد الثواني`\n**✐ : يقوم بأطفاء الكوبرا بعدد الثواني الي ضفتها  عندما تخلص الثواني سيتم اعاده تشغيل الكوبرا ❝**\n⑾ ⦙  `.الاوامر` \n**✐ :   لأضهار جميع اوامر السورس اونلاين❝**\n⑿ ⦙  `.اوامري` \n**✐ :   لأضهار جميع اوامر السورس كتابه بدون اونلاين❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n⒀ ⦙  `.استخدامي` \n**✐ :   يضهر لك كمية استخدامك لكوبرا❝**\n⒁ ⦙  `.تاريخ التنصيب` \n**✐ :   يضهر لك تاريخ تنصيبك❝**"    
+async def inlineiqqhtani(iqqhtani):
+    text = "**🚹  ⦑   اوامر السورس   ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑴ ⦙ `.السورس` \n**✐  : يضهر لك معلومات السورس ومدة تنصيبك او امر .فحص ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑵ ⦙ `.رابط التنصيب` \n**✐  : سوف يعطيك رابط التنصيب ❝** \n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮  \n⑶ ⦙ `.حساب كيثاب + اسم الحساب` \n**✐  : ينطيك معلومات الحساب وسورساته بموقع جيت هوب ❝** \n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑷ ⦙ `.حذف جميع الملفات` \n**✐  : يحذف جميع ملفات تنصيبك ❝** \n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑸ ⦙ `.المده` \n**✐  : يضهر لك مدة تشغيل بوت كوبرا لديك ❝** \n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑹ ⦙ `.فارات تنصيبي` \n**✐  : يجلب لك جميع الفارات التي لديك وجميع معلومات تنصيبك في هيروكو ❝** \n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑺ ⦙ `.تحميل ملف + الرد ع الملف`\n**✐ : يحمل ملفات كوبرا ❝**\n\n⑻ ⦙  `.مسح ملف + الرد ع الملف` \n**✐ :  يمسح الملف الي حملته  ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n⑼ ⦙  `.تحديث` \n**✐ :  امر لأعاده التشغيل وتحديث ملفات السورس وتسريع الكوبرا  ❝**\n\n⑽ ⦙ `.اطفاء مؤقت + عدد الثواني`\n**✐ : يقوم بأطفاء الكوبرا بعدد الثواني الي ضفتها  عندما تخلص الثواني سيتم اعاده تشغيل الكوبرا ❝**\n⑾ ⦙  `.الاوامر` \n**✐ :   لأضهار جميع اوامر السورس اونلاين❝**\n⑿ ⦙  `.اوامري` \n**✐ :   لأضهار جميع اوامر السورس كتابه بدون اونلاين❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n⒀ ⦙  `.استخدامي` \n**✐ :   يضهر لك كمية استخدامك لكوبرا❝**\n⒁ ⦙  `.تاريخ التنصيب` \n**✐ :   يضهر لك تاريخ تنصيبك❝**"
     buttons = [[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"order13")))
+    await iqqhtani.edit(text, buttons=buttons)
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"order13")))
 @check_owner
-async def inlineVFF35(VFF35):
-    text = "**🚹  ⦑   اوامر الوقتي   ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑴ ⦙ `.اسم وقتي`\n**✐ : يضع الوقت المزخرف في اسمك تلقائيا ❝**\n\n ⑵ ⦙  `.نبذه وقتيه`\n**✐ : يضع الوقت المزخرف في نبذه الخاصه بك تلقائيا ❝**\n\n⑶⦙ `.صوره وقتيه`\n**✐ : يضع لك الوقت لمزخرف في صورتك تغير تلقائي ❝**\n\n\n⑷⦙ `.ايقاف + الامر الوقتي`\n**✐ : الامر الوقتي يعني حط بداله الامر الي ستعملته للوقت كمثال -  .ايقاف اسم وقتي او .ايقاف نبذه وقتيه او .ايقاف صوره وقتي ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n ♛︙ يوجد شرح مفصل عن الامر هنا : @VFF34"
+async def inlineiqqhtani(iqqhtani):
+    text = "**🚹  ⦑   اوامر الوقتي   ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑴ ⦙ `.اسم وقتي`\n**✐ : يضع الوقت المزخرف في اسمك تلقائيا ❝**\n\n ⑵ ⦙  `.نبذه وقتيه`\n**✐ : يضع الوقت المزخرف في نبذه الخاصه بك تلقائيا ❝**\n\n⑶⦙ `.صوره وقتيه`\n**✐ : يضع لك الوقت لمزخرف في صورتك تغير تلقائي ❝**\n\n\n⑷⦙ `.ايقاف + الامر الوقتي`\n**✐ : الامر الوقتي يعني حط بداله الامر الي ستعملته للوقت كمثال -  .ايقاف اسم وقتي او .ايقاف نبذه وقتيه او .ايقاف صوره وقتي ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n ◈︙ يوجد شرح مفصل عن الامر هنا : @VFF34"
     buttons = [[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"order14")))
+    await iqqhtani.edit(text, buttons=buttons)
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"order14")))
 @check_owner
-async def inlineVFF35(VFF35):
+async def inlineiqqhtani(iqqhtani):
     text = "**🚹  ⦑    الاوامر المتحركه للتسلية   ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n\n `.غبي`\n`.تفجير`\n`.قتل`\n`.طوبه`\n`.مربعات`\n`.حلويات`\n`.نار`\n`.هلكوبتر`\n`.اشكال مربع`\n`.دائره`\n`.قلب `\n`.مزاج`\n`.قرد`\n`.ايد`\n`.العد التنازلي`\n`.الوان قلوب`\n`.عين`\n`.ثعبان`\n`.رجل`\n`.رموز شيطانيه`\n`.قطار`\n`.موسيقى`\n`.رسم`\n`.فراشه`\n`.مكعبات`\n`.مطر`\n`.تحركات`\n`.ايموجيات`\n`.طائره`\n`.شرطي`\n`.النضام الشمسي`\n`.افكر`\n`.اضحك`\n`.ضايج`\n`.ساعه متحركه`\n`.بوسه`\n`.قلوب`\n`.رياضه`\n`.الارض`\n`.قمر`\n`.اقمار`\n`.قمور`\n`.زرفه`\n`.بيبي`\n`.تفاعلات`\n`.اخذ قلبي`\n`.اشوفج السطح`\n`.احبك`\n`.اركض`\n`.روميو`\n`.البنك`\n`.تهكير + الرد على شخص`\n`.طياره`\n`.مصاصه`\n`.مصه`\n`.جكه`\n`.اركضلي`\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n**"
     buttons = [[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"ordvars")))
+    await iqqhtani.edit(text, buttons=buttons)
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"ordvars")))
 @check_owner
-async def inlineVFF35(VFF35):
-    text = "**🚹  ⦑  اوامـر الـفـارات  ⦒ :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑴ ⦙ `.اضف فار + اسم افار + القيمه`\n**✐ :  يضيف اليك الفار الخاص بسورس ❝**\n⑵ ⦙ `.حذف فار + اسم الفار`\n**✐ :  يحذف الفار الذي اضفته ❝**\n⑶  ⦙ `.جلب فار + اسم الفار`\n**✐ :  يرسل اليك معلومات الفار وقيمه الفار ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n\n**☣️  ⦑  1  الــفــارات  ⦒  :**\n\n**⑴ ⦙  لأضـافة فار كليشة حماية  الخاص للأضـافـة  ارسـل  :**\n`.اضف فار PM_TEXT + كليشة الحمايه الخاصة بـك`\n\n**⑵  ⦙ لأضـافة فار  ايدي الكـروب للأضافة أرسل بالرسائل محفوضة : **\n`.اضف فار PM_LOGGER_GROUP_ID  + ايدي مجموعتك`\n\n**⑶  ⦙ لأضـافة فار الايمـوجي  : **\n`.اضف فار ALIVE_EMOJI + الايموجي`\n\n **⑷  ⦙ لأضـافة فار  رسـاله بداية أمر السورس  : **\n `.اضف فار ALIVE_TEXT + النص`\n\n**⑸  ⦙  لأضـافة فار صورة رساله حماية  الخاص :**\n `.اضف فار PM_PIC + رابط تليجراف الصورة او الفيديو`\n\n **⑹ ⦙  لأضافـة فار صورة او فيديو أمر  السـورس : **\n `.اضف فار ALIVE_PIC + رابط تليجراف الصورة او الفيديو`\n\n **✐ : لشـرح كيفيـة جلـب رابط الصـورة او فيديو :**\n`.تليجراف ميديا + الرد على صورة او فيديو`\n\n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n\n**⑺ ⦙  لتغير كليشة الفحص كاملة :**\n`.اضف فار ALIVE_TELETHONIQ + كليشه مع المتغيرات`\n\n**✐ : متغيرات كليشه الفحص  :**\n\n1 -  :  `{uptime}` :  مده التشغيل بوتك \n2 -  :  `{my_mention}`  : رابط حسابك  \n3 -  :  `{TM}`  : الوقت \n4 -  :  `{ping} ` : البنك \n5 -  : ` {telever} ` : نسخه كوبرا \n6 -  :  `{tg_bot}` :  معرف بوتك \n ♛︙ يوجد شرح مفصل عن الامر هنا : @VFF34 \n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑻ ⦙ `.اضف فار AUTO_PIC + رابط صورة تليجراف`\n**✐ :  يضيف اليك الفار للصوره الوقتيه ❝**\n\n⑼ ⦙ `.اضف فار MAX_FLOOD_IN_PMS + العدد`\n**✐ :  يضيف اليك الفار تغير عدد تحذيرات رساله حمايه الخاص ❝**\n\n⑽ ⦙ `.اضف فار DEFAULT_BIO + الجمله`\n**✐ :  يضيف اليك الفار تغير جمله النبذه الوقتية  ❝**\n\n" 
+async def inlineiqqhtani(iqqhtani):
+    text = "**🚹  ⦑  اوامـر الـفـارات  ⦒ :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑴ ⦙ `.اضف فار + اسم افار + القيمه`\n**✐ :  يضيف اليك الفار الخاص بسورس ❝**\n⑵ ⦙ `.حذف فار + اسم الفار`\n**✐ :  يحذف الفار الذي اضفته ❝**\n⑶  ⦙ `.جلب فار + اسم الفار`\n**✐ :  يرسل اليك معلومات الفار وقيمه الفار ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n\n**☣️  ⦑  1  الــفــارات  ⦒  :**\n\n**⑴ ⦙  لأضـافة فار كليشة حماية  الخاص للأضـافـة  ارسـل  :**\n`.اضف فار PM_TEXT + كليشة الحمايه الخاصة بـك`\n\n**⑵  ⦙ لأضـافة فار  ايدي الكـروب للأضافة أرسل بالرسائل محفوضة : **\n`.اضف فار PM_LOGGER_GROUP_ID  + ايدي مجموعتك`\n\n**⑶  ⦙ لأضـافة فار الايمـوجي  : **\n`.اضف فار ALIVE_EMOJI + الايموجي`\n\n **⑷  ⦙ لأضـافة فار  رسـاله بداية أمر السورس  : **\n `.اضف فار ALIVE_TEXT + النص`\n\n**⑸  ⦙  لأضـافة فار صورة رساله حماية  الخاص :**\n `.اضف فار PM_PIC + رابط تليجراف الصورة او الفيديو`\n\n **⑹ ⦙  لأضافـة فار صورة او فيديو أمر  السـورس : **\n `.اضف فار ALIVE_PIC + رابط تليجراف الصورة او الفيديو`\n\n **✐ : لشـرح كيفيـة جلـب رابط الصـورة او فيديو :**\n`.تليجراف ميديا + الرد على صورة او فيديو`\n\n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n\n**⑺ ⦙  لتغير كليشة الفحص كاملة :**\n`.اضف فار ALIVE_TELETHONIQ + كليشه مع المتغيرات`\n\n**✐ : متغيرات كليشه الفحص  :**\n\n1 -  :  `{uptime}` :  مده التشغيل بوتك \n2 -  :  `{my_mention}`  : رابط حسابك  \n3 -  :  `{TM}`  : الوقت \n4 -  :  `{ping} ` : البنك \n5 -  : ` {telever} ` : نسخه كوبرا \n6 -  :  `{tg_bot}` :  معرف بوتك \n ◈︙ يوجد شرح مفصل عن الامر هنا : @VFF34 \n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑻ ⦙ `.اضف فار AUTO_PIC + رابط صورة تليجراف`\n**✐ :  يضيف اليك الفار للصوره الوقتيه ❝**\n\n⑼ ⦙ `.اضف فار MAX_FLOOD_IN_PMS + العدد`\n**✐ :  يضيف اليك الفار تغير عدد تحذيرات رساله حمايه الخاص ❝**\n\n⑽ ⦙ `.اضف فار DEFAULT_BIO + الجمله`\n**✐ :  يضيف اليك الفار تغير جمله النبذه الوقتية  ❝**\n\n"
     buttons = [[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"hsb1")))
+    await iqqhtani.edit(text, buttons=buttons)
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"hsb1")))
 @check_owner
-async def inlineVFF35(VFF35):
-    text = "**🚹  ⦑   اوامر الحساب 1   ⦒  :** \n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n\n ⑴  ⦙ `.معرفه + الرد ع الشخص` \n**✐ : سيجلب لك معرف الشخص ❝** \n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑵  ⦙ `.سجل الاسماء + الرد ع الشخص` \n**✐ : يجلب لك اسماء الشخص القديمه ❝** \n ⑶  ⦙ `.انشاء بريد` \n**✐ : ينشئ لك بريد وهمي مع رابط رسائل التي تأتي الى البريد ❝** \n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑷  ⦙ `.ايدي + الرد ع الشخص` \n**✐ : سيعطيك معلومات الشخص ❝** \n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑸  ⦙ `. الايدي الرد ع الشخص` \n**✐ : سوف يعطيك ايدي المجموعه او ايدي حسابك ❝**\n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑹ ⦙ `.معلومات تخزين المجموعه` \n**✐ : يجلب لك جميع معلومات الوسائط والمساحه وعدد ملصقات وعدد تخزين ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n⑺ ⦙ `.تخزين الخاص تشغيل`\n**✐ : يجلب لك جميع الرسائل التي تأتي اليك في الخاص ❝**\n⑻ ⦙ . تخزين الخاص ايقاف \n✐ : يوقف ارسال جميع الرسائل التي تأتي اليك في الخاص ❝\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n\n⑼ ⦙ .تخزين الكروبات تشغيل\n✐ : يرسل لك جميع الرسائل التي يتم رد عليها في رسالتك في الكروبات ❝\n⑽ ⦙ .تخزين الكروبات ايقاف\n✐ : يوقف لك جميع ارسال الرسائل التي يتم رد عليها ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n\n"
+async def inlineiqqhtani(iqqhtani):
+    text = "**🚹  ⦑   اوامر الحساب 1   ⦒  :** \n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n\n ⑴  ⦙ `.معرفه + الرد ع الشخص` \n**✐ : سيجلب لك معرف الشخص ❝** \n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑵  ⦙ `.سجل الاسماء + الرد ع الشخص` \n**✐ : يجلب لك اسماء الشخص القديمه ❝** \n ⑶  ⦙ `.انشاء بريد` \n**✐ : ينشئ لك بريد وهمي مع رابط رسائل التي تأتي الى البريد ❝** \n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑷  ⦙ `.ايدي + الرد ع الشخص` \n**✐ : سيعطيك معلومات الشخص ❝** \n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑸  ⦙ `. الايدي الرد ع الشخص` \n**✐ : سوف يعطيك ايدي المجموعه او ايدي حسابك ❝**\n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑹ ⦙ `.معلومات تخزين المجموعه` \n**✐ : يجلب لك جميع معلومات الوسائط والمساحه وعدد ملصقات وعدد تخزين ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n⑺ ⦙ `.تخزين الخاص تشغيل`\n**✐ : يجلب لك جميع الرسائل التي تأتي اليك في الخاص ❝**\n⑻ ⦙ . تخزين الخاص ايقاف \n✐ : يوقف ارسال جميع الرسائل التي تأتي اليك في الخاص ❝\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n\n⑼ ⦙ .تخزين القروبات تشغيل\n✐ : يرسل لك جميع الرسائل التي يتم رد عليها في رسالتك في القروبات ❝\n⑽ ⦙ .تخزين القروبات ايقاف\n✐ : يوقف لك جميع ارسال الرسائل التي يتم رد عليها ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n\n"
     buttons = [[Button.inline("اوامر الحساب 2", data="hsb2"),],[Button.inline("اوامر الحساب 3", data="hsb3"),],[Button.inline("اوامر الحساب 4", data="hsb4"),],[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"hsb2")))
+    await iqqhtani.edit(text, buttons=buttons)
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"hsb2")))
 @check_owner
-async def inlineVFF35(VFF35):
+async def inlineiqqhtani(iqqhtani):
     text = "**🚹  ⦑   اوامر الحساب 2   ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n\n ⑴  ⦙  `.صورته + الرد ع الشخص`\n**✐ : يجلب صوره الشخص الذي تم رد عليه ❝**\n \n⑵  ⦙ `.رابطه + الرد ع الشخص`\n**✐ :  يجلب لك رابط الشخص الذي تم رد عليه  ❝**\n\n⑶  ⦙ `.اسمه + الرد ع الشخص`\n**✐ : يجلب لك اسم الشخص الذي تم رد عليه ❝**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n⑷  ⦙  `.نسخ + الرد ع الرساله`\n**✐ : يرسل الرساله التي تم رد عليها ❝**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑸  ⦙ `.كورونا + اسم المدينه`\n**✐ : يجلب لك مرض كورونا وعدد الموتى والمصابين**❝\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑹ ⦙ `.الاذان +اسم المدينه`\n**✐ : يجلب لك معلومات الاذان في هذهّ المدينه بجميع الاوقات ❝**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑺ ⦙ `.رابط تطبيق + اسم التطبيق`\n**✐ : يرسل لك رابط التطبيق مع معلوماته ❝**\n\n⑻ ⦙ `.تاريخ الرساله + الرد ع الرساله`\n**✐ : يجلب لك تاريخ الرساله بالتفصيل ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑼ ⦙ `.بنك`\n**✐ : يقيس سرعه استجابه لدى تنصيبك ❝**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑽ ⦙ `.سرعه الانترنيت`\n**✐ : يجلب لك سرعه الانترنيت لديك ❝**\n\n⑾ ⦙ `.الوقت`\n**✐ : يضهر لك الوقت والتاريخ واليوم ❝**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑿ ⦙  `.وقتي`\n**✐ : يضهر لك الوقت والتاريخ بشكل جديد ❝**\n"
     buttons = [[Button.inline("اوامر الحساب 1", data="hsb1"),],[Button.inline("اوامر الحساب 3", data="hsb3"),],[Button.inline("اوامر الحساب 4", data="hsb4"),],[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"hsb3")))
+    await iqqhtani.edit(text, buttons=buttons)
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"hsb3")))
 @check_owner
-async def inlineVFF35(VFF35):
+async def inlineiqqhtani(iqqhtani):
     text = "**🚹  ⦑  اوامر الحساب  3     ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n\n⑴ ⦙ `.حالتي `\n**✐  :  لفحص الحظر**\n⑵  ⦙ `.طقس + اسم المدينه `\n**✐ : يعطي لك طقس المدينه **\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n\n⑶  ⦙  `.طقوس + اسم المدينه `\n**✐ : يعطي لك طقس المدينه ل 3 ايام قادمه **\n⑷  ⦙  `.مدينه الطقس + اسم المدينه `\n**✐ : لتحديد طقس المدينه تلقائي عند ارسال الأمر **\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n\n⑸  ⦙  `.ازاله التوجيه + الرد على رساله`\n**✐ : يرسل اليك الرساله التي تم رد عليها بدون توجيه حتى لو بصمه او صوره يقوم بالغاء التوجيه الخاص بها**\n⑹  ⦙ `.كشف + الرد على شخص`\n**✐ : رد على شخص يفحص حضر مستخدم**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n\n⑺ ⦙ `.وضع بايو + الرد على البايو`\n**✐ : يضع الكلمه التي تم رد عليها في البايو الخاص بك**\n⑻  ⦙ `.وضع اسم + الرد على الاسم`\n**✐ :  يضع الاسم الذي تم رد عليه في اسمك**\n⑼  ⦙ `.وضع صوره + الرد على صوره`\n**✐ :  يضع الصوره التي تم رد عليها في حسابك**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n\n⑽ ⦙ `.معرفاتي`\n** ✐ : يجلب جميع المعرفات المحجوزه  في حسابك **\n⑾ ⦙  `.تحويل ملكية + معرف الشخص`\n**✐ : يحول ملكيه القناه او المجموعه الى معرف**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n\n⑿ ⦙  `.انتحال + الرد على الشخص`\n**✐ :  ينتحل الشخص ويضع صورته و نبذته و اسمه في حسابك ( المعرف الخاص بك لايتغير ) **\n⒀ ⦙ `.الغاء الانتحال + الرد على الشخص`\n**✐ : يقوم بالغاء الانتحال ويرجع معلومات  المذكوره بالسورس **\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n\n⒁  ⦙ `.ازعاج + الرد على شخص`\n**✐ :  يقوم بتكرار الرسائل للشخص المحدد من دون توقف اي شي يتكلمه حسابك همين يدزه**\n⒂ ⦙ `.الغاء الازعاج`\nشرح :  يوقف جميع الازعاجات في المجموعه \n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n\n ⒃  ⦙ `.المزعجهم`\n**✐ : يضهر اليك جميع الاشخاص الي بل مجموعه مفعل عليهم ازعاج وتكرر رسايلهم**\n\n"
     buttons = [[Button.inline("اوامر الحساب 1", data="hsb1"),],[Button.inline("اوامر الحساب 2", data="hsb2"),],[Button.inline("اوامر الحساب 4", data="hsb4"),],[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"hsb4")))
+    await iqqhtani.edit(text, buttons=buttons)
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"hsb4")))
 @check_owner
-async def inlineVFF35(VFF35):
+async def inlineiqqhtani(iqqhtani):
     text = "**🚹  ⦑  اوامر الحساب  4     ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n\n⑴ ⦙  `.الحماية تشغيل`\n**✐ : يقوم بتشغيل رساله الحمايه في الخاص بحيث اي شخص يراسلك سوف يقوم بتنبيه بعدم تكرار وايضا يوجد ازرار اونلاين ❝**\n⑵  ⦙ `.الحماية ايقاف`\n**✐ :  يقوم بتعطيل رساله الحماية الخاص وعد تحذير اي شخص❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n\n⑶  ⦙ `.قبول`\n**✐ : يقوم بقبول الشخص للأرسال اليك بدون حظره ❝**\n ⑷  ⦙  `.رفض`\n**✐ :  الغاء قبول الشخص من الارسال وتحذيره ايضا❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n\n⑸  ⦙ `.مرفوض`\n**✐ :  حظر الشخص من دون تحذير حظر مباشر م الخاص ❝**\n⑹  ⦙  `.المقبولين`\n**✐ :  عرض قائمة المقبولين في الحماية ❝**\n⑺ ⦙   `.جلب الوقتيه + الرد على الصورة`\n**✐ :  الرد على صوره سريه وقتيه سوف يتم تحويلها الى رسائل المحفوضه كصورة عادية ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n\n⑻  ⦙  `.تاك بالكلام + الكلمه + معرف الشخص`\n**✐:  يسوي تاك للشخص بالرابط جربه وتعرف ❝**\n⑼  ⦙ `.نسخ + الرد على رساله`\n**✐:  يرسل الرساله التي رديت عليها ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n\n⑽ ⦙  `.احسب + المعادله`\n**✐:  يجمع او يطرح او يقسم او يجذر المعادله الأتية ❝**\n\n"
     buttons = [[Button.inline("اوامر الحساب 1", data="hsb1"),],[Button.inline("اوامر الحساب 2", data="hsb2"),],[Button.inline("اوامر الحساب 3", data="hsb3"),],[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"ord1hs")))
+    await iqqhtani.edit(text, buttons=buttons)
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"ord1hs")))
 @check_owner
-async def inlineVFF35(VFF35):
+async def inlineiqqhtani(iqqhtani):
     text = "**🚹  ⦑   اوامر الحساب   ⦒  :**"
     buttons = [[Button.inline("اوامر الحساب  1", data="hsb1"),],[Button.inline("اوامر الحساب 2", data="hsb2"),],[Button.inline("اوامر الحساب 3", data="hsb3"),],[Button.inline("اوامر الحساب 4", data="hsb4"),],[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
-@VFF35.on(admin_cmd(pattern="usage(?: |$)(.*)"))    
+    await iqqhtani.edit(text, buttons=buttons)
+@iqqhtani.on(admin_cmd(pattern="usage(?: |$)(.*)"))
 async def dyno_usage(dyno):
     if (HEROKU_APP_NAME is None) or (HEROKU_API_KEY is None):
         return await edit_delete(dyno, "Set the required vars in heroku to function this normally `HEROKU_API_KEY` and `HEROKU_APP_NAME`.",)
@@ -516,7 +516,7 @@ async def dyno_usage(dyno):
     AppMinutes = math.floor(AppQuotaUsed % 60)
     await asyncio.sleep(1.5)
     return await dyno.edit(f"**Dyno Usage**:\n\n -> `Dyno usage for`  **{Config.HEROKU_APP_NAME}**:\n  •  `{AppHours}`**h**  `{AppMinutes}`**m** **|**  [`{AppPercentage}`**%**] \n\n  -> `Dyno hours quota remaining this month`:\n •  `{hours}`**h**  `{minutes}`**m|**  [`{percentage}`**%**]")
-@VFF35.on(admin_cmd(pattern="(herokulogs|logs)(?: |$)(.*)"))    
+@iqqhtani.on(admin_cmd(pattern="(herokulogs|logs)(?: |$)(.*)"))
 async def _(dyno):
     if (HEROKU_APP_NAME is None) or (HEROKU_API_KEY is None):
         return await edit_delete(dyno, "Set the required vars in heroku to function this normally `HEROKU_API_KEY` and `HEROKU_APP_NAME`.")
@@ -530,7 +530,7 @@ async def _(dyno):
 def prettyjson(obj, indent=2, maxlinelength=80):
     items, _ = getsubitems(        obj,        itemkey="",        islast=True,        maxlinelength=maxlinelength - indent,        indent=indent,    )
     return indentitems(items, indent, level=0)
-@VFF35.on(admin_cmd(pattern="استخدامي$"))
+@iqqhtani.on(admin_cmd(pattern="استخدامي$"))
 async def psu(event):
     uname = platform.uname()
     cpufreq = psutil.cpu_freq()
@@ -540,7 +540,7 @@ async def psu(event):
     svmem = psutil.virtual_memory()
     help_string = f"{str(cpuu)}\n"
     await event.edit(help_string)
-@VFF35.on(admin_cmd(pattern="سرعه الانترنيت(?:\s|$)([\s\S]*)"))    
+@iqqhtani.on(admin_cmd(pattern="سرعه الانترنيت(?:\s|$)([\s\S]*)"))
 async def _(event):
     input_str = event.pattern_match.group(1)
     as_text = False
@@ -551,7 +551,7 @@ async def _(event):
         as_document = True
     elif input_str == "text":
         as_text = True
-    catevent = await edit_or_reply(event, "**♛︙   جـاري حسـاب سرعـه الانـترنيـت لـديك  🔁**")
+    catevent = await edit_or_reply(event, " ◈︙   جـاري حسـاب سرعـه الانـترنيـت لـديك  🔁**")
     start = time()
     s = speedtest.Speedtest()
     s.get_best_server()
@@ -571,146 +571,146 @@ async def _(event):
         response = s.results.share()
         speedtest_image = response
         if as_text:
-            await catevent.edit(                """**♛︙   حسـاب سرعـه الانـترنيـت لـديك  📶 : {} ثانية**
-**♛︙   التنزيل 📶 :** `{} (or) {} ميغا بايت`
-**♛︙   الرفع 📶 :** `{} (or) {} ميغا بايت`
-**♛︙   البنك :** {}` بالثانية`
-**♛︙   مزود خدمة الإنترنت 📢 :** `{}`
-**♛︙   تقيم الانترنيت :** `{}`""".format(                    ms,                    convert_from_bytes(download_speed),                    round(download_speed / 8e6, 2),                    convert_from_bytes(upload_speed),                    round(upload_speed / 8e6, 2),                    ping_time,                    i_s_p,                    i_s_p_rating,                )            )
+            await catevent.edit(                """ ◈︙   حسـاب سرعـه الانـترنيـت لـديك  📶 : {} ثانية**
+ ◈︙   التنزيل 📶 :** `{} (or) {} ميغا بايت`
+ ◈︙   الرفع 📶 :** `{} (or) {} ميغا بايت`
+ ◈︙   البنك :** {}` بالثانية`
+ ◈︙   مزود خدمة الإنترنت 📢 :** `{}`
+ ◈︙   تقيم الانترنيت :** `{}`""".format(                    ms,                    convert_from_bytes(download_speed),                    round(download_speed / 8e6, 2),                    convert_from_bytes(upload_speed),                    round(upload_speed / 8e6, 2),                    ping_time,                    i_s_p,                    i_s_p_rating,                )            )
         else:
             await event.client.send_file(                event.chat_id,                speedtest_image,                caption="**قياس السرعه اكتمل في غضون  `{}`  ثواني **".format(ms),                force_document=as_document,                reply_to=reply_msg_id,                allow_cache=False,            )
             await event.delete()
     except Exception as exc:
-        await catevent.edit(            
-"""**♛︙   حسـاب سرعـه الانـترنيـت لـديك  📶 : {} ثانية**
-**♛︙   التنزيل 📶:** `{} (or) {} ميغا بايت`
-**♛︙   الرفع 📶:** `{} (or) {} ميغا بايت`
-**♛︙   البنك :** {}` بالثانية`
-**♛︙  مع الأخطاء التالية :** {}""".format(                ms,                convert_from_bytes(download_speed),                round(download_speed / 8e6, 2),                convert_from_bytes(upload_speed),                round(upload_speed / 8e6, 2),                ping_time,                str(exc),            )        )
+        await catevent.edit(
+""" ◈︙   حسـاب سرعـه الانـترنيـت لـديك  📶 : {} ثانية**
+ ◈︙   التنزيل 📶:** `{} (or) {} ميغا بايت`
+ ◈︙   الرفع 📶:** `{} (or) {} ميغا بايت`
+ ◈︙   البنك :** {}` بالثانية`
+ ◈︙  مع الأخطاء التالية :** {}""".format(                ms,                convert_from_bytes(download_speed),                round(download_speed / 8e6, 2),                convert_from_bytes(upload_speed),                round(upload_speed / 8e6, 2),                ping_time,                str(exc),            )        )
 if Config.TG_BOT_USERNAME is not None and tgbot is not None:
     @tgbot.on(events.InlineQuery)
-    async def inlineVFF35(VFF35):
-        builder = VFF35.builder
+    async def inlineiqqhtani(iqqhtani):
+        builder = iqqhtani.builder
         result = None
-        query = VFF35.text
+        query = iqqhtani.text
         await bot.get_me()
-        if query.startswith("تنصيب") and VFF35.query.user_id == bot.uid:
+        if query.startswith("تنصيب") and iqqhtani.query.user_id == bot.uid:
             buttons = [[Button.url("1- شرح التنصيب", "https://youtu.be/44tYK_yV02Q"), Button.url("2- استخراج ايبيات", "https://my.telegram.org/"),],[Button.url("3- ستخراج تيرمكس", "https://replit.com/@telethon-Arab/generatestringsession#start.sh"), Button.url("4- بوت فاذر", "http://t.me/BotFather"),],[Button.url("5- رابط التنصيب", "https://dashboard.heroku.com/new?template=https://github.com/telethon-Arab/telethohelp"),],[Button.url("المطـور 👨🏼‍💻", "https://t.me/LLL5L"),]]
-            if VFF35PC and VFF35PC.endswith((".jpg", ".png", "gif", "mp4")):
-                result = builder.photo(VFF35PC, text=help1, buttons=buttons, link_preview=False)
-            elif VFF35PC:
-                result = builder.document(VFF35PC,title="VFF35",text=help1,buttons=buttons,link_preview=False)
+            if IqqhtaniPC and IqqhtaniPC.endswith((".jpg", ".png", "gif", "mp4")):
+                result = builder.photo(IqqhtaniPC, text=help1, buttons=buttons, link_preview=False)
+            elif IqqhtaniPC:
+                result = builder.document(IqqhtaniPC,title="iqqhtani",text=help1,buttons=buttons,link_preview=False)
             else:
-                result = builder.article(title="VFF35",text=help1,buttons=buttons,link_preview=False)
-            await VFF35.answer([result] if result else None)
+                result = builder.article(title="iqqhtani",text=help1,buttons=buttons,link_preview=False)
+            await iqqhtani.answer([result] if result else None)
 @bot.on(admin_cmd(outgoing=True, pattern="تنصيب"))
-async def repoVFF35(VFF35):
-    if VFF35.fwd_from:
+async def repoiqqhtani(iqqhtani):
+    if iqqhtani.fwd_from:
         return
     TG_BOT = Config.TG_BOT_USERNAME
-    if VFF35.reply_to_msg_id:
-        await VFF35.get_reply_message()
+    if iqqhtani.reply_to_msg_id:
+        await iqqhtani.get_reply_message()
     response = await bot.inline_query(TG_BOT, "تنصيب")
-    await response[0].click(VFF35.chat_id)
-    await VFF35.delete()
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"play1")))
+    await response[0].click(iqqhtani.chat_id)
+    await iqqhtani.delete()
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"play1")))
 @check_owner
-async def inlineVFF35(VFF35):
+async def inlineiqqhtani(iqqhtani):
     text = "**🚹  ⦑   اوامر الالعاب 1   ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n**⑴  ⦙  نسب وهميه :**\n`.نسبه الحب + الرد ع الشخص`\n`. نسبه الانحراف + الرد ع الشخص `\n`.نسبه الكراهيه + الرد ع الشخص`\n`.نسبه المثليه +الرد ع الشخص`\n`. نسبه النجاح + الرد ع الشخص`\n`.نسبه الانوثه + الرد ع الشخص `\n`.نسبه الغباء + الرد ع الشخص`\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n**⑵  ⦙  رفع وهمي :**\n`.رفع زباله + الرد ع الشخص `\n`.رفع منشئ + الرد ع الشخص `\n`.رفع مدير + الرد ع الشخص`\n`.رفع مطور + الرد ع الشخص` \n`.رفع مثلي + الرد ع الشخص` \n`.رفع كواد + الرد ع الشخص` \n`.رفع مرتبط + الرد ع الشخص` \n`.رفع مطي + الرد ع الشخص` \n`.رفع كحبه + الرد ع الشخص` \n`.رفع زوجتي + الرد ع الشخص` \n`.رفع صاك + الرد ع الشخص` \n`.رفع صاكه + الرد ع الشخص`\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n⑶  ⦙ `.كت`\n**✐ : لعبه اسأله كت تويت عشوائيه ❝**\n⑷  ⦙ `.اكس او` \n**✐ :  لعبه اكس او دز الامر و اللعب ويا صديقك ❝**\n⑸  ⦙  `.همسه + الكلام + معرف الشخص` \n**✐ : يرسل همسه سريه الى معرف الشخص فقط هو يكدر يشوفها  ❝**\n"
     buttons = [[Button.inline("اوامر الالعاب  2", data="play2"),],[Button.inline("اوامر الالعاب  3", data="play3"),],[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"play2")))
+    await iqqhtani.edit(text, buttons=buttons)
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"play2")))
 @check_owner
-async def inlineVFF35(VFF35):
+async def inlineiqqhtani(iqqhtani):
     text = "**🚹  ⦑   اوامر الالعاب 2   ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n**⑻ ⦙ `.رسم شعار + الاسم` \n**✐ : يرسم شعار للأسم  ❝**\n⑼ ⦙ `.نص ثري دي + الكلمه`\n**✐ : يقوم بكتابه الكلمه بشكل ثلاثي الابعاد~  ❝**\n⑽ ⦙ `.كلام متحرك + الكلام`\n**✐ : يقوم بكتابه الكلام حرف حرف  ❝**\n⑾  ⦙  `.ملصق متحرك + الكلام`\n**✐ : يقوم بكتابه الكلام بملصق متحرك  ❝**\n⑿ ⦙  `.بورن + معرف الشخص + الكلام + الرد ع اي صوره`\n**✐ :  قم بتجربه الامر لتعرفه +18  ❝**\n⒀ ⦙ `.رسم قلوب + الاسم`\n**✐ : يكتب الاسم ع شكل قلوب  ❝**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n"
     buttons = [[Button.inline("اوامر الالعاب 1", data="play1"),],[Button.inline("اوامر الالعاب  3", data="play3"),],[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"play3")))
+    await iqqhtani.edit(text, buttons=buttons)
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"play3")))
 @check_owner
-async def inlineVFF35(VFF35):
+async def inlineiqqhtani(iqqhtani):
     text = "**🚹  ⦑  اوامر الالعاب 3  ⦒  :**\n\n⑴  ⦙  `.كتابه وهمي + عدد الثواني`\n\n⑵  ⦙  `.فيديو وهمي + عدد الثواني`\n\n⑶  ⦙  `.صوره وهمي + عدد الثواني`\n\n⑷  ⦙  `.جهه اتصال وهمي + عدد الثواني`\n\n⑸  ⦙  `.موقع وهمي + عدد الثواني`\n\n⑹  ⦙  `.لعب وهمي + عدد الثواني`\n\n\n**شرح :  هذا الامر يقوم بالارسال الوهمي يعني يضهر للناس انو نته جاي تكتب او جاي ترسل صوره او ترسل فيديو او ترسل جهه اتصالك حسب الفتره الي تحددها بالثواني**"
     buttons = [[Button.inline("اوامر الالعاب 1", data="play1"),],[Button.inline("اوامر الالعاب  2", data="play2"),],[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
+    await iqqhtani.edit(text, buttons=buttons)
 
 
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"ord1pl")))
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"ord1pl")))
 @check_owner
-async def inlineVFF35(VFF35):
+async def inlineiqqhtani(iqqhtani):
     text = "**🚹  ⦑   اوامر الالعاب   ⦒  :**"
     buttons = [[Button.inline("اوامر الالعاب  1", data="play1"),],[Button.inline("اوامر الالعاب 2", data="play2"),],[Button.inline("اوامر الالعاب 3", data="play3"),],[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
+    await iqqhtani.edit(text, buttons=buttons)
 
 
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"shag1")))
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"shag1")))
 @check_owner
-async def inlineVFF35(VFF35):
+async def inlineiqqhtani(iqqhtani):
     text = "**🚹  ⦑  1 اوامر تحويل الصيغ  ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑴  ⦙  `.تحويل بصمه + الرد ع الصوت mp3`\n**✐ : يحول صوت mp3 الى بصمه ❝**\n⑵  ⦙  `.تحويل صوت + الرد ع الصوت` \n**✐ :  يحول البصمه الى صوت   mp3**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n⑶  ⦙  `.تحويل ملصق + الرد ع الصوره` \n**✐ :  يحول الصوره الى ملصق ❝**\n⑷  ⦙ `. تحويل صوره + الرد ع الملصق` \n**✐ :  يحول الملصق الى صوره ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑸  ⦙  `.تحويل متحركه + الرد ع الفيديو` \n**✐ :  يقوم بتحويل الفيديو الى متحركه ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑹ ⦙  `.بي دي اف + الرد ع الملف او الصوره`\n**✐ :  يحول الملف او الصوره الى بي دي اف ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑺ ⦙ `.ملصقي + الرد ع الرساله` \n**✐ : يحول رساله الى ملصق ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n⑻ ⦙  `. تليجراف ميديا + الرد ع الفيديو او صوره`\n **✐ :  يقوم بتحويل الفيديو او الصوره الى رابط تليجراف للأستخدام  ❝**\n⑼ ⦙  `.تحويل رساله + الرد ع الملف` \n**✐ :  يقوم بجلب جميع الكتابه الذي داخل الملف ويقوم بأرسالها اليك ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n⑽ ⦙ `.تحويل فديو دائري + الرد ع الفيديو`\n**✐ : يحول الفيديو الى فيديو دائري مرئي ❝**\n⑾  ⦙ `.تحويل ملصق دائري + الرد ع الملصق` \n**✐ :  يحول الملصق الى ملصق دائري** \n"
     buttons = [[Button.inline("اوامر تحويل الصيغ  2", data="shag2"),],[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"shag2")))
+    await iqqhtani.edit(text, buttons=buttons)
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"shag2")))
 @check_owner
-async def inlineVFF35(VFF35):
+async def inlineiqqhtani(iqqhtani):
     text = "**🚹  ⦑  2 اوامر تحويل الصيغ   ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑿ ⦙  `.ترجمه en + الرد ع الرساله` \n**✐ :  يقوم بترجمه الرساله الى اللغه الانكليزيه**\n⒀ ⦙ `.ترجمه ar + الرد ع الشخص` \n**✐ :  يقوم بترجمه الرساله الى اللغه العربيه ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n"
     buttons = [[Button.inline("اوامر تحويل الصيغ  1", data="shag1"),],[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
+    await iqqhtani.edit(text, buttons=buttons)
 
 
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"ordsag1")))
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"ordsag1")))
 @check_owner
-async def inlineVFF35(VFF35):
+async def inlineiqqhtani(iqqhtani):
     text = "**🚹  ⦑   اوامر الصيغ   ⦒  :**"
     buttons = [[Button.inline("اوامر الصيغ  1", data="shag1"),],[Button.inline("اوامر الصيغ 2", data="shag2"),],[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
-@VFF35.on(admin_cmd(pattern=f"{ORDERS}(?: |$)(.*)"))    
+    await iqqhtani.edit(text, buttons=buttons)
+@iqqhtani.on(admin_cmd(pattern=f"{ORDERS}(?: |$)(.*)"))
 async def iq(event):
-    await edit_or_reply(event, 
+    await edit_or_reply(event,
 """ **
-❨ Order telethon Arab  ❩
+❨ اوامر سورس كوبرا  ❩
 ———————×———————
-♛  اوامر السورس ↢ ( .م1 )
-♛  اوامر الحساب ↢ ( .م2 )
-♛  اوامر الكروب  ↢ ( .م3 )
-♛  اوامر الكروب² ↢ ( .م4 )
-♛  اوامر التحويلات ↢ ( .م5 )
-♛  اوامر الالعاب ↢ ( .م6 )
-♛  اوامر الميمز  ↢ ( .م7 )
-♛  اوامر التسلية ↢ ( .م8 )
-♛  اوامر الوقتية ↢ ( .م9 )
-♛  اوامر الفارات ↢ ( .م10 )
-♛  اوامر السوبرات ↢ ( .م11 )
-♛  اوامر الاغاني ↢ ( .م12 )
-♛  اوامر التكرار ↢ ( .م13 )
-♛  اوامر الزخرفة ↢ ( .م14 )
-♛  اوامر الوسائط ↢ ( .م15 )
-♛  اوامر الملصقات ↢ ( .م16 )
+◈  اوامر السورس ↢ ( .م1 )
+◈  اوامر الحساب ↢ ( .م2 )
+◈  اوامر القروب  ↢ ( .م3 )
+◈  اوامر القروب² ↢ ( .م4 )
+◈  اوامر التحويلات ↢ ( .م5 )
+◈  اوامر الالعاب ↢ ( .م6 )
+◈  اوامر الميمز  ↢ ( .م7 )
+◈  اوامر التسلية ↢ ( .م8 )
+◈  اوامر الوقتية ↢ ( .م9 )
+◈  اوامر الفارات ↢ ( .م10 )
+◈  اوامر السوبرات ↢ ( .م11 )
+◈  اوامر الاغاني ↢ ( .م12 )
+◈  اوامر التكرار ↢ ( .م13 )
+◈  اوامر الزخرفة ↢ ( .م14 )
+◈  اوامر الوسائط ↢ ( .م15 )
+◈  اوامر الملصقات ↢ ( .م16 )
 ———————×———————
 شرح الأوامر : ( @VFF34 ) .
 قناه السورس : ( @VFF35 ) .
 جميع الاوامر تكون بدايتها نقطة . **""")
-@VFF35.on(admin_cmd(pattern="م9(?: |$)(.*)"))    
+@iqqhtani.on(admin_cmd(pattern="م9(?: |$)(.*)"))
 async def iq(event):
-    await edit_or_reply(event, 
+    await edit_or_reply(event,
 """**⦑   اوامر الوقتي   ⦒  :**
 ———————×———————
  الأمر  ⦙ ( .اسم وقتي )
-الشرح : يضع الوقت المزخرف في اسمك تلقائيا 
+الشرح : يضع الوقت المزخرف في اسمك تلقائيا
 ———————×———————
  الأمر  ⦙ ( .نبذه وقتيه )
 الشرح  : يضع الوقت المزخرف في نبذه الخاصه بك تلقائيا
 ———————×———————
 الأمر ⦙ ( .صوره وقتيه )
-الشرح : يضع لك الوقت لمزخرف في صورتك تغير تلقائي 
+الشرح : يضع لك الوقت لمزخرف في صورتك تغير تلقائي
 ———————×———————
 **شرح الايقاف :**
 ( .ايقاف صوره وقتيه )
 ( .ايقاف نبذه وقتيه )
 ( .ايقاف اسم وقتي )
 ———————×———————
- ♛︙ يوجد شرح مفصل عن الامر هنا : https://t.me/VFF34/4484
+ ◈︙ يوجد شرح مفصل عن الامر هنا : https://t.me/VFF34/4484
 """)
-@VFF35.on(admin_cmd(pattern="م10(?: |$)(.*)"))    
+@iqqhtani.on(admin_cmd(pattern="م10(?: |$)(.*)"))
 async def iq(event):
-    await edit_or_reply(event, 
+    await edit_or_reply(event,
 """ ( اوامر الفارات وتغيرات ) :
 ———————×———————
 • لتغير شكل امر السورس او  الفحص اضغط هنا  ↶
@@ -726,7 +726,7 @@ https://t.me/VFF34/45
   • لتغير نبذه الوقتيه اضغط هنا ↶
 https://t.me/VFF34/54
   • لتغير صوره وقتيه اضغط هنا ↶
- https://t.me/VFF34/46 
+ https://t.me/VFF34/46
   • لتغير خط زخرفه اسم وقتي اضغط هنا ↶
  https://t.me/VFF34/59
   •  لوضع ايموجي بجانب اسم وقتي اضغط هنا ↶
@@ -735,169 +735,169 @@ https://t.me/VFF34/54
 https://t.me/VFF34/4718
 • لكيفيه حذف الفار اضغط هنا ↶
 https://t.me/VFF34/51
-———————×——————— 
+———————×———————
 قناه المتغيرات او الفارات : @VFF34
 شرح الأوامر : ( @VFF34 ) .
 قناه السورس : ( @VFF35 ) .
 جميع الاوامر تكون بدايتها نقطة .
 """)
-@VFF35.on(admin_cmd(pattern="م11(?: |$)(.*)"))    
+@iqqhtani.on(admin_cmd(pattern="م11(?: |$)(.*)"))
 async def iq(event):
-    await edit_or_reply(event, 
+    await edit_or_reply(event,
 """** ⦑  اوامر السوبرات  ⦒  :**
 ———————×———————
  الأمر  ⦙ .مؤقته + الوقت بالثواني + رساله
 الشرح :  يرسل الرساله لمده معينه ويحذفها بس يخلص المده
 ———————×———————
- الأمر  ⦙ .للكروب + الرد على الرساله
+ الأمر  ⦙ .للقروب + الرد على الرساله
 الشرح :  يرسل الرسالها الى جميع المجموعات
 ———————×———————
  الأمر  ⦙ ( .مؤقت + عدد ثواني + عدد الرسائل + كليشة )
-الشرح :  يقوم بارسال نشر تلقائي للسوبرات 
+الشرح :  يقوم بارسال نشر تلقائي للسوبرات
 ———————×———————
 الأمر  ⦙  ( .ستوب )
 الشرح  ⦙  ايقاف النشر التلقائي المؤقت
 ———————×———————
- الأمر  ⦙ .اضافه + رابط الكروب
-الشرح :   يضيفلك جميع الاعضاء الي برابط الكروب يضيفهم بكروبك 
+ الأمر  ⦙ .اضافه + رابط القروب
+الشرح :   يضيفلك جميع الاعضاء الي برابط القروب يضيفهم بقروبك
  ———————×———————
 يوجد شرح بتفصيل هنا : https://t.me/VFF34/4483
 شرح الأوامر : ( @VFF34 ) .
 قناه السورس : ( @VFF35 ) .
 جميع الاوامر تكون بدايتها نقطة .
 """)
-@VFF35.on(admin_cmd(pattern="م12(?: |$)(.*)"))    
+@iqqhtani.on(admin_cmd(pattern="م12(?: |$)(.*)"))
 async def iq(event):
-    await edit_or_reply(event, 
+    await edit_or_reply(event,
 """** ⦑   اوامر  الاغاني. ⦒  : **
 ———————×———————
 الأمر  ⦙ .بحث صوت + اسم الاغنيه
-الشرح : سيحمل لك الاغنية صوت ايضا يمكنك وضع رابط الاغنيه بدل الاسم 
-———————×——————— 
- الأمر  ⦙ .بحث فيديو + اسم الاغنيه 
-الشرح : سيحمل لك الاغنية  فيديو ايضا يمكنك وضع رابط الاغنيه بدل الاسم 
-———————×——————— 
- الأمر  ⦙ .معلومات الاغنيه 
-الشرح : الرد ع الاغنيه سيجلب لك معلوماتها واسم الفنان 
+الشرح : سيحمل لك الاغنية صوت ايضا يمكنك وضع رابط الاغنيه بدل الاسم
+———————×———————
+ الأمر  ⦙ .بحث فيديو + اسم الاغنيه
+الشرح : سيحمل لك الاغنية  فيديو ايضا يمكنك وضع رابط الاغنيه بدل الاسم
+———————×———————
+ الأمر  ⦙ .معلومات الاغنيه
+الشرح : الرد ع الاغنيه سيجلب لك معلوماتها واسم الفنان
 ———————×———————
 الأمر  ⦙ .كوكل بحث + موضوع البحث
-الشرح : يجلب لك معلومات الموضوع من كوكل 
+الشرح : يجلب لك معلومات الموضوع من كوكل
 ———————×———————
 الأمر  ⦙ .تخزين الصوت + الرد ع البصمه
-الشرح  : تخزين الصوت من اجل استخدامه لوضع صوت في الفيديو 
+الشرح  : تخزين الصوت من اجل استخدامه لوضع صوت في الفيديو
 ———————×———————
 الأمر  ⦙ .اضف الصوت + الرد ع الصوره او متحركه او فيديو
-الشرح  : يتم اضافه الصوت الى الفيديو او المتحركه او الصوره 
-———————×——————— 
+الشرح  : يتم اضافه الصوت الى الفيديو او المتحركه او الصوره
+———————×———————
 الأمر  ⦙ .اسم الاغنيه + الرد ع الاغنيه
-الشرح  : ييجلب لك اسم الاغنيه مدة البصمه 10 الى 5 ثواني 
+الشرح  : ييجلب لك اسم الاغنيه مدة البصمه 10 الى 5 ثواني
 ———————×———————
 الأمر  ⦙ ( .تيك توك + الرد ع رابط الفيديو )
-الشرح : يحمل فيديو تيك توك بدون العلامه المائيه 
+الشرح : يحمل فيديو تيك توك بدون العلامه المائيه
 ———————×———————
 شرح الأوامر : ( @VFF34 ) .
 قناه السورس : ( @VFF35 ) .
 جميع الاوامر تكون بدايتها نقطة .
 """)
-@VFF35.on(admin_cmd(pattern="م13(?: |$)(.*)"))    
+@iqqhtani.on(admin_cmd(pattern="م13(?: |$)(.*)"))
 async def iq(event):
-    await edit_or_reply(event, 
+    await edit_or_reply(event,
 """ **⦑   اوامر التكرار    ⦒  : **
-———————×——————— 
+———————×———————
 الشرح  ⦙ ( .تكرار + الكلمة + العدد )
-الأمر :  يرسل الكلمة يكررها على عدد المرات  
-———————×———————  
+الأمر :  يرسل الكلمة يكررها على عدد المرات
+———————×———————
 الأمر ⦙ ( .تكرار حزمه الملصقات + الرد على ملصق )
-الشرح :   يرسل لك جميع ملصقات الموجوده في حزمه لل الملصق الي عملت رد له   
+الشرح :   يرسل لك جميع ملصقات الموجوده في حزمه لل الملصق الي عملت رد له
 ———————×———————
 الأمر  ⦙ ( .تكرار_احرف  + الكلمة )
-الشرح :   يكرر الك احرف الكلمة حتى لو جملة 
+الشرح :   يكرر الك احرف الكلمة حتى لو جملة
 ———————×———————
 الأمر  ⦙ ( .تكرار_كلمه  + الجملة )
-الشرح : يكرر الك كلام الجملة 
-———————×——————— 
-الأمر  ⦙ ( .مؤقت  + عدد الثواني + عدد مرات + الجملة )
-الشرح : يرسل اليك الجملة كل وقت معين 
+الشرح : يكرر الك كلام الجملة
 ———————×———————
-يوجد شرح مفصل للتكرار هنا : https://t.me/VFF34/4704 
+الأمر  ⦙ ( .مؤقت  + عدد الثواني + عدد مرات + الجملة )
+الشرح : يرسل اليك الجملة كل وقت معين
+———————×———————
+يوجد شرح مفصل للتكرار هنا : https://t.me/VFF34/4704
 قناه السورس : ( @VFF35 ) .
 جميع الاوامر تكون بدايتها نقطة .
 """)
-@VFF35.on(admin_cmd(pattern="م14(?: |$)(.*)"))    
+@iqqhtani.on(admin_cmd(pattern="م14(?: |$)(.*)"))
 async def iq(event):
-    await edit_or_reply(event, 
+    await edit_or_reply(event,
 """** ⦑   لأوامر الزخرفة   ⦒  : **
 ———————×———————
-⑴  ⦙ .غمق + الرد على رساله 
-✐ :  يحول خط الرسالة غامقه  
-———————×——————— 
-⑵  ⦙ .ينسخ + الرد على رساله 
-✐ :  يحول خط الرساله الى كلام ينسخ  
+⑴  ⦙ .غمق + الرد على رساله
+✐ :  يحول خط الرسالة غامقه
 ———————×———————
-⑶  ⦙ .خط سفلي + الرد على رساله 
-✐ :   يضيف الى خط رساله خط سفلي 
-———————×——————— 
-⑷  ⦙ .كتابه + الكلام بالانكلش 
-✐ : يكتب الكلام على ورقه بخط اليد 100% ❝ 
- ———————×——————— 
-⑸  ⦙ .زخرفه_انكليزي + الاسم 
-✐ : يزخرف الاسم الانكليزي لعده زخرفات يجب ان يكون الاسم مكتوب سمول 
+⑵  ⦙ .ينسخ + الرد على رساله
+✐ :  يحول خط الرساله الى كلام ينسخ
 ———————×———————
-⑹ ⦙ .زخرفه_عربي + الاسم 
-✐ : يزخرف الاسم العربي لعده زخرفات 
+⑶  ⦙ .خط سفلي + الرد على رساله
+✐ :   يضيف الى خط رساله خط سفلي
+———————×———————
+⑷  ⦙ .كتابه + الكلام بالانكلش
+✐ : يكتب الكلام على ورقه بخط اليد 100% ❝
+ ———————×———————
+⑸  ⦙ .زخرفه_انكليزي + الاسم
+✐ : يزخرف الاسم الانكليزي لعده زخرفات يجب ان يكون الاسم مكتوب سمول
+———————×———————
+⑹ ⦙ .زخرفه_عربي + الاسم
+✐ : يزخرف الاسم العربي لعده زخرفات
 ———————×———————
 ⑺ ⦙  .بايوهات1
-✐ :  يعطيك بايو انستا متعدده 1 
+✐ :  يعطيك بايو انستا متعدده 1
 ———————×———————
 ⑻ ⦙ .بايوهات2
-✐ :  يعطيك بايو انستا متعدده 2 
+✐ :  يعطيك بايو انستا متعدده 2
 ———————×———————
 ⑼ ⦙  .رموز1
-✐ :  يعطيك رموز للزخرفه 1 
+✐ :  يعطيك رموز للزخرفه 1
 ———————×———————
  10 ⦙ .رموز2
-✐ :  يعطيك رموز للزخرفه2 
+✐ :  يعطيك رموز للزخرفه2
 ———————×———————
 يوجد شرح مفصل عن اوامر زخرفه هنا : https://t.me/VFF34/4705
 """)
 
 
 
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"ordahln1")))
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"ordahln1")))
 @check_owner
-async def inlineVFF35(VFF35):
-    text = "**🚹  ⦑  اوامر الاعلانات   ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑴  ⦙ `.مؤقته + الوقت بالثواني + رساله`\n**✐ :  يرسل الرساله لمده معينه ويحذفها بس يخلص المده**\n ⑵  ⦙ `.للكروبات + الرد على الرساله`\n**✐ :  يرسل الرسالها الى جميع المجموعات**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑶  ⦙ `.مؤقت + عدد ثواني + عدد الرسائل + كليشة` \n**✐ :  يقوم بارسال رساله وقتيه محدده لكل وقت معين وعدد مرات معين**\n\n ⑷  ⦙ `.اضافه + رابط الكروب`\n✐ :   يضيفلك جميع الاعضاء الي برابط الكروب يضيفهم بكروبك \n يجب ان تتاكد انو مامحضور حسابك ارسل  ⬅️ ( `.حالتي` ) \n علمود تتاكد محضور الحساب لو لا الاضافات الكثيره تحظر مؤقتا  \n"
+async def inlineiqqhtani(iqqhtani):
+    text = "**🚹  ⦑  اوامر الاعلانات   ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑴  ⦙ `.مؤقته + الوقت بالثواني + رساله`\n**✐ :  يرسل الرساله لمده معينه ويحذفها بس يخلص المده**\n ⑵  ⦙ `.للقروبات + الرد على الرساله`\n**✐ :  يرسل الرسالها الى جميع المجموعات**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑶  ⦙ `.مؤقت + عدد ثواني + عدد الرسائل + كليشة` \n**✐ :  يقوم بارسال رساله وقتيه محدده لكل وقت معين وعدد مرات معين**\n\n ⑷  ⦙ `.اضافه + رابط القروب`\n✐ :   يضيفلك جميع الاعضاء الي برابط القروب يضيفهم بقروبك \n يجب ان تتاكد انو مامحضور حسابك ارسل  ⬅️ ( `.حالتي` ) \n علمود تتاكد محضور الحساب لو لا الاضافات الكثيره تحظر مؤقتا  \n"
     buttons = [[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
+    await iqqhtani.edit(text, buttons=buttons)
 if Config.TG_BOT_USERNAME is not None and tgbot is not None :
     @check_owner
     @tgbot.on(events.InlineQuery)
-    async def inlineVFF35(VFF35):
-        builder = VFF35.builder
+    async def inlineiqqhtani(iqqhtani):
+        builder = iqqhtani.builder
         result = None
-        query = VFF35.text
+        query = iqqhtani.text
         await bot.get_me()
-        if query.startswith("اوامر الاعلانات(?: |$)(.*)") and VFF35.query.user_id == bot.uid:
+        if query.startswith("اوامر الاعلانات(?: |$)(.*)") and iqqhtani.query.user_id == bot.uid:
             buttons = [[Button.inline("اوامر الاعلانات", data="ordahln1"),]]
-            result = builder.article(title="VFF35", text=help2, buttons=buttons, link_preview=False)
-            await VFF35.answer([result] if result else None)
+            result = builder.article(title="iqqhtani", text=help2, buttons=buttons, link_preview=False)
+            await iqqhtani.answer([result] if result else None)
 @bot.on(admin_cmd(outgoing=True, pattern="اوامر الاعلانات(?: |$)(.*)"))
-async def repoVFF35(VFF35):
-    if VFF35.fwd_from:
+async def repoiqqhtani(iqqhtani):
+    if iqqhtani.fwd_from:
         return
     TG_BOT = Config.TG_BOT_USERNAME
-    if VFF35.reply_to_msg_id:
-        await VFF35.get_reply_message()
+    if iqqhtani.reply_to_msg_id:
+        await iqqhtani.get_reply_message()
     response = await bot.inline_query(TG_BOT, "اوامر الاعلانات(?: |$)(.*)")
-    await response[0].click(VFF35.chat_id)
-    await VFF35.delete()
-@VFF35.on(admin_cmd(pattern="م15(?: |$)(.*)"))    
+    await response[0].click(iqqhtani.chat_id)
+    await iqqhtani.delete()
+@iqqhtani.on(admin_cmd(pattern="م15(?: |$)(.*)"))
 async def iq(event):
-    await edit_or_reply(event, 
+    await edit_or_reply(event,
 """**⦑   اوامر الوسائـط   ⦒  :**
 ———————×———————
-⑴ ⦙ .سمول + الرد على ملصق او صوره او فيديو 
-✐  : يقوم بتصغير الوسائط 
+⑴ ⦙ .سمول + الرد على ملصق او صوره او فيديو
+✐  : يقوم بتصغير الوسائط
 ———————×———————
 ⑵ ⦙ .عكس الالوان + الرد على ملصق او صوره او فيديو
 ✐  : يعكس الالوان الموجودة في الوسائط
@@ -925,9 +925,9 @@ async def iq(event):
 ———————×———————
   ⦑   شرح اوامر الوسائط هنا :  https://t.me/VFF34/4721  ⦒
 """)
-@VFF35.on(admin_cmd(pattern="م16(?: |$)(.*)"))    
+@iqqhtani.on(admin_cmd(pattern="م16(?: |$)(.*)"))
 async def iq(event):
-    await edit_or_reply(event, 
+    await edit_or_reply(event,
 """** ⦑   اوامر الملصقات   ⦒  : **
 ———————×———————
  ⑴ ⦙ .جلب الملصقات + الرد على الملصق
@@ -945,42 +945,42 @@ async def iq(event):
   ⦑   شرح اوامر الملصقات هنا  :  https://t.me/VFF34/4720  ⦒
 """)
 
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"ordSONG")))
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"ordSONG")))
 @check_owner
-async def inlineVFF35(VFF35):
+async def inlineiqqhtani(iqqhtani):
     text = "**🚹  ⦑   اوامر التنزيلات والبحث الاغاني    ⦒  :**\n\n⑴  ⦙ `.بحث صوت + اسم الاغنيه`\n**✐ : سيحمل لك الاغنية صوت ايضا يمكنك وضع رابط الاغنيه بدل الاسم ❝**\n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑵  ⦙ `.بحث فيديو + اسم الاغنيه` \n**✐ : سيحمل لك الاغنية  فيديو ايضا يمكنك وضع رابط الاغنيه بدل الاسم ❝**\n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n\n ⑶  ⦙ `.معلومات الاغنيه` \n**✐ : الرد ع الاغنيه سيجلب لك معلوماتها واسم الفنان ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n \n⑷  ⦙ `.كوكل بحث + موضوع البحث`\n**✐ : يجلب لك معلومات الموضوع من كوكل ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑸  ⦙ `.تخزين الصوت + الرد ع البصمه`\n**✐ : تخزين الصوت من اجل استخدامه لوضع صوت في الفيديو ❝**\n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑹ ⦙ `.اضف الصوت + الرد ع الصوره او متحركه او فيديو`\n**✐ : يتم اضافه الصوت الى الفيديو او المتحركه او الصوره ❝**\n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑺ ⦙ `.اسم الاغنيه + الرد ع الاغنيه`\n**✐ : ييجلب لك اسم الاغنيه مدة البصمه 10 الى 5 ثواني ❝**\n⑻ ⦙ `تيك توك + الرد ع رابط الفيديو.`\n**✐ : يحمل فيديو تيك توك بدون العلامه المائيه** ❝\n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n"
     buttons = [[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
-@VFF35.on(admin_cmd(pattern="م1(?: |$)(.*)"))    
+    await iqqhtani.edit(text, buttons=buttons)
+@iqqhtani.on(admin_cmd(pattern="م1(?: |$)(.*)"))
 async def iq(event):
-    await edit_or_reply(event, 
+    await edit_or_reply(event,
 """ ** ⦑   اوامر السورس   ⦒  :**
 ———————×———————
 الأمر ⦙ ( .السورس )
 الشرح  : يضهر لك معلومات السورس ومدة تنصيبك او امر .فحص ❝
-———————×——————— 
+———————×———————
 الأمر ⦙ ( .رابط التنصيب )
-الشرح  : سوف يعطيك رابط التنصيب ❝ 
-———————×——————— 
+الشرح  : سوف يعطيك رابط التنصيب ❝
+———————×———————
 الأمر ⦙ ( .حساب كيثاب + اسم الحساب )
-الشرح  : ينطيك معلومات الحساب وسورساته بموقع جيت هوب ❝ 
-———————×——————— 
+الشرح  : ينطيك معلومات الحساب وسورساته بموقع جيت هوب ❝
+———————×———————
 الأمر ⦙ ( .المده )
-الشرح  : يضهر لك مدة تشغيل بوت كوبرا لديك 
+الشرح  : يضهر لك مدة تشغيل بوت كوبرا لديك
 ———————×———————
 الأمر ⦙ ( .تحميل ملف + الرد ع الملف )
-الشرح : يحمل ملفات كوبرا 
+الشرح : يحمل ملفات كوبرا
 ———————×———————
 الأمر ⦙ ( .مسح ملف + الرد ع الملف )
-الشرح :  يمسح الملف الي حملته  
+الشرح :  يمسح الملف الي حملته
 ———————×———————
 الأمر ⦙ ( .تحديث )
-الشرح :  امر لأعاده التشغيل وتحديث ملفات السورس وتسريع الكوبرا 
+الشرح :  امر لأعاده التشغيل وتحديث ملفات السورس وتسريع الكوبرا
 ———————×———————
 الأمر ⦙ ( .اطفاء مؤقت + عدد الثواني )
-الشرح : يقوم بأطفاء الكوبرا بعدد الثواني الي ضفتها  عندما تخلص الثواني سيتم اعاده تشغيل الكوبرا 
+الشرح : يقوم بأطفاء الكوبرا بعدد الثواني الي ضفتها  عندما تخلص الثواني سيتم اعاده تشغيل الكوبرا
 ———————×———————
-الأمر ⦙ ( .الاوامر ) 
+الأمر ⦙ ( .الاوامر )
 الشرح :   لأضهار جميع اوامر السورس اونلاين
 ———————×———————
 الأمر ⦙ ( .اوامري )
@@ -996,39 +996,39 @@ async def iq(event):
 قناه السورس : ( @VFF35 ) .
 جميع الاوامر تكون بدايتها نقطة .""")
 
-@VFF35.on(admin_cmd(pattern="م2(?: |$)(.*)"))    
+@iqqhtani.on(admin_cmd(pattern="م2(?: |$)(.*)"))
 async def iq(event):
     await edit_or_reply(event,
 """**  ⦑   اوامـر الحـسـاب  ⦒ : **
 ———————×———————
 الأمر︙( .معرفه + الرد ع الشخص )
-شرح︙سيجلب لك معرف الشخص 
+شرح︙سيجلب لك معرف الشخص
 ———————×———————
-الأمر︙( .سجل الاسماء + الرد ع الشخص ) 
-شرح︙يجلب لك اسماء الشخص القديمه 
+الأمر︙( .سجل الاسماء + الرد ع الشخص )
+شرح︙يجلب لك اسماء الشخص القديمه
 ———————×———————
 الأمر︙( .انشاء بريد )
-شرح︙ينشئ لك بريد وهمي 
+شرح︙ينشئ لك بريد وهمي
 ———————×———————
 الأمر︙( .ايدي + الرد ع الشخص )
-شرح︙سيعطيك معلومات الشخص 
+شرح︙سيعطيك معلومات الشخص
 ———————×———————
 الأمر︙( . الايدي الرد ع الشخص )
-شرح︙سوف يعطيك ايدي المجموعه او ايدي حسابك 
+شرح︙سوف يعطيك ايدي المجموعه او ايدي حسابك
 ———————×———————
 الأمر︙( .معلومات تخزين المجموعه )
-شرح︙يجلب لك جميع معلومات الوسائط  
+شرح︙يجلب لك جميع معلومات الوسائط
 ———————×———————
 الأمر︙( .تخزين الخاص تشغيل )
-شرح︙يخزن لك جميع الرسائل التي  في الخاص 
+شرح︙يخزن لك جميع الرسائل التي  في الخاص
 ———————×———————
 الأمر︙( .تخزين الخاص ايقاف )
-شرح︙يوقف  تخزين الرسائل اليك في الخاص 
+شرح︙يوقف  تخزين الرسائل اليك في الخاص
 ———————×———————
-الأمر︙( .تخزين الكروبات تشغيل )
-شرح︙يخزم جميع الرسائل التي يتم رد عليك 
+الأمر︙( .تخزين القروبات تشغيل )
+شرح︙يخزم جميع الرسائل التي يتم رد عليك
 ———————×———————
-الأمر︙( .تخزين الكروبات ايقاف )
+الأمر︙( .تخزين القروبات ايقاف )
 شرح︙يوقف لك جميع تخزين رسائل
 ———————×———————
  الأمر  ︙( .صورته + الرد ع الشخص )
@@ -1038,45 +1038,45 @@ async def iq(event):
 شرح︙يجلب لك رابط الشخص
 ———×———
 الأمر︙( .اسمه + الرد ع الشخص )
-شرح︙يجلب لك اسم الشخص الذي تم رد عليه 
+شرح︙يجلب لك اسم الشخص الذي تم رد عليه
 ———×———
 الأمر︙( .نسخ + الرد ع الرساله )
-شرح︙يرسل الرساله التي تم رد عليها 
+شرح︙يرسل الرساله التي تم رد عليها
 ———×———
 الأمر︙( .كورونا + اسم المدينه )
 شرح︙يجلب لك مرض كورونا و معلومات
 ———×———
 الأمر︙( .الاذان + اسم المدينه )
-شرح︙يجلب لك معلومات الاذان 
+شرح︙يجلب لك معلومات الاذان
 ———×———
 الأمر︙( .رابط تطبيق + اسم التطبيق )
-شرح︙يرسل رابط التطبيق مع معلوماته 
+شرح︙يرسل رابط التطبيق مع معلوماته
 ———×———
 الأمر︙( .تاريخ الرساله + الرد ع الرساله )
-شرح︙يجلب لك تاريخ الرساله بالتفصيل 
+شرح︙يجلب لك تاريخ الرساله بالتفصيل
 ———×———
 الأمر︙( .بنك )
-شرح︙يقيس سرعه استجابه 
+شرح︙يقيس سرعه استجابه
 ———×———
 الأمر︙( .سرعه الانترنيت )
-شرح︙يجلب لك سرعه الانترنيت لديك 
+شرح︙يجلب لك سرعه الانترنيت لديك
 ———×———
 الأمر︙( .الوقت )
-شرح︙يضهر لك الوقت والتاريخ 
+شرح︙يضهر لك الوقت والتاريخ
 ———×———
 الأمر︙( .وقتي )
 شرح︙الوقت والتاريخ شكل اخر
 ———×———
-الأمر︙.حالتي 
+الأمر︙.حالتي
 ✐  :  لفحص الحظر
 ———×———
-الأمر︙.طقس + اسم المدينه 
-شرح︙ يعطي لك طقس المدينه 
+الأمر︙.طقس + اسم المدينه
+شرح︙ يعطي لك طقس المدينه
 ———×———
-الأمر︙ .طقوس + اسم المدينه 
-شرح︙ يعطي لك طقس المدينه 
+الأمر︙ .طقوس + اسم المدينه
+شرح︙ يعطي لك طقس المدينه
 ———×———
-الأمر︙ .مدينه الطقس + اسم المدينه 
+الأمر︙ .مدينه الطقس + اسم المدينه
 شرح︙ لتحديد طقس المدينه تلقائي
 ———×———
 الأمر︙ .ازاله التوجيه + الرد على رساله
@@ -1098,22 +1098,22 @@ async def iq(event):
 شرح︙يجلب جميع معرفاتك
 ———×———
 الأمر︙ .تحويل ملكية + معرف الشخص
-شرح︙يحول ملكيه القناه او المجموعه 
+شرح︙يحول ملكيه القناه او المجموعه
 ———×———
 الأمر︙ .انتحال + الرد على الشخص
 شرح︙ ينتحل الشخص ويضع صورته و نبذته و اسمه في حسابك
 ———×———
 الأمر︙.الغاء الانتحال + الرد على الشخص
-شرح︙ يقوم بالغاء الانتحال 
+شرح︙ يقوم بالغاء الانتحال
 ———×———
 الأمر︙.ازعاج + الرد على شخص
-شرح︙يقوم بتكرار الرسائل الشخص 
+شرح︙يقوم بتكرار الرسائل الشخص
 ———×———
 الأمر︙.الغاء الازعاج
-شرح : يوقف جميع الازعاجات في المجموعه 
+شرح : يوقف جميع الازعاجات في المجموعه
  ———×———
  الأمر︙.المزعجهم
-شرح︙ يضهر اليك جميع الذين مفعل عليهم الازعاج 
+شرح︙ يضهر اليك جميع الذين مفعل عليهم الازعاج
 ———×———
 الأمر︙( .الحماية تشغيل )
 شرح︙ يقوم بتشغيل رساله الحمايه اي شخص يراسلك سوف يقوم بتنبيه
@@ -1125,19 +1125,19 @@ async def iq(event):
 شرح︙ يقوم بقبول الشخص للأرسال اليك
 ———×———
 الأمر︙( .رفض )
-شرح︙الغاء قبول الشخص من الارسال 
+شرح︙الغاء قبول الشخص من الارسال
 ———×———
 الأمر︙( .مرفوض )
-شرح︙حظر الشخص 
+شرح︙حظر الشخص
 ———×———
 الأمر︙( .المقبولين )
-شرح︙عرض قائمة المقبولين ي الحماية 
+شرح︙عرض قائمة المقبولين ي الحماية
 ———×———
 الأمر︙( .جلب الوقتيه + الرد على الصورة )
-شرح︙حفض صوره وقتيه في الحافضة 
+شرح︙حفض صوره وقتيه في الحافضة
 ———×———
 الأمر︙( .تاك بالكلام + الكلمه + معرف الشخص )
-شرح︙ يسوي تاك للشخص بالرابط جربه وتعرف 
+شرح︙ يسوي تاك للشخص بالرابط جربه وتعرف
 ———×———
 الأمر︙( .نسخ + الرد على رساله )
 شرح︙ يرسل الرساله التي رديت عليها
@@ -1146,16 +1146,16 @@ async def iq(event):
 شرح︙يجمع او يطرح او يقسم
 ———×———
 الأمر  ⦙  ( .كول + الكلمة )
-الشرح : يجب اضافه بوتك يتكلم بدلا عنك 
+الشرح : يجب اضافه بوتك يتكلم بدلا عنك
 ———×———
 الأمر  ⦙ ( .وضع النائم + السبب )
 الشرح : اي شخص يعملك تاك او يراسلك او يرد عليك يرد عليه كوبرا بكليشة انا حاليا غير موجود ويضع له السبب الي نتة وضعته
 ———×———
-الأمر  ⦙  .الصور + الرد على الشخص 
+الأمر  ⦙  .الصور + الرد على الشخص
 الشرح : يجلب لك جميع صور الشخص و يمكن وضع رقم بجانب الأمر
 ———×———
-الأمر  ⦙  .زاجل + معرف الشخص + الرساله 
-الشرح : يرسل الرساله الى الشخص 
+الأمر  ⦙  .زاجل + معرف الشخص + الرساله
+الشرح : يرسل الرساله الى الشخص
 ———×———
 الأمر ⦙ .فيديو
 الشرح  : يرسل فيديو عشوائي
@@ -1171,231 +1171,231 @@ async def iq(event):
 جميع الاوامر تكون بدايتها نقطة .
 """)
 
-@VFF35.on(admin_cmd(pattern="م3(?: |$)(.*)"))    
+@iqqhtani.on(admin_cmd(pattern="م3(?: |$)(.*)"))
 async def iq(event):
-    await edit_or_reply(event, 
-"""**  ⦑  اوامر الكروب 1  ⦒  :**
+    await edit_or_reply(event,
+"""**  ⦑  اوامر القروب 1  ⦒  :**
 
-———————×——————— 
+———————×———————
  الأمر  ⦙  ( .كتم + الرد ع الشخص )
-الشرح  ⦙ يكتم الشخص من الخاص او الكروبات فقط اذا كانت عندك صلاحيه حذف رسائل 
+الشرح  ⦙ يكتم الشخص من الخاص او القروبات فقط اذا كانت عندك صلاحيه حذف رسائل
 الأمر  ⦙  ( . الغاء كتم + الرد ع الشخص )
-الشرح  ⦙ يجلب لك جميع معرفات المشرفين في الكروب  
- ———————×——————— 
+الشرح  ⦙ يجلب لك جميع معرفات المشرفين في القروب
+ ———————×———————
 الأمر ⦙  ( .البوتات )
-الشرح  ⦙ يجلب لك جميع معرفات البوتات في الكروب 
+الشرح  ⦙ يجلب لك جميع معرفات البوتات في القروب
 الأمر ⦙  ( .الأعضاء )
-الشرح  ⦙ اضهار قائمة الاعضاء للكروب اذا هواي سيرسل ملف كامل لمعلوماتهم  
-———————×——————— 
+الشرح  ⦙ اضهار قائمة الاعضاء للقروب اذا هواي سيرسل ملف كامل لمعلوماتهم
+———————×———————
 الأمر ⦙  ( .معلومات )
-الشرح  ⦙ سيرسل لك جميع معلومات الكروب بالتفصيل  
+الشرح  ⦙ سيرسل لك جميع معلومات القروب بالتفصيل
 الأمر ⦙  ( .مسح المحظورين )
-الشرح  ⦙ يمسح جميع المحظورين في الكروب 
- ———————×——————— 
+الشرح  ⦙ يمسح جميع المحظورين في القروب
+ ———————×———————
 الأمر ⦙  ( .المحذوفين )
-الشرح  ⦙ يجلب لك جميع الحسابات المحذوفه 
+الشرح  ⦙ يجلب لك جميع الحسابات المحذوفه
 الأمر ⦙  ( .المحذوفين تنظيف )
-الشرح  ⦙ يمسح جميع الحسابات المحذوفه في الكروب 
-———————×——————— 
+الشرح  ⦙ يمسح جميع الحسابات المحذوفه في القروب
+———————×———————
 الأمر ⦙  ( .احصائيات الاعضاء )
-الشرح  ⦙ يمسح جميع المحظورين في الكروب 
-———————×——————— 
+الشرح  ⦙ يمسح جميع المحظورين في القروب
+———————×———————
 الأمر ⦙  ( .انتحال + الرد ع الشخص )
-الشرح  ⦙ يقوم بأنتحال الشخص ويضع صورته ونبذته واسمه في حسابك عدا المعرف  
+الشرح  ⦙ يقوم بأنتحال الشخص ويضع صورته ونبذته واسمه في حسابك عدا المعرف
 الأمر ⦙  ( .الغاء الانتحال + الرد ع الشخص )
-الشرح  ⦙ يقوم بألغاء الانتحال وسيرجع معلومات المذكوره بالسورس 
+الشرح  ⦙ يقوم بألغاء الانتحال وسيرجع معلومات المذكوره بالسورس
 ———————×———————
 الأمر  ⦙  ( .ترحيب + الرساله )
-الشرح  ⦙ يضيف ترحيب في الكروب اي شخص ينضم راح يرحب بي  
+الشرح  ⦙ يضيف ترحيب في القروب اي شخص ينضم راح يرحب بي
 الأمر  ⦙   ( .مسح الترحيبات )
-الشرح  ⦙ ييقوم بمسح الترحيب من الكروب 
-———————×——————— 
+الشرح  ⦙ ييقوم بمسح الترحيب من القروب
+———————×———————
 الأمر  ⦙  ( .ترحيباتي )
-الشرح  ⦙ يضهر لك جميع الترحيبات التي وضعتها في الكروب 
-———————×——————— 
-الأمر  ⦙  ( .رساله الترحيب السابقه تشغيل ) 
-الشرح  ⦙ عندما يحدث تكرار سيحذف رساله الترحيب 
+الشرح  ⦙ يضهر لك جميع الترحيبات التي وضعتها في القروب
+———————×———————
+الأمر  ⦙  ( .رساله الترحيب السابقه تشغيل )
+الشرح  ⦙ عندما يحدث تكرار سيحذف رساله الترحيب
 الأمر  ⦙  ( .رساله الترحيب السابقه ايقاف )
-الشرح  ⦙ عندما يحدث تكرار لا يحذف رساله الترحيب 
-———————×——————— 
+الشرح  ⦙ عندما يحدث تكرار لا يحذف رساله الترحيب
+———————×———————
 الأمر ⦙  ( .اضف رد + الكلمه )
-الشرح  ⦙ مثلاً تدز رساله هلو تسوي عليها رد بهلوات 
+الشرح  ⦙ مثلاً تدز رساله هلو تسوي عليها رد بهلوات
 الأمر ⦙  ( .مسح رد + الكلمه )
-الشرح  ⦙ سيحذف الكلمه الي انت ضفتها 
+الشرح  ⦙ سيحذف الكلمه الي انت ضفتها
 الأمر ⦙  ( .جميع الردود )
- الشرح  ⦙ يجلب لك جميع الردود الذي قمت بأضافتها  
+ الشرح  ⦙ يجلب لك جميع الردود الذي قمت بأضافتها
 الأمر ⦙  ( .مسح جميع الردود )
-الشرح  ⦙ يمسح جميع الردود الي انت ضفتها 
-———————×——————— 
+الشرح  ⦙ يمسح جميع الردود الي انت ضفتها
+———————×———————
 الأمر ⦙  ( .صنع مجموعه + اسم المجموعه )
-الشرح  ⦙ يقوم بعمل مجموعه خارقه 
+الشرح  ⦙ يقوم بعمل مجموعه خارقه
 الأمر ⦙  ( .صنع قناه +  اسم القناة )
-الشرح  ⦙ يقوم بعمل قناه خاصه  
-———————×——————— 
+الشرح  ⦙ يقوم بعمل قناه خاصه
+———————×———————
 الأمر ⦙  ( .عدد رسائلي )
-الشرح  ⦙ سيظهر لك عدد رسائلك في الكروب 
+الشرح  ⦙ سيظهر لك عدد رسائلك في القروب
 ———————×———————
 الأمر  ⦙  ( .تفعيل حمايه المجموعه )
 الشرح  ⦙ يقوم غلق جميع صلاحيات المجموعه يبقي فقط ارسال  الرسائل
 الأمر  ⦙ تعطيل حمايه المجموعه
 الشرح  ⦙ يقوم بتشغيل جميع صلاحيات المجموعة ماعدا تغير المعلومات و التثبيت و اضافه اعضاء تبقى مسدوده
-———————×——————— 
+———————×———————
 الأمر  ⦙  ( .صلاحيات المجموعه )
 الشرح  ⦙ يقوم بعرض صلاحيات المجموعه المغلقه والمفتوحه
 ———————×———————
 الأمر  ⦙  ( .رفع مشرف + الرد على شخص )
 الشرح  ⦙ يرفع الشخص مشرف يعطي صلاحيه حذف رسائل والتثبيت فقط
-———————×——————— 
+———————×———————
 الأمر  ⦙  ( .منع + كلمة )
-الشرح  ⦙ منع كلمه من الارسال في الكروب
+الشرح  ⦙ منع كلمه من الارسال في القروب
 الأمر ⦙  ( .الغاء منع + كلمه )
-الشرح  ⦙ يقوم بالغاء منع الكلمه  
-———————×——————— 
+الشرح  ⦙ يقوم بالغاء منع الكلمه
+———————×———————
 الأمر ⦙  ( .قائمه المنع )
-الشرح  ⦙ يقوم بجلب جميع الكلمات الممنوعه في الكروب 
-———————×——————— 
+الشرح  ⦙ يقوم بجلب جميع الكلمات الممنوعه في القروب
+———————×———————
 الأمر ⦙  ( .تاك + ( الاعداد المحدده وثابتة فقط) ⤵️
   ( 10 - 50 - 100 - 200  )
-الشرح  ⦙ يجلب لك الاعضاء بالروابط بالعدد المحدد 
-———————×——————— 
+الشرح  ⦙ يجلب لك الاعضاء بالروابط بالعدد المحدد
+———————×———————
 الأمر ⦙  ( .معرفات + ( الاعداد المحدده وثابتة فقط) ⤵️
   ( 10 - 50 - 100 - 200  )
-الشرح  ⦙ جلب لك معرفات الاعضاء بالعدد المحدد 
+الشرح  ⦙ جلب لك معرفات الاعضاء بالعدد المحدد
 ———————×———————
 الأمر  ⦙  ( .تنظيف الوسائط )
- الشرح  ⦙ ينضف جميع ميديا من صور وفديوهات و متحركات او ( .تنظيف الوسائط + العدد)  
-———————×——————— 
+ الشرح  ⦙ ينضف جميع ميديا من صور وفديوهات و متحركات او ( .تنظيف الوسائط + العدد)
+———————×———————
 الأمر  ⦙  ( .حذف الرسائل )
-الشرح  ⦙ يحذف جميع الرسائل بلكروب  
-  او  .حذف الرسائل + العدد 
-———————×——————— 
+الشرح  ⦙ يحذف جميع الرسائل بلقروب
+  او  .حذف الرسائل + العدد
+———————×———————
 الأمر  ⦙  ( .مسح + الرد على رسالة )
-الشرح  ⦙ يحذف الرساله الي راد عليها فقط 
-———————×——————— 
+الشرح  ⦙ يحذف الرساله الي راد عليها فقط
+———————×———————
 الأمر  ⦙  ( .غادر )
 الشرح  ⦙ يغادر من المجموعه او من القناة
-———————×——————— 
+———————×———————
 الأمر  ⦙  ( .تفليش )
-الشرح  ⦙ يطرد جميع الي في الكروب او قناة 
-———————×——————— 
-الأمر ⦙  ( .اضافه + رابط الكروب )
-الشرح  ⦙ يضف اليك جميع الاعضاء الى الكروب 
+الشرح  ⦙ يطرد جميع الي في القروب او قناة
+———————×———————
+الأمر ⦙  ( .اضافه + رابط القروب )
+الشرح  ⦙ يضف اليك جميع الاعضاء الى القروب
  ( يجب ان تتاكد انك  لست محضور ارسل ⬅️
 ( .فحص الحظر ) من اجل التاكد
-———————×——————— 
+———————×———————
 الأمر ⦙  ( .جلب الوقتيه + الرد على الصورة )
 الشرح  ⦙ الرد على صوره سريه وقتيه سوف يتم تحويلها الى رسائل المحفوضه كصورة عادية
-———————×——————— 
+———————×———————
 شرح الأوامر : ( @VFF34 ) .
 قناه السورس : ( @VFF35 ) .
 جميع الاوامر تكون بدايتها نقطة .""")
-@VFF35.on(admin_cmd(pattern="م4(?: |$)(.*)"))    
+@iqqhtani.on(admin_cmd(pattern="م4(?: |$)(.*)"))
 async def iq(event):
-    await edit_or_reply(event, 
-"""**  ⦑  اوامر الكروب 2  ⦒  : **
-———————×——————— 
+    await edit_or_reply(event,
+"""**  ⦑  اوامر القروب 2  ⦒  : **
+———————×———————
 الأمر ⦙  ( .تاك بالكلام + الكلمه + معرف الشخص )
 الشرح  ⦙ يعمل تاك للشخص بالرابط جربه وتعرف
-———————×——————— 
+———————×———————
 الأمر ⦙  ( .نسخ + الرد على رساله )
-الشرح  ⦙ يرسل الرساله التي رديت عليها 
-———————×——————— 
+الشرح  ⦙ يرسل الرساله التي رديت عليها
+———————×———————
 الأمر ⦙  ( .ابلاغ الادمنيه )
-الشرح  ⦙ يعمل تاك لجميع الادمنيه  
-———————×——————— 
+الشرح  ⦙ يعمل تاك لجميع الادمنيه
+———————×———————
 الأمر ⦙  ( .المشرفين )
-الشرح  ⦙ يجلب اليك جميع المشرفين 
+الشرح  ⦙ يجلب اليك جميع المشرفين
 الأمر ⦙  ( .البوتات )
 الشرح  ⦙ يجلب الك جميع بوتات في المجموعه او قناه
 ———————×———————
 الأمر ⦙  ( .حظر + الرد على شخص )
-الشرح  ⦙ حظر الشخص من المجموعه 
+الشرح  ⦙ حظر الشخص من المجموعه
 الأمر  ⦙  ( .الغاء الحظر + الرد على شخص )
 الشرح  ⦙ يلغي حظر الشخص من المجموعه
-———————×——————— 
+———————×———————
 الأمر  ⦙  ( .بدء مكالمه )
-الشرح  ⦙ يقوم بتشغيل مكالمه 
+الشرح  ⦙ يقوم بتشغيل مكالمه
 الأمر ⦙  ( .دعوه للمكالمه )
 الشرح  ⦙ يتم دعوه الاعضاء للمكالمة الشغاله
-———————×——————— 
+———————×———————
 الأمر ⦙  ( .تنزيل مشرف + الرد على شخص )
-الشرح  ⦙ يقوم بازاله الشخص من الاشراف 
-———————×——————— 
+الشرح  ⦙ يقوم بازاله الشخص من الاشراف
+———————×———————
 الأمر  ⦙  ( .تثبيت + الرد على رساله )
  شرح : تثبيت الرساله التي رديت عليها
-———————×——————— 
+———————×———————
 الأمر ⦙  ( .الأعضاء )
-الشرح  ⦙ اضهار قائمة الاعضاء للمجموعة 
-———————×——————— 
+الشرح  ⦙ اضهار قائمة الاعضاء للمجموعة
+———————×———————
 الأمر ⦙  ( .تفليش )
 الشرح  ⦙  أزاله جميع اعضاء المجموعه
- ———————×——————— 
+ ———————×———————
 الأمر ⦙  ( .مسح المحظورين )
-الشرح  ⦙ يمسح جميع المحظورين 
-———————×——————— 
+الشرح  ⦙ يمسح جميع المحظورين
+———————×———————
 الأمر  ⦙  ( .المحذوفين )
-الشرح  ⦙  يجلب لك الحسابات المحذوفه 
+الشرح  ⦙  يجلب لك الحسابات المحذوفه
 الأمر ⦙  ( .المحذوفين تنظيف )
 الشرح  ⦙ مسح الحسابات المحذوفه
-———————×——————— 
+———————×———————
 الأمر ⦙  ( .احصائيات الاعضاء )
-الشرح  ⦙ يجلب جميع معلومات اعضاء المجموعه 
-———————×——————— 
+الشرح  ⦙ يجلب جميع معلومات اعضاء المجموعه
+———————×———————
 الأمر ⦙  ( .عدد رسائلي )
-الشرح  ⦙ يقوم بحساب عدد رسائلك 
-———————×——————— 
+الشرح  ⦙ يقوم بحساب عدد رسائلك
+———————×———————
 الأمر ⦙  ( .جلب الاحداث )
 الشرح  ⦙ يجلب اخر 20 رساله محذوفه
 ———————×———————
-الأمر  ⦙ ( .حظر عام + الرد على شخص ) 
-الشرح  ⦙ حظر من جميع الكروبات   
+الأمر  ⦙ ( .حظر عام + الرد على شخص )
+الشرح  ⦙ حظر من جميع القروبات
 ———————×———————
 الأمر  ⦙ ( .الغاء حظر عام + الرد على شخص )
-الشرح  ⦙ الغاء حضر العام  
+الشرح  ⦙ الغاء حضر العام
 ———————×———————
 الأمر  ⦙ ( .المحظورين عام )
-الشرح ⦙  يضهر المحضورين عام 
+الشرح ⦙  يضهر المحضورين عام
 ———————×———————
 الشرح  ⦙ ( .تقيد + الرد على شخص )
-الأمر  ⦙ يقيد الشخص من المجموعة 
+الأمر  ⦙ يقيد الشخص من المجموعة
 ———————×———————
 شرح الأوامر : ( @VFF34 ) .
 قناه السورس : ( @VFF35 ) .
 جميع الاوامر تكون بدايتها نقطة .""")
-@VFF35.on(admin_cmd(pattern="م5(?: |$)(.*)"))    
+@iqqhtani.on(admin_cmd(pattern="م5(?: |$)(.*)"))
 async def iq(event):
-    await edit_or_reply(event, 
+    await edit_or_reply(event,
 """**⦑  اوامر تحويل الصيغ  ⦒  :**
 ———————×——————
 الأمر ⦙  .تحويل بصمه + الرد ع الصوت mp3
-الشرح : يحول صوت mp3 الى بصمه 
+الشرح : يحول صوت mp3 الى بصمه
 ———————×——————
-الأمر ⦙  .تحويل صوت + الرد ع الصوت 
+الأمر ⦙  .تحويل صوت + الرد ع الصوت
 الشرح  :  يحول البصمه الى صوت   mp3
 ———————×——————
-الأمر  ⦙  .تحويل ملصق + الرد ع الصوره 
-الشرح :  يحول الصوره الى ملصق 
+الأمر  ⦙  .تحويل ملصق + الرد ع الصوره
+الشرح :  يحول الصوره الى ملصق
 ———————×——————
-الأمر  ⦙ . تحويل صوره + الرد ع الملصق 
-الشرح :  يحول الملصق الى صوره 
+الأمر  ⦙ . تحويل صوره + الرد ع الملصق
+الشرح :  يحول الملصق الى صوره
 ———————×——————
-الأمر ⦙  .تحويل متحركه + الرد ع الفيديو 
-الشرح :  يقوم بتحويل الفيديو الى متحركه 
+الأمر ⦙  .تحويل متحركه + الرد ع الفيديو
+الشرح :  يقوم بتحويل الفيديو الى متحركه
 ———————×——————
 الأمر  ⦙  .بي دي اف + الرد ع الملف او الصوره
-الشرح :  يحول الملف الى بي دي اف 
-———————×—————— 
-الأمر  ⦙ .ملصقي + الرد ع الرساله 
-الشرح  : يحول رساله الى ملصق 
+الشرح :  يحول الملف الى بي دي اف
+———————×——————
+الأمر  ⦙ .ملصقي + الرد ع الرساله
+الشرح  : يحول رساله الى ملصق
 ———————×——————
 الأمر  ⦙  . تليجراف ميديا + الرد ع الفيديو او صوره
-الشرح :  يقوم بتحويل الفيديو او الصوره الى رابط تليجراف  
+الشرح :  يقوم بتحويل الفيديو او الصوره الى رابط تليجراف
 ———————×——————
 الأمر ⦙  ( .تحويل رساله + الرد ع الملف )
-الشرح :  يقوم بجلب جميع الكتابه الذي داخل الملف ويقوم بأرسالها اليك 
+الشرح :  يقوم بجلب جميع الكتابه الذي داخل الملف ويقوم بأرسالها اليك
 ———————×——————
 الأمر ⦙ ( .تحويل فديو دائري + الرد ع الفيديو )
-الشرح : يحول الفيديو الى فيديو دائري مرئي 
+الشرح : يحول الفيديو الى فيديو دائري مرئي
 ———————×——————
 الأمر  ⦙ ( .تحويل ملصق دائري + الرد ع الملصق )
 الشرح :  يحول الملصق الى ملصق دائري
@@ -1404,12 +1404,12 @@ async def iq(event):
 الشرح :  يقوم بترجمه الرساله الى اللغه الانكليزيه
 ———————×——————
 الشرح ⦙ ( .ترجمه ar + الرد ع الشخص )
-الأمر  :  يقوم بترجمه الرساله الى اللغه العربيه 
+الأمر  :  يقوم بترجمه الرساله الى اللغه العربيه
 ———————×——————
 شرح الأوامر : ( @VFF34 ) .
 قناه السورس : ( @VFF35 ) .
 جميع الاوامر تكون بدايتها نقطة .""")
-@VFF35.on(admin_cmd(pattern="م6(?: |$)(.*)"))    
+@iqqhtani.on(admin_cmd(pattern="م6(?: |$)(.*)"))
 async def iq(event):
     await edit_or_reply(event, """
 **  ⦑   اوامر الالعاب 1   ⦒  :**
@@ -1438,31 +1438,31 @@ async def iq(event):
 الأمر  ⦙ ( .رفع صاكه + الرد ع الشخص )
 ———————×———————
 الأمر  ⦙ ( .كت )
-الشرح ⦙ لعبه اسأله كت تويت عشوائيه 
+الشرح ⦙ لعبه اسأله كت تويت عشوائيه
 ———————×———————
 الأمر  ⦙ ( .اكس او )
-الشرح ⦙  لعبه اكس او دز الامر و اللعب ويا صديقك 
+الشرح ⦙  لعبه اكس او دز الامر و اللعب ويا صديقك
 ———————×———————
 الأمر  ⦙  ( .همسه + الكلام + معرف الشخص )
-الشرح  ⦙  يرسل همسه سريه الى معرف الشخص فقط هو يكدر يشوفها  
+الشرح  ⦙  يرسل همسه سريه الى معرف الشخص فقط هو يكدر يشوفها
 ———————×———————
 الأمر  ⦙  ( .رسم شعار + الاسم )
-الشرح ⦙  يرسم شعار للأسم  
+الشرح ⦙  يرسم شعار للأسم
 ———————×———————
 الأمر  ⦙ ( .نص ثري دي + الكلمه )
-الشرح ⦙ يقوم بكتابه الكلمه بشكل ثلاثي الابعاد 
+الشرح ⦙ يقوم بكتابه الكلمه بشكل ثلاثي الابعاد
 ———————×———————
 الأمر  ⦙  ( .كلام متحرك + الكلام )
-الشرح ⦙ يقوم بكتابه الكلام حرف حرف  
+الشرح ⦙ يقوم بكتابه الكلام حرف حرف
 ———————×———————
 الأمر ⦙ ( .ملصق متحرك + الكلام )
-الشرح  ⦙ يقوم بكتابه الكلام بملصق متحرك  
+الشرح  ⦙ يقوم بكتابه الكلام بملصق متحرك
 ———————×———————
 الأمر  ⦙  ( .بورن + معرف الشخص + الكلام + الرد ع اي صوره )
-الشرح ⦙  قم بتجربه الامر لتعرفه +18  
+الشرح ⦙  قم بتجربه الامر لتعرفه +18
 ———————×———————
 الأمر  ⦙ ( .رسم قلوب + الاسم )
-الشرح  ⦙  يكتب الاسم ع شكل قلوب  
+الشرح  ⦙  يكتب الاسم ع شكل قلوب
 ———————×———————
 
 ⑴  ⦙  ( .كتابه وهمي + عدد الثواني )
@@ -1475,10 +1475,10 @@ async def iq(event):
 الشرح  ⦙ هذا الامر يقوم بالارسال الوهمي يعني يضهر للناس انو نته جاي تكتب او جاي ترسل صوره او ترسل فيديو او ترسل جهه اتصالك حسب الفتره الي تحددها بالثواني
 ———————×———————
 ⑴  ⦙ ( .شوت + الكلمة )
-✐ :  امر تسليه جربه وتعرف  
+✐ :  امر تسليه جربه وتعرف
 ———————×———————
 ⑵  ⦙ ( .كتابه + الكلام بالانكلش )
-✐ :   يكتب الكلام على ورقه بخط اليد 100%   
+✐ :   يكتب الكلام على ورقه بخط اليد 100%
 ———————×———————
 الشرح  ⦙   العـاب اخـرى فقط قم بنسخ الأمر وارسالـة   :- الأوامر :
 1. - ( .لعبه تيك توك اربعه )
@@ -1491,35 +1491,35 @@ async def iq(event):
 8. - ( .لعبه داما تجمع )
 ———————×———————
 الأمر  ⦙ ( .هديه + الكلام )
-الشرح :  قم بارسال الامر بجانبه اكتب اي شيئ واول شخص سيفتحها سوف يكتب اسمه جربها  
-———————×——————— 
+الشرح :  قم بارسال الامر بجانبه اكتب اي شيئ واول شخص سيفتحها سوف يكتب اسمه جربها
+———————×———————
 الأمر  ⦙ ( .ضفدع + الكلمه )
-الشرح :   يدعم انكليزي فقط + يحول الكلمه لكتابه ضفدع جربه وتفهم   
-———————×——————— 
+الشرح :   يدعم انكليزي فقط + يحول الكلمه لكتابه ضفدع جربه وتفهم
+———————×———————
 الأمر  ⦙  ( .لافته + الكلمه )
-الشرح :   يدعم انكليزي فقط + يحول الكلمه بلافته ملصق متحرك جربه وتعرف    
-———————×——————— 
+الشرح :   يدعم انكليزي فقط + يحول الكلمه بلافته ملصق متحرك جربه وتعرف
+———————×———————
 الأمر ⦙ ( .تكرار_كلمه  + الجملة )
-الشرح : يكرر الك كلام الجملة 
-———————×——————— 
+الشرح : يكرر الك كلام الجملة
+———————×———————
 الأمر ⦙  (.صفق + الرد على الكلام )
-الشرح : جربه وتعرف مضحك 
-———————×——————— 
+الشرح : جربه وتعرف مضحك
+———————×———————
 الأمر  ⦙ ( .حضر وهمي + الرد على شخص )
-الشرح : حظر وهمي جربه وتعرف 
+الشرح : حظر وهمي جربه وتعرف
 ———————×———————
 الأمر ⦙ ( .خط ملصق + الكلمه )
-الشرح : يدعم انكليزي فقط + يحول الكتابه لملصق 
+الشرح : يدعم انكليزي فقط + يحول الكتابه لملصق
 ———————×———————
 الأمر  ⦙ ( .شعر )
-الشرح : يرسل الك شعر ميمز او مضحك 
+الشرح : يرسل الك شعر ميمز او مضحك
 ———————×———————
 شرح الأوامر : ( @VFF34 ) .
 قناه السورس : ( @VFF35 ) .
 جميع الاوامر تكون بدايتها نقطة .""")
-@VFF35.on(admin_cmd(pattern="م7(?: |$)(.*)"))    
+@iqqhtani.on(admin_cmd(pattern="م7(?: |$)(.*)"))
 async def iq(event):
-    await edit_or_reply(event, 
+    await edit_or_reply(event,
 """**  ⦑   بصمات تحشيش 1   ⦒  :**
 ———————×———————
 (.ص1) ⦙  ابو  عباس  لو  تاكل  خره
@@ -1532,48 +1532,48 @@ async def iq(event):
 (.ص8) ⦙  انت  اسكت  انت  اسكت
 (.ص9) ⦙  انت  سايق  زربه
 (.ص10) ⦙  اوني  تشان
-(.ص11) ⦙  برافو  عليك  استادي 
+(.ص11) ⦙  برافو  عليك  استادي
 (.ص12) ⦙  بلوك  محترم
-(.ص13) ⦙  بووم  في  منتصف  الجبهة 
-(.ص14) ⦙  بيتش 
+(.ص13) ⦙  بووم  في  منتصف  الجبهة
+(.ص14) ⦙  بيتش
 (.ص15) ⦙  تخوني  ؟
 (.ص16) ⦙  تره  متكدرلي
 (.ص17) ⦙  تعبان  اوي
 (.ص18) ⦙  تكذب
 (.ص19) ⦙  حسبي  الله
-(.ص20) ⦙  حشاش 
-(.ص21) ⦙  حقير  
-(.ص22) ⦙  خاص  
-(.ص23) ⦙  خاله  ما  تنامون  
-(.ص24) ⦙  خرب  شرفي  اذا  ابقى  بالعراق 
-(.ص25) ⦙  دكات  الوكت  الاغبر  
-(.ص26) ⦙  ررردح  
-(.ص27) ⦙  سلامن  عليكم  
-(.ص28) ⦙  بوم منتصف جبهه   
+(.ص20) ⦙  حشاش
+(.ص21) ⦙  حقير
+(.ص22) ⦙  خاص
+(.ص23) ⦙  خاله  ما  تنامون
+(.ص24) ⦙  خرب  شرفي  اذا  ابقى  بالعراق
+(.ص25) ⦙  دكات  الوكت  الاغبر
+(.ص26) ⦙  ررردح
+(.ص27) ⦙  سلامن  عليكم
+(.ص28) ⦙  بوم منتصف جبهه
 (.ص29) ⦙  شكد  شفت  ناس  مدودة
-(.ص30) ⦙ شلون  ، 
-(.ص31) ⦙ صح  لنوم  
-(.ص32) ⦙ صمت  
-(.ص33) ⦙ ضحكة  مصطفى  الحجي  
-(.ص34) ⦙ طماطه  
-(.ص35) ⦙ طيح  الله  حضك  
-(.ص36) ⦙ فاك  يوو  
+(.ص30) ⦙ شلون  ،
+(.ص31) ⦙ صح  لنوم
+(.ص32) ⦙ صمت
+(.ص33) ⦙ ضحكة  مصطفى  الحجي
+(.ص34) ⦙ طماطه
+(.ص35) ⦙ طيح  الله  حضك
+(.ص36) ⦙ فاك  يوو
 (.ص37) ⦙ اني فرحان وعمامي فرحانين
-(.ص38) ⦙ لا  تضل  تضرط  
-(.ص39) ⦙ لا  تقتل  المتعه  يا  مسلم  
-(.ص40) ⦙ لا  مستحيل  
-(.ص41) ⦙ لا  والله  شو  عصبي  
-(.ص42) ⦙ لش  
-(.ص43) ⦙ لك  اني  شعليه  
-(.ص44) ⦙ ما  اشرب  
-(.ص45) ⦙ مع  الاسف  
-(.ص46) ⦙ مقتدى  
-(.ص47) ⦙ من  رخصتكم  
-(.ص48) ⦙ منو  انت  
-(.ص49) ⦙ منورني  
-(.ص50) ⦙  نتلاكه  بالدور  الثاني 
-(.ص51) ⦙  نستودعكم  الله  
-(.ص52) ⦙  ها  شنهي  
+(.ص38) ⦙ لا  تضل  تضرط
+(.ص39) ⦙ لا  تقتل  المتعه  يا  مسلم
+(.ص40) ⦙ لا  مستحيل
+(.ص41) ⦙ لا  والله  شو  عصبي
+(.ص42) ⦙ لش
+(.ص43) ⦙ لك  اني  شعليه
+(.ص44) ⦙ ما  اشرب
+(.ص45) ⦙ مع  الاسف
+(.ص46) ⦙ مقتدى
+(.ص47) ⦙ من  رخصتكم
+(.ص48) ⦙ منو  انت
+(.ص49) ⦙ منورني
+(.ص50) ⦙  نتلاكه  بالدور  الثاني
+(.ص51) ⦙  نستودعكم  الله
+(.ص52) ⦙  ها  شنهي
 (.ص53) ⦙  ههاي  الافكار  حطها ب
 (.ص54) ⦙  ليش شنو سببها ليش
 (.ص55) ⦙  يموتون  جهالي
@@ -1620,69 +1620,69 @@ async def iq(event):
 شرح الأوامر : ( @VFF34 ) .
 قناه السورس : ( @VFF35 ) .
 جميع الاوامر تكون بدايتها نقطة .""")
-@VFF35.on(admin_cmd(pattern="م8(?: |$)(.*)"))    
+@iqqhtani.on(admin_cmd(pattern="م8(?: |$)(.*)"))
 async def iq(event):
-    await edit_or_reply(event, 
+    await edit_or_reply(event,
 """**⦑    الاوامر المتحركه للتسلية   ⦒  :**
-———————×——————— 
-( .غبي ) ( .تفجير ) ( .قتل ) ( .طوبه ) ( .مربعات ) ( .حلويات ) ( .نار ) ( .هلكوبتر ) ( .اشكال مربع ) ( .دائره )( .قلب ) ( .مزاج ) ( .قرد ) ( .ايد ) ( .العد التنازلي ) ( .الوان قلوب ) ( .عين ) ( .ثعبان ) ( .رجل ) ( .رموز شيطانيه ) ( .قطار ) ( .موسيقى ) ( .رسم ) ( .فراشه ) ( .مكعبات ) ( .مطر ) ( .تحركات ) ( .ايموجيات ) ( .طائره )( .شرطي ) ( .النضام الشمسي ) ( .افكر ) ( .اضحك ) ( .ضايج ) ( .ساعه متحركه )( .بوسه ) ( .قلوب ) ( .رياضه )( .الارض ) ( .قمر ) (.اقمار ) ( .قمور ) ( .زرفه ) ( .بيبي ) ( .تفاعلات ) ( .اخذ قلبي ) 
+———————×———————
+( .غبي ) ( .تفجير ) ( .قتل ) ( .طوبه ) ( .مربعات ) ( .حلويات ) ( .نار ) ( .هلكوبتر ) ( .اشكال مربع ) ( .دائره )( .قلب ) ( .مزاج ) ( .قرد ) ( .ايد ) ( .العد التنازلي ) ( .الوان قلوب ) ( .عين ) ( .ثعبان ) ( .رجل ) ( .رموز شيطانيه ) ( .قطار ) ( .موسيقى ) ( .رسم ) ( .فراشه ) ( .مكعبات ) ( .مطر ) ( .تحركات ) ( .ايموجيات ) ( .طائره )( .شرطي ) ( .النضام الشمسي ) ( .افكر ) ( .اضحك ) ( .ضايج ) ( .ساعه متحركه )( .بوسه ) ( .قلوب ) ( .رياضه )( .الارض ) ( .قمر ) (.اقمار ) ( .قمور ) ( .زرفه ) ( .بيبي ) ( .تفاعلات ) ( .اخذ قلبي )
 ( .اشوفج السطح ) ( .احبك ) ( .اركض ) ( .روميو ) ( .البنك ) ( .تهكير ) ( .طياره ) ( .مصاصه ) ( .مصه ) ( .جكه ) ( .اركضلي ) ( .حمامه ) ( .فواكه ) ( .الحياة ) ( .هلو ) ( .مربعاتي ) ( .اسعاف ) ( .سمايلي )
 ———————×———————
 """)
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"orders")))
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"orders")))
 @check_owner
-async def inlineVFF35(VFF35):
-    text = "**♛︙ قـائمـه الاوامـر :**\n**♛︙ قنـاه السـورس :** @VFF35\n**♛︙ شـرح اوامـر السـورس : @VFF34**\n**♛︙ شـرح فـارات السـورس : @VFF34** "
-    buttons = [[Button.inline("اوامر السورس", data="order1"), Button.inline("اوامر الحساب", data="ord1hs"),],[Button.inline("اوامر الكروب", data="ord1G"), Button.inline("اوامر الالعاب", data="ord1pl"),],[Button.inline("اوامر الصيغ", data="ordsag1"), Button.inline("اوامر الاغاني", data="ordSONG"),], [Button.inline("اسم وقتي", data="order13"), Button.inline("اوامر الاعلانات", data="ordahln1"),],[Button.inline("اوامر التسليه", data="order14"),],[Button.inline("الفارات", data="ordvars"),]]
-    await VFF35.edit(text, buttons=buttons)
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"ord1G")))
+async def inlineiqqhtani(iqqhtani):
+    text = " ◈︙ قـائمـه الاوامـر :**\n ◈︙ قنـاه السـورس :** @VFF35\n ◈︙ شـرح اوامـر السـورس : @VFF34**\n ◈︙ شـرح فـارات السـورس : @VFF34** "
+    buttons = [[Button.inline("اوامر السورس", data="order1"), Button.inline("اوامر الحساب", data="ord1hs"),],[Button.inline("اوامر القروب", data="ord1G"), Button.inline("اوامر الالعاب", data="ord1pl"),],[Button.inline("اوامر الصيغ", data="ordsag1"), Button.inline("اوامر الاغاني", data="ordSONG"),], [Button.inline("اسم وقتي", data="order13"), Button.inline("اوامر الاعلانات", data="ordahln1"),],[Button.inline("اوامر التسليه", data="order14"),],[Button.inline("الفارات", data="ordvars"),]]
+    await iqqhtani.edit(text, buttons=buttons)
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"ord1G")))
 @check_owner
-async def inlineVFF35(VFF35):
-    text = "**🚹  ⦑   اوامر الكروب   ⦒  :**"
-    buttons = [[Button.inline("اوامر الكروب 1", data="G1"),],[Button.inline("اوامر الكروب 2", data="G2"),],[Button.inline("اوامر الكروب 3", data="G3"),],[Button.inline("اوامر الكروب 4", data="G4"),],[Button.inline("اوامر الكروب 5", data="G5"),],[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
+async def inlineiqqhtani(iqqhtani):
+    text = "**🚹  ⦑   اوامر القروب   ⦒  :**"
+    buttons = [[Button.inline("اوامر القروب 1", data="G1"),],[Button.inline("اوامر القروب 2", data="G2"),],[Button.inline("اوامر القروب 3", data="G3"),],[Button.inline("اوامر القروب 4", data="G4"),],[Button.inline("اوامر القروب 5", data="G5"),],[Button.inline("رجوع", data="orders"),]]
+    await iqqhtani.edit(text, buttons=buttons)
 
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"G1")))
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"G1")))
 @check_owner
-async def inlineVFF35(VFF35):
-    text = "**🚹  ⦑  اوامر الكروب 1     ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑴  ⦙ `.كتم + الرد ع الشخص`\n**✐ : يكتم الشخص من الخاص او الكروبات فقط اذا كانت عندك صلاحيه حذف رسائل ❝**\n \n⑵  ⦙ `. الغاء كتم + الرد ع الشخص`\n**✐ :  يجلب لك جميع معرفات المشرفين في الكروب  ❝**\n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑶  ⦙ `.البوتات`\n**✐ : يجلب لك جميع معرفات البوتات في الكروب ❝**\n \n⑷  ⦙ `.الأعضاء`\n**✐ : اضهار قائمة الاعضاء للكروب اذا هواي سيرسل ملف كامل لمعلوماتهم  ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑸  ⦙ `.معلومات`\n**✐ : سيرسل لك جميع معلومات الكروب بالتفصيل ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑹ ⦙ `.مسح المحظورين`\n**✐ : يمسح جميع المحظورين في الكروب ❝**\n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑺ ⦙ `.المحذوفين`\n**✐ : يجلب لك جميع الحسابات المحذوفه ❝**\n\n⑻ ⦙ `.المحذوفين تنظيف`\n**✐ : يمسح جميع الحسابات المحذوفه في الكروب ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑼ ⦙ `.احصائيات الاعضاء`\n**✐ : يمسح جميع المحظورين في الكروب ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑽ ⦙ `.انتحال + الرد ع الشخص`\n**✐ : يقوم بأنتحال الشخص ويضع صورته ونبذته واسمه في حسابك عدا المعرف ❝**\n\n⑾ ⦙ `.الغاء الانتحال + الرد ع الشخص`\n**✐ : يقوم بألغاء الانتحال وسيرجع معلومات المذكوره بالسورس ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n\n"
-    buttons = [[Button.inline("اوامر الكروب 2", data="G2"),],[Button.inline("اوامر الكروب 3", data="G3"),],[Button.inline("اوامر الكروب 4", data="G4"),],[Button.inline("اوامر الكروب 5", data="G5"),],[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
-@VFF35.on(admin_cmd(pattern="تحميل الملف(?: |$)(.*)"))    
+async def inlineiqqhtani(iqqhtani):
+    text = "**🚹  ⦑  اوامر القروب 1     ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑴  ⦙ `.كتم + الرد ع الشخص`\n**✐ : يكتم الشخص من الخاص او القروبات فقط اذا كانت عندك صلاحيه حذف رسائل ❝**\n \n⑵  ⦙ `. الغاء كتم + الرد ع الشخص`\n**✐ :  يجلب لك جميع معرفات المشرفين في القروب  ❝**\n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑶  ⦙ `.البوتات`\n**✐ : يجلب لك جميع معرفات البوتات في القروب ❝**\n \n⑷  ⦙ `.الأعضاء`\n**✐ : اضهار قائمة الاعضاء للقروب اذا هواي سيرسل ملف كامل لمعلوماتهم  ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑸  ⦙ `.معلومات`\n**✐ : سيرسل لك جميع معلومات القروب بالتفصيل ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑹ ⦙ `.مسح المحظورين`\n**✐ : يمسح جميع المحظورين في القروب ❝**\n ⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑺ ⦙ `.المحذوفين`\n**✐ : يجلب لك جميع الحسابات المحذوفه ❝**\n\n⑻ ⦙ `.المحذوفين تنظيف`\n**✐ : يمسح جميع الحسابات المحذوفه في القروب ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑼ ⦙ `.احصائيات الاعضاء`\n**✐ : يمسح جميع المحظورين في القروب ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑽ ⦙ `.انتحال + الرد ع الشخص`\n**✐ : يقوم بأنتحال الشخص ويضع صورته ونبذته واسمه في حسابك عدا المعرف ❝**\n\n⑾ ⦙ `.الغاء الانتحال + الرد ع الشخص`\n**✐ : يقوم بألغاء الانتحال وسيرجع معلومات المذكوره بالسورس ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n\n"
+    buttons = [[Button.inline("اوامر القروب 2", data="G2"),],[Button.inline("اوامر القروب 3", data="G3"),],[Button.inline("اوامر القروب 4", data="G4"),],[Button.inline("اوامر القروب 5", data="G5"),],[Button.inline("رجوع", data="orders"),]]
+    await iqqhtani.edit(text, buttons=buttons)
+@iqqhtani.on(admin_cmd(pattern="تحميل الملف(?: |$)(.*)"))
 async def install(event):
     if event.reply_to_msg_id:
         try:
-            downloaded_file_name = await event.client.download_media(await event.get_reply_message(), "VFF35/plugins/")
+            downloaded_file_name = await event.client.download_media(await event.get_reply_message(), "iqqhtani/plugins/")
             if "(" not in downloaded_file_name:
                 path1 = Path(downloaded_file_name)
                 shortname = path1.stem
                 load_module(shortname.replace(".py", ""))
-                await edit_delete(event, f"**♛︙   تم تثبيـت الملـف بنجـاح ✓** `{os.path.basename(downloaded_file_name)}`", 10)
+                await edit_delete(event, f" ◈︙   تم تثبيـت الملـف بنجـاح ✓** `{os.path.basename(downloaded_file_name)}`", 10)
             else:
                 os.remove(downloaded_file_name)
-                await edit_delete(event, "**♛︙  حـدث خطـأ، هـذا الملف مثبـت بالفعـل !**", 10)
+                await edit_delete(event, " ◈︙  حـدث خطـأ، هـذا الملف مثبـت بالفعـل !**", 10)
         except Exception as e:
-            await edit_delete(event, f"**♛︙  خطـأ ⚠️:**\n`{str(e)}`", 10)
+            await edit_delete(event, f" ◈︙  خطـأ ⚠️:**\n`{str(e)}`", 10)
             os.remove(downloaded_file_name)
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"G2")))
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"G2")))
 @check_owner
-async def inlineVFF35(VFF35):
-    text = "**🚹  ⦑   اوامر الكروب 2   ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑴  ⦙  `.ترحيب + الرساله` \n**✐ : يضيف ترحيب في الكروب اي شخص ينضم راح يرحب بي  ❝**\n⑵  ⦙   `.مسح الترحيبات` \n**✐ :  ييقوم بمسح الترحيب من الكروب ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n\n  ⦙  `.ترحيباتي` \n**✐ :  يضهر لك جميع الترحيبات التي وضعتها في الكروب ❝**\n⑷  ⦙ `.رساله الترحيب السابقه تشغيل`  \n**✐ :  عندما يحدث تكرار سيحذف رساله الترحيب ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑸  ⦙  `.رساله الترحيب السابقه ايقاف`\n**✐ :  عندما يحدث تكرار لا يحذف رساله الترحيب ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑹ ⦙  `.اضف رد + الكلمه` \n**✐ :  مثلاً تدز رساله هلو تسوي عليها رد بهلوات ❝**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑺ ⦙ `.مسح رد + الكلمه` \n**✐ :  سيحذف الكلمه الي انت ضفتها ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n\n⑻ ⦙  `.جميع الردود` \n **✐ :  يجلب لك جميع الردود الذي قمت بأضافتها  ❝**\n⑼ ⦙  `.مسح جميع الردود` \n**✐ :  يمسح جميع الردود الي انت ضفتها ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑽ ⦙  `.صنع مجموعه + اسم المجموعه`\n**✐ : يقوم بعمل مجموعه خارقه ❝**\n \n⑾ ⦙  `.صنع قناه +  اسم القناة`\n**✐ : يقوم بعمل قناه خاصه  ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑿ ⦙ `.عدد رسائلي`\n**✐ : سيظهر لك عدد رسائلك في الكروب ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n\n"
-    buttons = [[Button.inline("اوامر الكروب 1", data="G1"),],[Button.inline("اوامر الكروب 3", data="G3"),],[Button.inline("اوامر الكروب 4", data="G4"),],[Button.inline("اوامر الكروب 5", data="G5"),],[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
+async def inlineiqqhtani(iqqhtani):
+    text = "**🚹  ⦑   اوامر القروب 2   ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑴  ⦙  `.ترحيب + الرساله` \n**✐ : يضيف ترحيب في القروب اي شخص ينضم راح يرحب بي  ❝**\n⑵  ⦙   `.مسح الترحيبات` \n**✐ :  ييقوم بمسح الترحيب من القروب ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n\n  ⦙  `.ترحيباتي` \n**✐ :  يضهر لك جميع الترحيبات التي وضعتها في القروب ❝**\n⑷  ⦙ `.رساله الترحيب السابقه تشغيل`  \n**✐ :  عندما يحدث تكرار سيحذف رساله الترحيب ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑸  ⦙  `.رساله الترحيب السابقه ايقاف`\n**✐ :  عندما يحدث تكرار لا يحذف رساله الترحيب ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑹ ⦙  `.اضف رد + الكلمه` \n**✐ :  مثلاً تدز رساله هلو تسوي عليها رد بهلوات ❝**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑺ ⦙ `.مسح رد + الكلمه` \n**✐ :  سيحذف الكلمه الي انت ضفتها ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n\n⑻ ⦙  `.جميع الردود` \n **✐ :  يجلب لك جميع الردود الذي قمت بأضافتها  ❝**\n⑼ ⦙  `.مسح جميع الردود` \n**✐ :  يمسح جميع الردود الي انت ضفتها ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑽ ⦙  `.صنع مجموعه + اسم المجموعه`\n**✐ : يقوم بعمل مجموعه خارقه ❝**\n \n⑾ ⦙  `.صنع قناه +  اسم القناة`\n**✐ : يقوم بعمل قناه خاصه  ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑿ ⦙ `.عدد رسائلي`\n**✐ : سيظهر لك عدد رسائلك في القروب ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n\n"
+    buttons = [[Button.inline("اوامر القروب 1", data="G1"),],[Button.inline("اوامر القروب 3", data="G3"),],[Button.inline("اوامر القروب 4", data="G4"),],[Button.inline("اوامر القروب 5", data="G5"),],[Button.inline("رجوع", data="orders"),]]
+    await iqqhtani.edit(text, buttons=buttons)
 
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"G3")))
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"G3")))
 @check_owner
-async def inlineVFF35(VFF35):
-    text = "**🚹  ⦑   اوامر الكروب 3   ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑴  ⦙  `.تفعيل حمايه المجموعه`\n**✐ : يقوم غلق جميع صلاحيات المجموعه يبقي فقط ارسال  الرسائل❝**\n \n⑵  ⦙ `تعطيل حمايه المجموعه`\n**✐ :  يقوم بتشغيل جميع صلاحيات المجموعة ماعدا تغير المعلومات و التثبيت و اضافه اعضاء تبقى مسدوده❝**\n\n⑶  ⦙ `.صلاحيات المجموعه`\n**✐ : يقوم بعرض صلاحيات المجموعه المغلقه والمفتوحه❝**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n⑷  ⦙  `.رفع مشرف + الرد على شخص`\n**✐ : يرفع الشخص مشرف يعطي صلاحيه حذف رسائل والتثبيت فقط❝**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑸  ⦙ `.منع + كلمة`\n**✐ : منع كلمه من الارسال في الكروب**❝\n⑹ ⦙ `.الغاء منع + كلمه`\n**✐ : يقوم بالغاء منع الكلمه ❝** \n⑺ ⦙ `.قائمه المنع`\n**✐ : يقوم بجلب جميع الكلمات الممنوعه في الكروب ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑻ ⦙ ` .تاك + ( الاعداد المحدده وثابتة فقط) ⤵️`\n  ( 10 - 50 - 100 - 200  )\n**✐ : يجلب لك الاعضاء بالروابط بالعدد المحدد ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑼ ⦙ `.معرفات + ( الاعداد المحدده وثابتة فقط) ⤵️`\n  ( 10 - 50 - 100 - 200  )\n**✐ :جلب لك معرفات الاعضاء بالعدد المحدد ❝**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n"
-    buttons = [[Button.inline("اوامر الكروب 1", data="G1"),],[Button.inline("اوامر الكروب 2", data="G2"),],[Button.inline("اوامر الكروب 4", data="G4"),],[Button.inline("اوامر الكروب 5", data="G5"),],[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
-@VFF35.on(admin_cmd(pattern="مسح الملف(?: |$)(.*)"))    
+async def inlineiqqhtani(iqqhtani):
+    text = "**🚹  ⦑   اوامر القروب 3   ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑴  ⦙  `.تفعيل حمايه المجموعه`\n**✐ : يقوم غلق جميع صلاحيات المجموعه يبقي فقط ارسال  الرسائل❝**\n \n⑵  ⦙ `تعطيل حمايه المجموعه`\n**✐ :  يقوم بتشغيل جميع صلاحيات المجموعة ماعدا تغير المعلومات و التثبيت و اضافه اعضاء تبقى مسدوده❝**\n\n⑶  ⦙ `.صلاحيات المجموعه`\n**✐ : يقوم بعرض صلاحيات المجموعه المغلقه والمفتوحه❝**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n⑷  ⦙  `.رفع مشرف + الرد على شخص`\n**✐ : يرفع الشخص مشرف يعطي صلاحيه حذف رسائل والتثبيت فقط❝**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑸  ⦙ `.منع + كلمة`\n**✐ : منع كلمه من الارسال في القروب**❝\n⑹ ⦙ `.الغاء منع + كلمه`\n**✐ : يقوم بالغاء منع الكلمه ❝** \n⑺ ⦙ `.قائمه المنع`\n**✐ : يقوم بجلب جميع الكلمات الممنوعه في القروب ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑻ ⦙ ` .تاك + ( الاعداد المحدده وثابتة فقط) ⤵️`\n  ( 10 - 50 - 100 - 200  )\n**✐ : يجلب لك الاعضاء بالروابط بالعدد المحدد ❝**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑼ ⦙ `.معرفات + ( الاعداد المحدده وثابتة فقط) ⤵️`\n  ( 10 - 50 - 100 - 200  )\n**✐ :جلب لك معرفات الاعضاء بالعدد المحدد ❝**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮\n"
+    buttons = [[Button.inline("اوامر القروب 1", data="G1"),],[Button.inline("اوامر القروب 2", data="G2"),],[Button.inline("اوامر القروب 4", data="G4"),],[Button.inline("اوامر القروب 5", data="G5"),],[Button.inline("رجوع", data="orders"),]]
+    await iqqhtani.edit(text, buttons=buttons)
+@iqqhtani.on(admin_cmd(pattern="مسح الملف(?: |$)(.*)"))
 async def unload(event):
     shortname = event.pattern_match.group(1)
-    path = Path(f"VFF35/plugins/{shortname}.py")
+    path = Path(f"iqqhtani/plugins/{shortname}.py")
     if not os.path.exists(path):
-        return await edit_delete(event, f"**♛︙   ملـف مـع مسـار ⚠️ {path} لإلغـاء التثبيـت ⊠**")
+        return await edit_delete(event, f" ◈︙   ملـف مـع مسـار ⚠️ {path} لإلغـاء التثبيـت ⊠**")
     os.remove(path)
     if shortname in CMD_LIST:
         CMD_LIST.pop(shortname)
@@ -1692,10 +1692,10 @@ async def unload(event):
         CMD_HELP.pop(shortname)
     try:
         remove_plugin(shortname)
-        await edit_or_reply(event, f"**♛︙   {shortname} تم إلغـاء التثبيـت بنجـاح ✓**")
+        await edit_or_reply(event, f" ◈︙   {shortname} تم إلغـاء التثبيـت بنجـاح ✓**")
     except Exception as e:
-        await edit_or_reply(event, f"**♛︙  تمـت الإزالـة بنجـاح ✓ : {shortname}\n{str(e)}**")
-@VFF35.on(admin_cmd(pattern="هاش ([\s\S]*)"))    
+        await edit_or_reply(event, f" ◈︙  تمـت الإزالـة بنجـاح ✓ : {shortname}\n{str(e)}**")
+@iqqhtani.on(admin_cmd(pattern="هاش ([\s\S]*)"))
 async def gethash(hash_q):
     hashtxt_ = "".join(hash_q.text.split(maxsplit=1)[1:])
     with open("hashdis.txt", "w+") as hashtxt:
@@ -1721,19 +1721,19 @@ async def gethash(hash_q):
             \n`{sha512[:-1]}`\
          "
     await edit_or_reply(hash_q, ans)
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"G4")))
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"G4")))
 @check_owner
-async def inlineVFF35(VFF35):
-    text = "**🚹  ⦑  اوامر الكروب 4     ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑴  ⦙ `.تنظيف الوسائط` \n ✐: ينضف جميع ميديا من صور وفديوهات و متحركات** او ( `.تنظيف الوسائط + العدد`) ** \n⑵  ⦙ `.حذف الرسائل`\n**✐ :  يحذف جميع الرسائل بلكروب ** \n ` او  `.حذف الرسائل + العدد \n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑶  ⦙ `.مسح + الرد على رسالة`\n**✐ :  يحذف الرساله الي راد عليها فقط **\n⑷  ⦙ `.غادر + بلكروب دزها`\n**✐ :  يغادر من المجموعه او من القناة**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑸  ⦙ ` .تفليش`\n**✐ :  يطرد جميع الي بلكروب الامر صار احسن ومتطور واسرع**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑹  ⦙ `.اضافه + رابط الكروب `\n**✐ :  يضيفلك جميع الاعضاء الي برابط الكروب يضيفهم بكروبك ( يجب ان تتاكد انو مامحضور حسابك ارسل ⬅️( .فحص الحظر ) علمود تتاكد حسابك محظور او لا) \n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑺  ⦙ `.جلب الوقتيه + الرد على الصورة`\n**✐ :  الرد على صوره سريه وقتيه سوف يتم تحويلها الى رسائل المحفوضه كصورة عادية\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑻  ⦙ `.تاك بالكلام + الكلمه + معرف الشخص`\n**✐ :  يسوي تاك للشخص بالرابط جربه وتعرف**\n⑼  ⦙ `.نسخ + الرد على رساله`\n**✐ :  يرسل الرساله التي رديت عليها **\n⑽  ⦙ `.ابلاغ الادمنيه`\n**✐ :  يسوي تاك لجميع الادمنيه ارسله هذا الامر بلمجموعه في حاله اكو تفليش او مشكلة**\n⑾  ⦙ `.المشرفين` \n**✐ : يجيب الك جميع المشرفين في المجموعه او القناه**\n⑿  ⦙ `.البوتات` \n**✐ :  يجيب الك جميع بوتات في المجموعه او قناه**"
-    buttons = [[Button.inline("اوامر الكروب 1", data="G1"),],[Button.inline("اوامر الكروب 2", data="G2"),],[Button.inline("اوامر الكروب 3", data="G3"),],[Button.inline("اوامر الكروب 5", data="G5"),],[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
-@VFF35.tgbot.on(CallbackQuery(data=re.compile(rb"G5")))
+async def inlineiqqhtani(iqqhtani):
+    text = "**🚹  ⦑  اوامر القروب 4     ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑴  ⦙ `.تنظيف الوسائط` \n ✐: ينضف جميع ميديا من صور وفديوهات و متحركات** او ( `.تنظيف الوسائط + العدد`) ** \n⑵  ⦙ `.حذف الرسائل`\n**✐ :  يحذف جميع الرسائل بلقروب ** \n ` او  `.حذف الرسائل + العدد \n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑶  ⦙ `.مسح + الرد على رسالة`\n**✐ :  يحذف الرساله الي راد عليها فقط **\n⑷  ⦙ `.غادر + بلقروب دزها`\n**✐ :  يغادر من المجموعه او من القناة**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑸  ⦙ ` .تفليش`\n**✐ :  يطرد جميع الي بلقروب الامر صار احسن ومتطور واسرع**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑹  ⦙ `.اضافه + رابط القروب `\n**✐ :  يضيفلك جميع الاعضاء الي برابط القروب يضيفهم بقروبك ( يجب ان تتاكد انو مامحضور حسابك ارسل ⬅️( .فحص الحظر ) علمود تتاكد حسابك محظور او لا) \n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑺  ⦙ `.جلب الوقتيه + الرد على الصورة`\n**✐ :  الرد على صوره سريه وقتيه سوف يتم تحويلها الى رسائل المحفوضه كصورة عادية\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⑻  ⦙ `.تاك بالكلام + الكلمه + معرف الشخص`\n**✐ :  يسوي تاك للشخص بالرابط جربه وتعرف**\n⑼  ⦙ `.نسخ + الرد على رساله`\n**✐ :  يرسل الرساله التي رديت عليها **\n⑽  ⦙ `.ابلاغ الادمنيه`\n**✐ :  يسوي تاك لجميع الادمنيه ارسله هذا الامر بلمجموعه في حاله اكو تفليش او مشكلة**\n⑾  ⦙ `.المشرفين` \n**✐ : يجيب الك جميع المشرفين في المجموعه او القناه**\n⑿  ⦙ `.البوتات` \n**✐ :  يجيب الك جميع بوتات في المجموعه او قناه**"
+    buttons = [[Button.inline("اوامر القروب 1", data="G1"),],[Button.inline("اوامر القروب 2", data="G2"),],[Button.inline("اوامر القروب 3", data="G3"),],[Button.inline("اوامر القروب 5", data="G5"),],[Button.inline("رجوع", data="orders"),]]
+    await iqqhtani.edit(text, buttons=buttons)
+@iqqhtani.tgbot.on(CallbackQuery(data=re.compile(rb"G5")))
 @check_owner
-async def inlineVFF35(VFF35):
-    text = "**🚹  ⦑  اوامر الكروب 5     ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑴  ⦙ `.تحذير التكرار + عدد رسائل`\n**✐ :  اي شخص بلكروب يكرر رسائل مالته بلعدد المحدد يقيدة مهما كان رتبته**\n ⑵  ⦙ ` .تحذير تكرار 99999 `\n✐ :  هذا الامر ستعمله من تريد تلغي التحذير لان مستحيل احد يكرر هل عدد ف اعتبار ينل(غي التحذير**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑶  ⦙ ` .حظر + الرد على شخص`\n✐ : حظر الشخص من المجموعه او الكروب**\n ⑷  ⦙ ` .الغاء الحظر + الرد على شخص`\n✐ :  يلغي حظر الشخص من المجموعه او الكروب**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑸  ⦙ ` .بدء مكالمه `\n✐ :  يقوم بتشغيل مكالمه في المجموعه**\n ⑹  ⦙ `.دعوه للمكالمه`\n✐ : يتم دعوه الاعضاء للمكالمة الشغاله**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑺  ⦙ ` .تنزيل مشرف + الرد على شخص`\n✐ :  يقوم بازاله الشخص من الاشراف **\n ⑻  ⦙ ` .تثبيت + الرد على رساله`\n✐ : شرح : تثبيت الرساله التي رديت عليها**⒀  ⦙ `.الأعضاء`\n**✐ :  اضهار قائمة الاعضاء للمجموعة اذا هواي يرسلك ملف كامل لمعلوماتهم**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⒁  ⦙ `.تفليش `\n**✐ :  يقوم بأزاله جميع اعضاء المجموعه او القناة الى 0**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⒂  ⦙ `.مسح المحظورين`\n**✐ :  يمسح جميع المحظورين في المجموعه او القناه **\n⒃  ⦙ `.المحذوفين`\n**✐:  يجلب لك جميع الحسابات المحذوفه في المجموعه او القناه**\n⒄  ⦙ `.المحذوفين تنظيف`\n**✐ :  مسح جميع الحسابات المحذوفه في المجموعه او القناة**\n⒅  ⦙ `.احصائيات الاعضاء`\n**✐ :  يرسل اليك جميع معلومات اعضاء المجموعه منها عدد الحسابات المحذوفه او الحسابات النشطه او الحسابات اخر ضهور وجميعهم**\n⒆  ⦙ `.عدد رسائلي`\n**✐ : يقوم بحساب عدد رسائلك في المجموعه او القناة**\n⒇  ⦙ `.جلب الاحداث`\n**✐ :  يرسل اليك اخر 20 رساله محذوفه في المجموعة من الاحداث**"
-    buttons = [[Button.inline("اوامر الكروب 1", data="G1"),],[Button.inline("اوامر الكروب 2", data="G2"),],[Button.inline("اوامر الكروب 3", data="G3"),],[Button.inline("اوامر الكروب 4", data="G4"),],[Button.inline("رجوع", data="orders"),]]
-    await VFF35.edit(text, buttons=buttons)
-@VFF35.on(admin_cmd(pattern="هاش(ين|دي) ([\s\S]*)"))    
+async def inlineiqqhtani(iqqhtani):
+    text = "**🚹  ⦑  اوامر القروب 5     ⦒  :**\n\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑴  ⦙ `.تحذير التكرار + عدد رسائل`\n**✐ :  اي شخص بلقروب يكرر رسائل مالته بلعدد المحدد يقيدة مهما كان رتبته**\n ⑵  ⦙ ` .تحذير تكرار 99999 `\n✐ :  هذا الامر ستعمله من تريد تلغي التحذير لان مستحيل احد يكرر هل عدد ف اعتبار ينل(غي التحذير**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑶  ⦙ ` .حظر + الرد على شخص`\n✐ : حظر الشخص من المجموعه او القروب**\n ⑷  ⦙ ` .الغاء الحظر + الرد على شخص`\n✐ :  يلغي حظر الشخص من المجموعه او القروب**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑸  ⦙ ` .بدء مكالمه `\n✐ :  يقوم بتشغيل مكالمه في المجموعه**\n ⑹  ⦙ `.دعوه للمكالمه`\n✐ : يتم دعوه الاعضاء للمكالمة الشغاله**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⑺  ⦙ ` .تنزيل مشرف + الرد على شخص`\n✐ :  يقوم بازاله الشخص من الاشراف **\n ⑻  ⦙ ` .تثبيت + الرد على رساله`\n✐ : شرح : تثبيت الرساله التي رديت عليها**⒀  ⦙ `.الأعضاء`\n**✐ :  اضهار قائمة الاعضاء للمجموعة اذا هواي يرسلك ملف كامل لمعلوماتهم**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n⒁  ⦙ `.تفليش `\n**✐ :  يقوم بأزاله جميع اعضاء المجموعه او القناة الى 0**\n⤪⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⟿⤮ \n ⒂  ⦙ `.مسح المحظورين`\n**✐ :  يمسح جميع المحظورين في المجموعه او القناه **\n⒃  ⦙ `.المحذوفين`\n**✐:  يجلب لك جميع الحسابات المحذوفه في المجموعه او القناه**\n⒄  ⦙ `.المحذوفين تنظيف`\n**✐ :  مسح جميع الحسابات المحذوفه في المجموعه او القناة**\n⒅  ⦙ `.احصائيات الاعضاء`\n**✐ :  يرسل اليك جميع معلومات اعضاء المجموعه منها عدد الحسابات المحذوفه او الحسابات النشطه او الحسابات اخر ضهور وجميعهم**\n⒆  ⦙ `.عدد رسائلي`\n**✐ : يقوم بحساب عدد رسائلك في المجموعه او القناة**\n⒇  ⦙ `.جلب الاحداث`\n**✐ :  يرسل اليك اخر 20 رساله محذوفه في المجموعة من الاحداث**"
+    buttons = [[Button.inline("اوامر القروب 1", data="G1"),],[Button.inline("اوامر القروب 2", data="G2"),],[Button.inline("اوامر القروب 3", data="G3"),],[Button.inline("اوامر القروب 4", data="G4"),],[Button.inline("رجوع", data="orders"),]]
+    await iqqhtani.edit(text, buttons=buttons)
+@iqqhtani.on(admin_cmd(pattern="هاش(ين|دي) ([\s\S]*)"))
 async def endecrypt(event):
     string = "".join(event.text.split(maxsplit=2)[2:])
     catevent = event
@@ -1767,96 +1767,96 @@ async def endecrypt(event):
 if Config.TG_BOT_USERNAME is not None and tgbot is not None :
     @check_owner
     @tgbot.on(events.InlineQuery)
-    async def inlineVFF35(VFF35):
-        builder = VFF35.builder
+    async def inlineiqqhtani(iqqhtani):
+        builder = iqqhtani.builder
         result = None
-        query = VFF35.text
+        query = iqqhtani.text
         await bot.get_me()
-        if query.startswith("اوامر الكروب(?: |$)(.*)") and VFF35.query.user_id == bot.uid:
-            buttons = [[Button.inline("اوامر الكروب", data="ord1G"),]]
-            result = builder.article(title="VFF35", text=help2, buttons=buttons, link_preview=False)
-            await VFF35.answer([result] if result else None)
-@bot.on(admin_cmd(outgoing=True, pattern="اوامر الكروب(?: |$)(.*)"))
-async def repoVFF35(VFF35):
-    if VFF35.fwd_from:
+        if query.startswith("اوامر القروب(?: |$)(.*)") and iqqhtani.query.user_id == bot.uid:
+            buttons = [[Button.inline("اوامر القروب", data="ord1G"),]]
+            result = builder.article(title="iqqhtani", text=help2, buttons=buttons, link_preview=False)
+            await iqqhtani.answer([result] if result else None)
+@bot.on(admin_cmd(outgoing=True, pattern="اوامر القروب(?: |$)(.*)"))
+async def repoiqqhtani(iqqhtani):
+    if iqqhtani.fwd_from:
         return
     TG_BOT = Config.TG_BOT_USERNAME
-    if VFF35.reply_to_msg_id:
-        await VFF35.get_reply_message()
-    response = await bot.inline_query(TG_BOT, "اوامر الكروب(?: |$)(.*)")
-    await response[0].click(VFF35.chat_id)
-    await VFF35.delete()
+    if iqqhtani.reply_to_msg_id:
+        await iqqhtani.get_reply_message()
+    response = await bot.inline_query(TG_BOT, "اوامر القروب(?: |$)(.*)")
+    await response[0].click(iqqhtani.chat_id)
+    await iqqhtani.delete()
 
 if Config.TG_BOT_USERNAME is not None and tgbot is not None:
     @check_owner
     @tgbot.on(events.InlineQuery)
-    async def inlineVFF35(VFF35):
-        builder = VFF35.builder
+    async def inlineiqqhtani(iqqhtani):
+        builder = iqqhtani.builder
         result = None
-        query = VFF35.text
+        query = iqqhtani.text
         await bot.get_me()
-        
-        if query.startswith("(صيانه|صيانه)") and VFF35.query.user_id == bot.uid:
+
+        if query.startswith("(صيانه|صيانه)") and iqqhtani.query.user_id == bot.uid:
             try:
-                buttons = [[Button.inline("اوامر السورس", data="order1"), Button.inline("اوامر الحساب", data="ord1hs"),],[Button.inline("اوامر الكروب", data="ord1G"), Button.inline("اوامر الالعاب", data="ord1pl"),],[Button.inline("اوامر الصيغ", data="ordsag1"), Button.inline("اوامر الاغاني", data="ordSONG"),], [Button.inline("اسم وقتي", data="order13"), Button.inline("اوامر الاعلانات", data="ordahln1"),],[Button.inline("اوامر التسليه", data="order14"),],[Button.inline("الفارات", data="ordvars"),]]
-                result = builder.article(title="VFF35",text=help2,buttons=buttons,link_preview=False)
-                await VFF35.answer([result] if result else None)
-            except BotInlineDisabledError: 
-                await VFF35.send_message( "يجب تفعيل الاونلاين من بوت فاذر اولا " )
-           
-           
+                buttons = [[Button.inline("اوامر السورس", data="order1"), Button.inline("اوامر الحساب", data="ord1hs"),],[Button.inline("اوامر القروب", data="ord1G"), Button.inline("اوامر الالعاب", data="ord1pl"),],[Button.inline("اوامر الصيغ", data="ordsag1"), Button.inline("اوامر الاغاني", data="ordSONG"),], [Button.inline("اسم وقتي", data="order13"), Button.inline("اوامر الاعلانات", data="ordahln1"),],[Button.inline("اوامر التسليه", data="order14"),],[Button.inline("الفارات", data="ordvars"),]]
+                result = builder.article(title="iqqhtani",text=help2,buttons=buttons,link_preview=False)
+                await iqqhtani.answer([result] if result else None)
+            except BotInlineDisabledError:
+                await iqqhtani.send_message( "يجب تفعيل الاونلاين من بوت فاذر اولا " )
+
+
 @bot.on(admin_cmd(outgoing=True, pattern="(صيانه|صيانه)"))
-async def repoVFF35(VFF35):
-    if VFF35.fwd_from:
+async def repoiqqhtani(iqqhtani):
+    if iqqhtani.fwd_from:
         return
     TG_BOT = Config.TG_BOT_USERNAME
-    
-    if VFF35.reply_to_msg_id:
+
+    if iqqhtani.reply_to_msg_id:
         try:
-            await VFF35.get_reply_message()
+            await iqqhtani.get_reply_message()
             response = await bot.inline_query(TG_BOT, "(الاوامر|الأوامر)")
-            await response[0].click(VFF35.chat_id)
-            await VFF35.delete()
-        except BotInlineDisabledError: 
-            await VFF35.send_message( "يجب تفعيل الاونلاين من بوت فاذر اولا " )
+            await response[0].click(iqqhtani.chat_id)
+            await iqqhtani.delete()
+        except BotInlineDisabledError:
+            await iqqhtani.send_message( "يجب تفعيل الاونلاين من بوت فاذر اولا " )
 
 if Config.TG_BOT_USERNAME is not None and tgbot is not None :
     @check_owner
     @tgbot.on(events.InlineQuery)
-    async def inlineVFF35(VFF35):
-        builder = VFF35.builder
+    async def inlineiqqhtani(iqqhtani):
+        builder = iqqhtani.builder
         result = None
-        query = VFF35.text
+        query = iqqhtani.text
         await bot.get_me()
-        if query.startswith("اوامر الحساب(?: |$)(.*)") and VFF35.query.user_id == bot.uid:
+        if query.startswith("اوامر الحساب(?: |$)(.*)") and iqqhtani.query.user_id == bot.uid:
             buttons = [[Button.inline("اوامر الحساب", data="ord1hs"),]]
-            result = builder.article(title="VFF35", text=help2, buttons=buttons, link_preview=False)
-            await VFF35.answer([result] if result else None)
+            result = builder.article(title="iqqhtani", text=help2, buttons=buttons, link_preview=False)
+            await iqqhtani.answer([result] if result else None)
 @bot.on(admin_cmd(outgoing=True, pattern="اوامر الحساب(?: |$)(.*)"))
-async def repoVFF35(VFF35):
-    if VFF35.fwd_from:
+async def repoiqqhtani(iqqhtani):
+    if iqqhtani.fwd_from:
         return
     TG_BOT = Config.TG_BOT_USERNAME
-    if VFF35.reply_to_msg_id:
-        await VFF35.get_reply_message()
+    if iqqhtani.reply_to_msg_id:
+        await iqqhtani.get_reply_message()
     response = await bot.inline_query(TG_BOT, "اوامر الحساب(?: |$)(.*)")
-    await response[0].click(VFF35.chat_id)
-    await VFF35.delete()
+    await response[0].click(iqqhtani.chat_id)
+    await iqqhtani.delete()
 if Config.TG_BOT_USERNAME is not None and tgbot is not None :
     @check_owner
     @tgbot.on(events.InlineQuery)
-    async def inlineVFF35(VFF35):
-        builder = VFF35.builder
+    async def inlineiqqhtani(iqqhtani):
+        builder = iqqhtani.builder
         result = None
-        query = VFF35.text
+        query = iqqhtani.text
         await bot.get_me()
-        if query.startswith("اوامر الالعاب(?: |$)(.*)") and VFF35.query.user_id == bot.uid:
+        if query.startswith("اوامر الالعاب(?: |$)(.*)") and iqqhtani.query.user_id == bot.uid:
             buttons = [[Button.inline("اوامر الالعاب", data="ord1pl"),]]
-            result = builder.article(title="VFF35", text=help2, buttons=buttons, link_preview=False)
-            await VFF35.answer([result] if result else None)
+            result = builder.article(title="iqqhtani", text=help2, buttons=buttons, link_preview=False)
+            await iqqhtani.answer([result] if result else None)
 
 chat = "@BotFather"
-@VFF35.on(events.NewMessage(outgoing=True, pattern="^.بوت ?(.*)"))
+@iqqhtani.on(events.NewMessage(outgoing=True, pattern="^.بوت ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -1888,46 +1888,46 @@ async def _(event):
             await event.client.forward_messages(event.chat_id, audio)
             await event.delete()
 @bot.on(admin_cmd(outgoing=True, pattern="اوامر الالعاب(?: |$)(.*)"))
-async def repoVFF35(VFF35):
-    if VFF35.fwd_from:
+async def repoiqqhtani(iqqhtani):
+    if iqqhtani.fwd_from:
         return
     TG_BOT = Config.TG_BOT_USERNAME
-    if VFF35.reply_to_msg_id:
-        await VFF35.get_reply_message()
+    if iqqhtani.reply_to_msg_id:
+        await iqqhtani.get_reply_message()
     response = await bot.inline_query(TG_BOT, "اوامر الالعاب(?: |$)(.*)")
-    await response[0].click(VFF35.chat_id)
-    await VFF35.delete()
+    await response[0].click(iqqhtani.chat_id)
+    await iqqhtani.delete()
 if Config.TG_BOT_USERNAME is not None and tgbot is not None :
     @check_owner
     @tgbot.on(events.InlineQuery)
-    async def inlineVFF35(VFF35):
-        builder = VFF35.builder
+    async def inlineiqqhtani(iqqhtani):
+        builder = iqqhtani.builder
         result = None
-        query = VFF35.text
+        query = iqqhtani.text
         await bot.get_me()
-        if query.startswith("اوامر الصيغ(?: |$)(.*)") and VFF35.query.user_id == bot.uid:
+        if query.startswith("اوامر الصيغ(?: |$)(.*)") and iqqhtani.query.user_id == bot.uid:
             buttons = [[Button.inline("اوامر الصيغ", data="ordsag1"),]]
-            result = builder.article(title="VFF35", text=help2, buttons=buttons, link_preview=False)
-            await VFF35.answer([result] if result else None)
-@VFF35.on(admin_cmd(pattern="م21(?: |$)(.*)"))    
+            result = builder.article(title="iqqhtani", text=help2, buttons=buttons, link_preview=False)
+            await iqqhtani.answer([result] if result else None)
+@iqqhtani.on(admin_cmd(pattern="م21(?: |$)(.*)"))
 async def iq(event):
     await edit_or_reply(event, "**🚹  ⦑   بصمات تحشيش 1   ⦒  :**\n\n                                                       𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n(`.ص1`)   ⦙   ابو  عباس  لو  تاكل  خره\n(`.ص2`)   ⦙   استمر  نحن  معك\n(`.ص3`)   ⦙   افحط  بوجه\n(`.ص4`)   ⦙   اكعد  لا  اسطرك  سطره  العباس\n(`.ص5`)   ⦙   اللهم  لا  شماته\n(`.ص6`)   ⦙   امرع  دينه\n(`.ص7`)   ⦙   امشي  بربوك\n(`.ص8`)   ⦙   انت  اسكت  انت  اسكت\n(`.ص9`)   ⦙   انت  سايق  زربه\n                                                       𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n(`.ص10`)   ⦙   اوني  تشان\n(`.ص11`)   ⦙   برافو  عليك  استادي \n(`.ص12`)   ⦙   بلوك  محترم\n(`.ص13`)   ⦙   بووم  في  منتصف  الجبهة \n(`.ص14`)   ⦙   بيتش \n(`.ص15`)   ⦙   تخوني  ؟\n(`.ص16`)   ⦙   تره  متكدرلي\n(`.ص17`)   ⦙   تعبان  اوي\n(`.ص18`)   ⦙   تكذب\n(`.ص19`)   ⦙   حسبي  الله\n                                                       𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n(`.ص20`)   ⦙   حشاش \n(`.ص21`)   ⦙   حقير  \n(`.ص22`)   ⦙   خاص  \n(`.ص23`)   ⦙   خاله  ما  تنامون  \n(`.ص24`)   ⦙   خرب  شرفي  اذا  ابقى  بالعراق \n(`.ص25`)   ⦙   دكات  الوكت  الاغبر  \n(`.ص26`)   ⦙   ررردح  \n(`.ص27`)   ⦙   سلامن  عليكم  \n(`.ص28`)   ⦙   بوم منتصف جبهه   \n(`.ص29`)   ⦙   شكد  شفت  ناس  مدودة\n                                                       𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻")
-@VFF35.on(admin_cmd(pattern="م22(?: |$)(.*)"))    
+@iqqhtani.on(admin_cmd(pattern="م22(?: |$)(.*)"))
 async def iq(event):
     await edit_or_reply(event, "**🚹  ⦑   بصمات تحشيش 2   ⦒  :**\n\n                                                       𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n(`.ص30`)   ⦙  شلون  ، \n(`.ص31`)   ⦙  صح  لنوم  \n(`.ص32`)   ⦙  صمت  \n(`.ص33`)   ⦙  ضحكة  مصطفى  الحجي  \n(`.ص34`)   ⦙  طماطه  \n(`.ص35`)   ⦙  طيح  الله  حضك  \n(`.ص36`)   ⦙  فاك  يوو  \n(`.ص37`)   ⦙  اني فرحان وعمامي فرحانين\n(`.ص38`)   ⦙  لا  تضل  تضرط  \n(`.ص39`)   ⦙  لا  تقتل  المتعه  يا  مسلم  \n                                                       𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n(`.ص40`)   ⦙  لا  مستحيل  \n(`.ص41`)   ⦙  لا  والله  شو  عصبي  \n(`.ص42`)   ⦙  لش  \n(`.ص43`)   ⦙  لك  اني  شعليه  \n(`.ص44`)   ⦙  ما  اشرب  \n(`.ص45`)   ⦙  مع  الاسف  \n(`.ص46`)   ⦙  مقتدى  \n(`.ص47`)   ⦙  من  رخصتكم  \n(`.ص48`)   ⦙  منو  انت  \n(`.ص49`)   ⦙  منورني  \n                                                       𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n(`.ص50`)  ⦙  نتلاكه  بالدور  الثاني \n(`.ص51`)  ⦙  نستودعكم  الله  \n(`.ص52`)  ⦙  ها  شنهي  \n(`.ص53`)  ⦙  ههاي  الافكار  حطها ب\n(`.ص54`)  ⦙  ليش شنو سببها ليش\n(`.ص55`)  ⦙  يموتون  جهالي\n(`.ص56`)  ⦙  اريد انام\n(`.ص57`)  ⦙  افتحك فتح\n(`.ص58`)  ⦙  اكل خره لدوخني\n(`.ص59`)  ⦙  السيد شنهو السيد\n                                                       𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n(`.ص60`)  ⦙  زيج2\n(`.ص61`)  ⦙  زيج لهارون\n(`.ص62`)  ⦙  زيج الناصرية\n(`.ص63`)  ⦙  راقبو اطفالكم\n(`.ص64`)  ⦙  راح اموتن\n(`.ص65`)  ⦙  ذس اس مضرطة\n(`.ص66`)  ⦙  دروح سرسح منا\n(`.ص67`)  ⦙  خويه ما دكوم بيه\n(`.ص68`)  ⦙  خلصت تمسلت ديلة كافي انجب\n(`.ص69`)  ⦙  بعدك تخاف\n                                                       𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻")
-@VFF35.on(admin_cmd(pattern="م23(?: |$)(.*)"))    
+@iqqhtani.on(admin_cmd(pattern="م23(?: |$)(.*)"))
 async def iq(event):
     await edit_or_reply(event, "**🚹  ⦑   بصمات تحشيش 3   ⦒  :**\n\n                                                       𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n(`.ص70`)  ⦙  بسبوس\n(`.ص71`)  ⦙  اني بتيتة كحبة\n(`.ص72`)  ⦙  انعل ابوكم لابو اليلعب وياكم طوبة\n(`.ص73`)  ⦙  انت شدخلك\n(`.ص74`)  ⦙  انا ماشي بطلع\n(`.ص75`)  ⦙  امداك وامده الخلفتك\n(`.ص76`)  ⦙  امبيههههه\n(`.ص77`)  ⦙  هدي بيبي\n(`.ص78`)  ⦙  هاه صدك تحجي\n(`.ص79`)  ⦙  مو كتلك رجعني\n                                                       𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n(`.ص80`)  ⦙  مامرجية منك هاية\n(`.ص81`)  ⦙  ليش هيجي\n(`.ص82`)  ⦙  كـــافـي\n(`.ص83`)  ⦙  كس اخت السيد\n(`.ص84`)  ⦙  شنو كواد ولك اني هنا\n(`.ص85`)  ⦙  شجلبت\n(`.ص86`)  ⦙  شبيك وجه الدبس\n(`.ص87`)  ⦙  سييييي\n(`.ص88`)  ⦙  زيجج1\n(`.ص89`)  ⦙  يموتون جهالي\n                                                       𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n(`.ص90`)  ⦙  ياخي اسكت اسكت\n(`.ص91`)  ⦙  وينهم\n(`.ص92`)  ⦙  هيلو سامر وحود\n(`.ص93`)  ⦙  هو\n(`.ص94`)  ⦙  ههاي الافكار حطها\n                                                       𓍹ⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n")
 @bot.on(admin_cmd(outgoing=True, pattern="اوامر الصيغ(?: |$)(.*)"))
-async def repoVFF35(VFF35):
-    if VFF35.fwd_from:
+async def repoiqqhtani(iqqhtani):
+    if iqqhtani.fwd_from:
         return
     TG_BOT = Config.TG_BOT_USERNAME
-    if VFF35.reply_to_msg_id:
-        await VFF35.get_reply_message()
+    if iqqhtani.reply_to_msg_id:
+        await iqqhtani.get_reply_message()
     response = await bot.inline_query(TG_BOT, "اوامر الصيغ(?: |$)(.*)")
-    await response[0].click(VFF35.chat_id)
-    await VFF35.delete()
-@VFF35.on(admin_cmd(pattern="فتح همسه(?: |$)(.*)"))    
+    await response[0].click(iqqhtani.chat_id)
+    await iqqhtani.delete()
+@iqqhtani.on(admin_cmd(pattern="فتح همسه(?: |$)(.*)"))
 async def iq(event):
     await edit_or_reply(event, "**عزيزي كل عقلك ؟  **\n**وين اكو شي اسمه فتح همسة عرض العالم ماتخاف علية ادبسزز ولي يلة 🙂💔**")
