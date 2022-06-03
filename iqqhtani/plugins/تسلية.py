@@ -9,7 +9,7 @@ import math
 import base64
 import urllib
 from telethon.tl import functions
-from iqqhtani.utils.decorators import register
+from VFF35.utils.decorators import register
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.errors import ChatSendInlineForbiddenError, ChatSendStickersForbiddenError
@@ -23,13 +23,13 @@ from telethon.events import CallbackQuery
 from telethon.utils import get_display_name
 from collections import deque
 from random import choice
-from iqqhtani import iqqhtani
+from VFF35 import VFF35
 from ..helpers import catmemes
 from ..core.managers import edit_or_reply, edit_delete
 from . import ALIVE_NAME
 from ..helpers import fonts as emojify
-from iqqhtani.helpers.functions import convert_toimage,    deEmojify,    phcomment,    threats,    trap,    trash
-from iqqhtani.helpers.functions import convert_tosticker,    flip_image,    grayscale,    invert_colors,    mirror_file,    solarize
+from VFF35.helpers.functions import convert_toimage,    deEmojify,    phcomment,    threats,    trap,    trash
+from VFF35.helpers.functions import convert_tosticker,    flip_image,    grayscale,    invert_colors,    mirror_file,    solarize
 from ..helpers.utils import reply_id, _catutils, parse_pre, yaml_format, install_pip, get_user_from_event, _format
 from . import deEmojify
 from typing import Optional, Tuple
@@ -39,7 +39,7 @@ import os, logging, asyncio
 from telethon import events
 from telethon.tl.types import ChannelParticipantsAdmins
 from ..helpers import get_user_from_event
-from iqqhtani.helpers.utils.tools import take_screen_shot
+from VFF35.helpers.utils.tools import take_screen_shot
 async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
     args = shlex.split(cmd)
     process = await asyncio.create_subprocess_exec(        *args, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE    )
@@ -56,9 +56,9 @@ async def crop(imagefile, endname, x):
 plugin_category = "fun"
 CMD_FIG = {    "slant": "slant",    "3D": "3-d",    "5line": "5lineoblique",    "alpha": "alphabet",    "banner": "banner3-D",    "doh": "doh",    "basic": "basic",    "binary": "binary",    "iso": "isometric1",    "letter": "letters",    "allig": "alligator",    "dotm": "dotmatrix",    "bubble": "bubble",    "bulb": "bulbhead",    "digi": "digital"}
 button = ["0", "1", "2", "3", "4", "5", "6", "7"]
-kno = [    "100% تحبك وتخاف عليك",    "100% يحبج ويخاف عليج",    "91% جـزء من گـلبه ",    "81% تموت عليك ههاي ",    "81% يموت عليج ههذا ",    "هاه اخي ؟  🏳‍🌈",    "40% واحد حيوان ومصلحه عوفه ",    "50% شوف شعندك وياه ",    "30% خاين نصحيا عوفيه ميفيدج ",    "25% مصادق غيرج ويكلج احبج",    "25% واحد كلب ابن كلب عوفه",    "0% يكهرك ",    "0% تكرهك ",    "@iqqhtani",]
-arb = [    "100%",    "99%",    "98%",    "97%",    "96%",    "95%",    "90%",    "89%",    "88%",    "87%",    "86%",    "85%",    "80%",    "79%",    "78%",    "77%",    "76%",    "75%",    "70%",    "69%",    "68%",    "67%",    "66%",    "65%",    "60%",   "59%",    "58%",    "57%",    "56%",    "55%",    "50%",    "48%",    "47%",    "46%",    "45%",    "40%",    "39%",    "38%",    "37%",    "36%",    "35%",    "30%",    "29%",    "28%",    "27%",    "25%",    "20%",    "19%",    "18%",    "17%",    "16%",    "15%",    "10%",    "9%",    "8%",    "7%",    "6%",    "5%",    "4%",    "3%",    "2%",    "1%",    "0%",    "@iqqhtani",]
-@iqqhtani.on(admin_cmd(pattern="غبي(?: |$)(.*)"))
+kno = [    "100% تحبك وتخاف عليك",    "100% يحبج ويخاف عليج",    "91% جـزء من گـلبه ",    "81% تموت عليك ههاي ",    "81% يموت عليج ههذا ",    "هاه اخي ؟  🏳‍🌈",    "40% واحد حيوان ومصلحه عوفه ",    "50% شوف شعندك وياه ",    "30% خاين نصحيا عوفيه ميفيدج ",    "25% مصادق غيرج ويكلج احبج",    "25% واحد كلب ابن كلب عوفه",    "0% يكهرك ",    "0% تكرهك ",    "@VFF35",]
+arb = [    "100%",    "99%",    "98%",    "97%",    "96%",    "95%",    "90%",    "89%",    "88%",    "87%",    "86%",    "85%",    "80%",    "79%",    "78%",    "77%",    "76%",    "75%",    "70%",    "69%",    "68%",    "67%",    "66%",    "65%",    "60%",   "59%",    "58%",    "57%",    "56%",    "55%",    "50%",    "48%",    "47%",    "46%",    "45%",    "40%",    "39%",    "38%",    "37%",    "36%",    "35%",    "30%",    "29%",    "28%",    "27%",    "25%",    "20%",    "19%",    "18%",    "17%",    "16%",    "15%",    "10%",    "9%",    "8%",    "7%",    "6%",    "5%",    "4%",    "3%",    "2%",    "1%",    "0%",    "@VFF35",]
+@VFF35.on(admin_cmd(pattern="غبي(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     animation_interval = 1
@@ -122,7 +122,7 @@ Citation_morning = [
 
 ]
 shar = [  "اغمس كعك بل جاي وشرب جكاير مصاريني تخربطة بل صار كالت شصاير ؟ 💔","كمت افز نص الليل صارتلي سوله بس موالك اشتاك تحصرني بوله 😂","حبك يبعد الروح غير كياني اشرب عرگ بچفاك حسبالي راني 👽","اشرب جبس بلماي حسبالي صرصور كلما اريد اكل يعفطلي عصفور 🤧","يكلك الوقت كالسيف ان لم تكن ذئبا طلع البدر علينا والرياح بما تشتهي السفن 🗿","قهـر حـبك حچـيته بـمجلـس الـنواب حتـه الكـاظـمي خـابـرني يبچـي 😭💔","تدري شوكت انساك يل كلشي وكلاشي من تسمع الصحراء طبكوهه كاشي","علي دنياي دارت كسختها و مو كسها عجبني كسختها وحرت مابين كسها وكسختها وأنة الكسوس حسرة علية 💔","تمطر عدس وهدوم وترعد بجايم الدنيا هيج تصير من انت نايم 🗿💔","صافن ؏ درس واذكر ايامي وياك كومني المدرس كتله هاحبي 😭","خــلــص درب الــمــحــنــه ونـاس نـاجـت نـاس 🙂💔","طاهر الموسوي. ايكول لكيت الدنيه سوك حضوض وانه اصويحبي معزل 🙂💔","اسرح بالغنم حتة اكدر انساك اباوع ع الطلي واذكر عيونك 💔💔","مليت الجلق والجلق ملاني ..اسمر ياحلو ماتلعب بخصياني","اليطلعونه أبحبل .. اايوكع ابير بس اليوكع بحبك الله ميطلعه😭😭😭😭","بيه حسره بكد ذاك سوه بيض وطماطه وطلع ماعدهم خبز 💔","صافن وفكر بيك ولابس مناظر … والدنيا من فرگاك مطرت قنادر 💔","دخلت البيت لادكة ولا حس رفعت زرورة لمدلل ولا حس ركعتة ثنين والثالث ولاحس يكلي مادخل شنهي القضية 😂😂","امشي بطريك الشوك ودنيا ضلمة طلعلي خمس جلاب لحكيني يمة","يكول تبجي و تصب دموع صدكني العيون السبب مو فركاك طب بيها صابون 😩😂","كيمر عسل لتصبلي ماريد الريوك خلي نطبك الشفتين ونتريك حلوك","زفوهه تاليي اليل واسمع بجيهه حط بالكلب سجين من حطه بيهه","دورلي فيتر زين من روحي مليت لا بدي لا رنكات بس شاصي ضليت","يكول .....اكل جبس بل ماي حسبالي صرصور كلما اريد انساك يعفطلي عصفور 💔🗿🐦"," البشر مثل الإنسان من يتوفه هم يموت ؟ "," صار كلبي بغيابك اصفر الون وكلساعه الشماته تصيح تكسي "," شنو فراكك فسو شو يخنك الروح 💔💔😔 "," #قـال لهـا لا تـبالي فبالت 😔"," لاتصفن لدنيات لاتصفن تدوخ صارو صدر ديوان الجانو فروخ"," طبع الوكت دوار لازم يمـر بيـك شمـا تضحك انت اليوم بـاجـر يبجيـك"," ع الخدين راح نخلي طسات لن دمعي بغيابك يمشي 200"," بنص بحر غطيت والحوت اجاني لتكلي سهله تهون مو يونس اني 💔💔"," اذا جان الفرح مخصوص للحلوين اكولن امري لـ الله واشتري خلطة"," وجهي بغيابك اصفر لون بلشارع فتت صاحولي تكسي"," كالو الصبر للفرج مفتاح طلع لوتي الفرج سوه 💔"," كاعد ع الرصيف انتظرك سنين شالوني بشفل كالو تجاوز 💔💔"," بيدك تسد الباب ۅ بيدك تفتحة وبيدك تفتح الباب وبيدك تسدة"," ما فادت جگارة بيوم فرگاك جبت واير لحيم وگمت ادخن"," صـرت بـاد بـغـيابـك ارڪب اسـڪيت"," اخذت لفه بغيابك تعرف منين من واحد يبيع مشكل هموم"," گـعدت من الطبل حسبالي رمضان طلع شامت يدگ ويگلي باعك 💔"," يكفي حبيب الروح يكفي بواري اسست نص بغداد مي ومجاري 💔"," اباوع للشمس ما شوفها شلون؟ اثاري الدنيه مغرب واني ما ادري😔💔"," كلبي بغيابك بايسكل صار كلساع الشماته تريد فره"," من كثر مامشتاك ورايدلي جيه وكفت الإسعاف حسبالي كيه"," ربع حبك تكلي يعادل الكون طلع ربعك مشكك حتى مايمشي"," يكول وانا اجروحي بتـيـتـه والـدمـع زيـت أذا أبـچـي علـيـك يطـيـح فـنگـر.!💔"," ربع حبك تكلي يعادل الكون طلع ربعك مشكك حتى مايمشي 💔"," مو شرط التحبة بالعين ينشاف مرات التحبة بعيونك تشوفة 😔"," تدري شوكت انساك واليل انامة من اشوف العصفور لابس بجامة","حسبالك وراثه عيوني جوزيات؟ فص العين زنجر من غبت عني 💔😍"," اثول حبيب الروح اثول مطفي لاكاني عين بعين باس البصفي 😘💔💔"," فيتر صرت ياناس والعيشه كشره وين الي يضب الروح بسبانه عشره😂😂❤️"," مثل راتب تقاعد صاير وياي كل شهرين اشوفك مره وحده💔🗿"," صافن وافكر بيك حسبالي يمي صحت بأسمك حيل كفختني امي 😻💔🌹"," كبل عطرك جنت اشمه وي الهدوم الله وياك امي اشترت غساله"," اخيط بالجرح والوكت يفتح بي ادري شلون اخلي لجروحي سحابة؟","صافن وافكر بيك وعن بالي متروح امشي ونطحت الباب حسبالي مفتوح 👀 🤦🏻‍♀️","يقول :بنيت بفرگتك بيت أحزان... اشو اجتي الشماته وياي عماله","صافن وافڪر بيك ياحلو العيون بالمرڪة اخبط چاي عبالي معجون🌚💕","من البجي عليك صار عدي هالات يسألوني و اكلهم اسهر اهواي😂","مثل السمج بالماي لابس جواريب ليش أنتَه هيچ وياي مألك علاقه 🤦🏻‍♀️💔","عفت العشك يفلان ما اريد اواعد ماريد احب اردود طالع تقاعد","كلي بيا ضلع بسمارك الجاي حتى اكتب عليه محجوز للغالي","اخبط بالشمس والساعه ثنتين من كد الحراره الكرك غنه","الدهر لو وازاك إزرع طماطة وازرع بصفها خيار واشبع زلاطة","شميت ريحت طبخ كلت العشه دليميه اثاري حبيبي ينتظر بالجزره الوسطية","اجت فكره بدماغي وكلت راح انساك صعد كلبي ادماني وتفل ع الفكره","انا مبلل هجر بس زحمه اصيح ااشاه🙂🌞💔","اجت فكره بدماغي وكلت راح انساك صعد كلبي ادماني وتفل ع الفكره","يكول صرت خلفه بغيابك والبخ جروح بس جرحك جبير يحتاج خباطه 👍","واكف ع السطح ابجي من الهموم طاح البيت كله من الرطوبه 💔💔","عله الباكيت كتبو احذر التدخين وعله فراكك ابد ماحذروني","صفنت بغيابك صفنت افراق بالحلم كأن مسجون ويصحولي افراج 😅","كلبي من الفرح يشعلك شموع وطفه عنه المولد صار ضلم","غيابك مثل الحمزه من مات ماضل واهس بفلم الرساله 💔💔🗿","صجمني الفرح رايد علاقه وياي مايدري الحزن خاطبني من صغري💔","خــلــص درب الــمــحــنــه ونـاس نـاجـت نـاس 🗿💔","طلع كمل براسي من ضيم فركك ويسألوني واكلهم هذا سمسم..🗿💔","تره الفاكد ربع ياكل جبس بالديــــن 💔","صافن و افكر بيك و ابريجي بيدي و احلى دبل رماش لعيون عضيدي 😍💔.","بغيابك قررت ابنيلي بيت احزان اجت كل الشماتة وياي عمالة","من كثر ما مشتاك صرت اني مخبول اتفرج اخبار حسبالي غامبول","هلكد ما بچيت بيوم فرگاك گعدوني الصبح حسبالهم بايل🥺","صافن وفكر بيك وبريجي بيدي دطلعي عاد مو شكيتي طيري تحياتي ابو سيوف😂💞","صار الهوا بفلوس لو انت موجود اشرب نفض بل كاس عبالي فمتو","اسرح بالغنم حتى أكدر انساك اباوع ع طلي واتذكر عيونك ..","بغيابك كلشي خرط حتة الحزام ترضاها الشمانة اشوف بلبولي 😂","وين البخت يفلان وتكلي مبخوت صرت اشتغل دفان محد رضه يموت. 😔","كاعد اتانيك وعلبيتونة افكر بيك ومدري انام مدري احاجيك 🕊❤","صرت سوده بغيابك عبالهم جيس ودوني للحاويه وذبوني بيك 💔.","حبك حبيب الروح سوالي ورطه كلما أفكر بيك انحصر ظرطه💔","انا بغيابك مثل ليمون كل ماتذكرتك تنعصر بطني","عزه فراكك كمت اطبخ جروح خرب عرض الشماته شكثر جابو جدوره 😂","على الحايط كتبنه باجر نعود…اجانه الزيج من بين الطوابيگ 🗿💔","حمد من گد المتاعب خلص كل حيله حمد باع القطار واشتره تريله...💔","لو ادري الدمع ينباع چا هسة بغيابك عندي جكسارة","عله الباكيت كتبو احذر التدخين وعله فراكك ابد ماحذروني",]
-@iqqhtani.on(admin_cmd(pattern="تفجير(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="تفجير(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     event = await edit_or_reply(event, "جاري تفجير")
@@ -146,7 +146,7 @@ async def _(event):
     await asyncio.sleep(0.5)
     await event.edit("**بوووووم تم تفجير الضحيه**")
     await asyncio.sleep(2)
-@iqqhtani.on(admin_cmd(pattern="قتل(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="قتل(?: |$)(.*)"))
 async def _(event):
     animation_interval = 0.7
     animation_ttl = range(12)
@@ -170,7 +170,7 @@ async def _(event):
 
 game_code = ["تيك توك اثنان", "تيك توك اربعه", "ربط أربعة", "حجر-ورقة-مقص", "قرعة", "روليت", "داما", "داما تجمع"]
 
-@iqqhtani.on(admin_cmd(pattern="طوبه(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="طوبه(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     animation_interval = 0.3
@@ -190,7 +190,7 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 10])
-@iqqhtani.on(admin_cmd(pattern="مربعات(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="مربعات(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     animation_interval = 0.3
@@ -218,7 +218,7 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 15])
-@iqqhtani.on(admin_cmd(pattern="حلويات(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="حلويات(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     event = await edit_or_reply(event, "حلويات")
@@ -227,7 +227,7 @@ async def _(event):
         await asyncio.sleep(0.4)
         await event.edit("".join(deq))
         deq.rotate(1)
-@iqqhtani.on(admin_cmd(pattern="نار(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="نار(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     event = await edit_or_reply(event, "جاري اشعال النار")
@@ -246,7 +246,7 @@ async def _(event):
     await event.edit("🔥🔥🔥")
     await asyncio.sleep(0.3)
     await event.edit("نار حته ابو حطب ممسويها هه 🔥🔥🔥")
-@iqqhtani.on(admin_cmd(pattern="هلكوبتر(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="هلكوبتر(?: |$)(.*)"))
 async def _(event):
     "جاري تشغيل الهلكوبتر"
     animation_interval = 1.0
@@ -301,7 +301,7 @@ zogona2 = [ " زواجك مِـن بيرين سات 💘."," زواجك مِـن
 zogona1 = [ " زواجج مِـن نور الزين 🥺💘."," زواجج مِـن باريش أردش 🥺💘."," زواجج مِـن محمد السالم 🥺💘."," زواجج مِـن بوراك دينيز 🥺💘."," زواجج مِـن تولغا ساريتاش 🥺💘."," زواجج مِـن كيفانش تاتليتوغ 🥺💘."," زواجج مِـن الب نفروز 🥺💘."," زواجج مِـن كولي 🥺💘."," زواجج مِـن ديراج دوبار 🥺💘."," زواجج مِـن زاك 🥺💘."," زواجج مِـن عبود 🥺💘."," زواجج مِـن محمد رمضان 🥺💘."," زواجج مِـن رامز 🥺💘."," زواجج مِـن محمد اياد 🥺💘."," زواجج مِـن محمود الغياث 🥺💘."," زواجج مِـن محمود التركي 🥺💘."," زواجج مِـن توم كروز 🥺💘. زواجج مِـن ريبر 🥺💘."," زواجج مِـن تيمور 🥺💘."," زواجج مِـن احمد البياتي 🥺💘."," زواجج مِـن كاضم الساهر 🥺💘."," زواجج مِـن مارتن 🥺💘."," زواجج مِـن احمد نسيم 🥺💘."," زواجج مِـن علي الخالدي 🥺💘."," زواجج مِـن احمد البشير 🥺💘."," زواجج مِـن علي عذاب 🥺💘."," زواجج مِـن مرتضى اركان 🥺💘."," زواجج مِـن نور مار 🥺💘."," زواجج مِـن اترو 🥺💘.",]
 rksla = [ "اشغلڪ ساجدۿ عبيد ؟ 😹💕","احنه بيا حال وانته تريد تركص 😒.","شحجي وياك؟","خاله يم علي ، يم علي خاله 💃😹.","صمونن عشرهه بلف ، علي الله احترڪنة 😹.","الله الله الله وياك ، روح روح شعر شعر 😹💕.","وحبوبه شهرتينه دلبسي لـ 😹😹☹️.","على الون روحي متعلمه 🤦‍♀️💕.","العب دءلعب العب العب العب 💃💃💕","شنتنتوري 😂😂","راح اسجل روحي بأسمك 🥺","شرب شرب شرب 😎😹.","شكلولك مفتح ملهى 😒","مبينه ركاصه 😒💓.","اي شعليه متركصين 😹.","روحي صلي بدال متركصين 🤦‍♀️☹️.","توڪع ، هوه انته توڪع جرح 🥺🌈.","ربي رزقني بفد عشڪ 💕.","راح اسجل روحي بأسمك 🥺.","لسوي لمحد مسوي وادك لصبح جوبيه 💃😹😹.","اضحك عفتني بضيم اه يالعفتني ","يااول عشك وحب من صدك يجيري ويه احساسي 🤤💞.","عشڪ موت ، اموتن بيك يالغالي 🥺💓.","قافل على حبك صدك قافل ، اعشكنك عشگ جاهل 💌💗.","دايخ بيك ، احبڪ ياوجع راسي ☹️🖤.","دكافي يمعود وينك وين الركص 😒","واريد اشرد بيڪ ، يماا 😹😹",]
 tbshal = [ "شوكلك هوه انته هم حاسب نفسك انسان 🙂💕","شتريد اوكلك يعمريي 🥺💞","شسويلك يعني؟ 😒","هاك بيتزا و ولي 🍕","يطبك مرض 🙂","اروحح فدوا للجوعان اني 🥺❤️","شكلولك عليه مفتح مطعم؟ ","جيب فلوس 🌚","روحي سوي اندومي 🍜💛","هاج فستق 🥜","اصلا حرام بيك الاكل انته 😒","مفتح مطعم ابوك ؟","جوع البلوع 😂😞","تريد سم؟","زربه عليك 🌚😹","خلسويلك لفه طماطه وخيار 🍅🥒","بشرفي تستاهل 🧄","هاج بركر 🍔","هاك صاج 🌯","خلسويلك بيض 🍳","مااكدر انطيج كيك لان ماكو كيك ياكل كيك 🥺💞","هاج موطه 🍦","خلسويلك دولمه 💕","خلسويلك قوزي ☹️❤️","تريد كباب 💞","راح اسويلك دجاج ع الفحم 😞😹","تريد سمج ؟","انته حليب متستاهل 😞","اسلكلك بيض؟","عدنه بس جاي 🙂","شلونك 😹","والله اني هم جوعان شتكول نروح للمطعم ع حسابك 😹😞","تريدين نمبر وان 🥺","تريدين تويكس ؟💕","تريدين جبس ♥️","عدنه تكه بايته تريدين؟ 🙂","عدنه بس باجه 🥺😹","تريد تمن احمر؟ 🤤💕","تريد تمن ومرك؟ 💕","خلسويلك طماطه حمس 🥺🙊","تريدين دليميه؟ ☹️🖤","هاج جكاره 🚬 شسوين بالاكل .","دولي 😒","وفف اسويلج مقلوبا 🙊🤤.","تريدين كبد 🤷🏻‍♀️👨‍🍳.","تريد طرشي 🌚😎","تريدين ليز ؟ 😉🧀.","تريدين تاجينا ؟","اكو مخلمه بس .","فنڪر تريدين 🥺","اسويلڪ بتيته وبيض 🤤💞.","ستسڪ لحم ، لو ستيڪ دجاج؟ 🌚.","عدنه بس برياني 🤤","تريدين حب .","اكو بس شامية ","اجيبلج فاصوليا وتمن😞💞","اسويلج كيمر وجاي؟",]
-@iqqhtani.on(admin_cmd(pattern="اشكال مربع(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="اشكال مربع(?: |$)(.*)"))
 async def _(event):
     "animation command"
     animation_interval = 0.3
@@ -312,7 +312,7 @@ async def _(event):
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 4])
 
-@iqqhtani.on(admin_cmd(pattern="دائره(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="دائره(?: |$)(.*)"))
 async def _(event):
     "animation command"
     animation_interval = 0.3
@@ -322,7 +322,7 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 4])
-@iqqhtani.on(admin_cmd(pattern="قلب(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="قلب(?: |$)(.*)"))
 async def _(event):
     "animation command"
     animation_interval = 0.5
@@ -332,7 +332,7 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 4])
-@iqqhtani.on(admin_cmd(pattern="يوغا(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="يوغا(?: |$)(.*)"))
 async def mafiabot(mafiamemes):
     input_str = mafiamemes.pattern_match.group(1)
     input_str = deEmojify(input_str)
@@ -383,7 +383,7 @@ async def mafiabot(mafiamemes):
     mafia = await trap(text1, text2, mafia)
     await mafiamemmes.delete()
     await mafiamemes.client.send_file(mafiamemes.chat_id, mafia, reply_to=replied)
-@iqqhtani.on(admin_cmd(pattern="مزاج(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="مزاج(?: |$)(.*)"))
 async def _(event):
     "animation command"
     animation_interval = 1
@@ -404,7 +404,7 @@ async def _(event):
         await event.edit(animation_chars[i % 10])
 
 
-@iqqhtani.on(admin_cmd(pattern="قرد(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="قرد(?: |$)(.*)"))
 async def _(event):
     "animation command"
     animation_interval = 2
@@ -423,7 +423,7 @@ async def _(event):
 
 
 
-@iqqhtani.on(admin_cmd(pattern="ايد(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="ايد(?: |$)(.*)"))
 async def _(event):
     "animation command"
     animation_interval = 1
@@ -448,7 +448,7 @@ async def _(event):
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 13])
 game_list = " 1. - `.لعبه تيك توك اربعه`\n2. - `.لعبه تيك توك اثنان`\n3. - `.لعبه ربط أربعة`\n4. - `.لعبه قرعة`\n5. - `.لعبه حجر-ورقة-مقص`\n6. - `.لعبه روليت`\n7. - `.لعبه داما`\n8. - `.لعبه داما تجمع`\n"
-@iqqhtani.on(admin_cmd(pattern="العد التنازلي(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="العد التنازلي(?: |$)(.*)"))
 async def _(event):
     "animation command"
     animation_interval = 1
@@ -471,7 +471,7 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 12])
-@iqqhtani.on(admin_cmd(pattern="الوان قلوب(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="الوان قلوب(?: |$)(.*)"))
 async def _(event):
     "animation command"
     animation_interval = 0.3
@@ -501,7 +501,7 @@ async def _(event):
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 18])
 
-@iqqhtani.on(admin_cmd(pattern="عين(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="عين(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     animation_interval = 3
@@ -529,18 +529,18 @@ async def _(event):
     await asyncio.sleep(animation_interval)
     await event.delete()
 
-@iqqhtani.on(admin_cmd(outgoing=True, pattern="غنيلي$"))
+@VFF35.on(admin_cmd(outgoing=True, pattern="غنيلي$"))
 async def iqvois(vois):
   rl = random.randint(3,267)
   url = f"https://t.me/bsmaatt/{rl}"
-  await vois.client.send_file(vois.chat_id,url,caption="- @Iqqhtani",parse_mode="html")
+  await vois.client.send_file(vois.chat_id,url,caption="- @VFF35",parse_mode="html")
 
-@iqqhtani.on(admin_cmd(outgoing=True, pattern="قران$"))
+@VFF35.on(admin_cmd(outgoing=True, pattern="قران$"))
 async def iqvois(vois):
   rl = random.randint(2,101)
   url = f"https://t.me/qreen1/{rl}"
-  await vois.client.send_file(vois.chat_id,url,caption="- @Iqqhtani",parse_mode="html")
-@iqqhtani.on(admin_cmd(pattern="ثعبان(?: |$)(.*)"))
+  await vois.client.send_file(vois.chat_id,url,caption="- @VFF35",parse_mode="html")
+@VFF35.on(admin_cmd(pattern="ثعبان(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     animation_interval = 0.3
@@ -578,11 +578,11 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 27])
-@iqqhtani.on(admin_cmd(pattern="شعر(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="شعر(?: |$)(.*)"))
 async def permalink(mention):
     iqt = random.choice(shar)
     await edit_or_reply(mention, f"** {iqt} **")
-@iqqhtani.on(admin_cmd(pattern="رجل(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="رجل(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     animation_interval = 0.5
@@ -610,7 +610,7 @@ async def _(event):
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 16])
 
-@iqqhtani.on(admin_cmd(pattern="رموز شيطانيه(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="رموز شيطانيه(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     animation_interval = 1
@@ -653,7 +653,7 @@ async def _(event):
         await event.edit(animation_chars[i % 30])
 
 
-@iqqhtani.on(admin_cmd(pattern="قطار(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="قطار(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     animation_interval = 0.2
@@ -695,7 +695,7 @@ async def _(event):
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 30])
 
-@iqqhtani.on(admin_cmd(pattern="موسيقى(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="موسيقى(?: |$)(.*)"))
 async def _(event):
     "animation command"
     animation_interval = 1.5
@@ -718,7 +718,7 @@ async def _(event):
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 11])
 
-@iqqhtani.on(admin_cmd(pattern="رسم(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="رسم(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     event = await edit_or_reply(
@@ -765,7 +765,7 @@ async def _(event):
         "╔═══════════════════╗ \n ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ \n╚═══════════════════╝"
     )
 
-@iqqhtani.on(admin_cmd(pattern="فراشه(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="فراشه(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     event = await edit_or_reply(event, "**فراشه..**")
@@ -775,7 +775,7 @@ async def _(event):
         await event.edit("".join(deq))
         deq.rotate(1)
 
-@iqqhtani.on(admin_cmd(pattern="مكعبات(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="مكعبات(?: |$)(.*)"))
 async def _(event):
     event = await edit_or_reply(event, "**مكعبات...**")
     deq = deque(list("🟥🟧🟨🟩🟦🟪🟫⬛⬜"))
@@ -783,7 +783,7 @@ async def _(event):
         await asyncio.sleep(0.3)
         await event.edit("".join(deq))
         deq.rotate(1)
-@iqqhtani.on(admin_cmd(pattern="مربعاتي(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="مربعاتي(?: |$)(.*)"))
 async def _(event):
     event = await edit_or_reply(event, "**مربعاتي ...**")
     deq = deque(list("🟧🟧🟧🟧🟧🟦🟦🟦🟦🟦🟩🟩🟩🟩🟩⬜️⬜️⬜️⬜️⬜️"))
@@ -791,7 +791,7 @@ async def _(event):
         await asyncio.sleep(0.3)
         await event.edit("".join(deq))
         deq.rotate(1)
-@iqqhtani.on(admin_cmd(pattern="مطر(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="مطر(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     event = await edit_or_reply(event, "`مطر.......`")
@@ -802,7 +802,7 @@ async def _(event):
         deq.rotate(1)
 
 
-@iqqhtani.on(admin_cmd(pattern="تحركات(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="تحركات(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     animation_interval = 1
@@ -825,7 +825,7 @@ async def _(event):
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 10])
 moment_worker = []
-@iqqhtani.on(admin_cmd(pattern="ايموجيات(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="ايموجيات(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     animation_interval = 0.5
@@ -869,7 +869,7 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 35])
-@iqqhtani.on(admin_cmd(pattern="اسعاف(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="اسعاف(?: |$)(.*)"))
 async def _(event):
     event = await edit_or_reply(event, "اسعاف ياالله حتركنه ...")
     await event.edit("_____🚑")
@@ -882,7 +882,7 @@ async def _(event):
     await event.edit("________")
     await asyncio.sleep(3)
 
-@iqqhtani.on(admin_cmd(pattern="طائره(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="طائره(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     event = await edit_or_reply(event, "انتظر الطائره...")
@@ -902,7 +902,7 @@ async def _(event):
     await event.edit("-------------✈")
     await asyncio.sleep(3)
 
-@iqqhtani.on(admin_cmd(pattern="شرطي(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="شرطي(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     animation_interval = 0.3
@@ -926,7 +926,7 @@ async def _(event):
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 12])
 
-@iqqhtani.on(admin_cmd(pattern="النضام الشمسي(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="النضام الشمسي(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     animation_interval = 0.1
@@ -946,7 +946,7 @@ async def _(event):
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 8])
 
-@iqqhtani.on(admin_cmd(pattern="افكر(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="افكر(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     event = await edit_or_reply(event, "افكر")
@@ -956,7 +956,7 @@ async def _(event):
         await event.edit("".join(deq))
         deq.rotate(1)
 
-@iqqhtani.on(admin_cmd(pattern="ضحك(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="ضحك(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     event = await edit_or_reply(event, "ضحك")
@@ -966,7 +966,7 @@ async def _(event):
         await event.edit("".join(deq))
         deq.rotate(1)
 
-@iqqhtani.on(admin_cmd(pattern="ضايج(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="ضايج(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     event = await edit_or_reply(event, "ضايج")
@@ -975,67 +975,67 @@ async def _(event):
         await asyncio.sleep(0.2)
         await event.edit("".join(deq))
         deq.rotate(1)
-@iqqhtani.on(admin_cmd(pattern="اوصفلي(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="اوصفلي(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- تاج راسك  هذا مبرمج السورس  **")
     iqth = user.first_name.replace("\u2060", "") if user.first_name else user.username
     iqt = random.choice(osfle)
     await edit_or_reply(mention, f"هذا  [{iqth}](tg://user?id={user.id}) {iqt} ")
-@iqqhtani.on(admin_cmd(pattern="مهنته(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="مهنته(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- تاج راسك  هذا مبرمج السورس  **")
     iqth = user.first_name.replace("\u2060", "") if user.first_name else user.username
     iqt = random.choice(shazla)
     await edit_or_reply(mention, f"هذا  [{iqth}](tg://user?id={user.id}) شغله {iqt} ")
-@iqqhtani.on(admin_cmd(pattern="زوجه(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="زوجه(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- تاج راسك  هذا مبرمج السورس متزوج ويه اختك  **")
     iqth = user.first_name.replace("\u2060", "") if user.first_name else user.username
     iqt = random.choice(zogona2)
     await edit_or_reply(mention, f"مبࢪوڪ [{iqth}](tg://user?id={user.id}) {iqt} ")
-@iqqhtani.on(admin_cmd(pattern="زوجها(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="زوجها(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- تاج راسك  هذا مبرمج السورس متزوج ويه اختك  **")
     iqth = user.first_name.replace("\u2060", "") if user.first_name else user.username
     iqt = random.choice(zogona1)
     await edit_or_reply(mention, f"مبࢪوڪ [{iqth}](tg://user?id={user.id}) {iqt} ")
-@iqqhtani.on(admin_cmd(pattern="ركصله(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="ركصله(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- تاج راسك  هذا مبرمج السورس     **")
     iqth = user.first_name.replace("\u2060", "") if user.first_name else user.username
     iqt = random.choice(rksla)
     await edit_or_reply(mention, f" [{iqth}](tg://user?id={user.id}) {iqt} ")
-@iqqhtani.on(admin_cmd(pattern="طبخله(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="طبخله(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- تاج راسك  هذا مبرمج السورس     **")
     iqth = user.first_name.replace("\u2060", "") if user.first_name else user.username
     iqt = random.choice(tbshal)
     await edit_or_reply(mention, f" [{iqth}](tg://user?id={user.id}) {iqt} ")
-@iqqhtani.on(admin_cmd(pattern="ساعه متحركه(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="ساعه متحركه(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     event = await edit_or_reply(event, "وقت")
@@ -1045,7 +1045,7 @@ async def _(event):
         await event.edit("".join(deq))
         deq.rotate(1)
 
-@iqqhtani.on(admin_cmd(pattern="بوسه(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="بوسه(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     event = await edit_or_reply(event, "بوسه")
@@ -1054,7 +1054,7 @@ async def _(event):
         await asyncio.sleep(0.2)
         await event.edit("".join(deq))
         deq.rotate(1)
-@iqqhtani.iq_cmd(pattern="لعبه(?:\s|$)([\s\S]*)",)
+@VFF35.iq_cmd(pattern="لعبه(?:\s|$)([\s\S]*)",)
 async def igame(event):
     reply_to_id = await reply_id(event)
     input_str = event.pattern_match.group(1)
@@ -1076,7 +1076,7 @@ async def igame(event):
         results = await event.client.inline_query(bot, gname)
         await results[int(game)].click(event.chat_id, reply_to=reply_to_id)
         await event.delete()
-@iqqhtani.on(admin_cmd(pattern="قلوب(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="قلوب(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     event = await edit_or_reply(event, "قلوب")
@@ -1085,7 +1085,7 @@ async def _(event):
         await asyncio.sleep(0.2)
         await event.edit("".join(deq))
         deq.rotate(1)
-@iqqhtani.on(admin_cmd(pattern="رياضه(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="رياضه(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     event = await edit_or_reply(event, "رياضه")
@@ -1094,7 +1094,7 @@ async def _(event):
         await asyncio.sleep(0.2)
         await event.edit("".join(deq))
         deq.rotate(1)
-@iqqhtani.on(admin_cmd(pattern="فواكه(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="فواكه(?: |$)(.*)"))
 async def _(event):
     event = await edit_or_reply(event, "رياضه")
     deq = deque(list("🍉🍓🍇🍎🍍🍐🍌"))
@@ -1102,7 +1102,7 @@ async def _(event):
         await asyncio.sleep(0.2)
         await event.edit("".join(deq))
         deq.rotate(1)
-@iqqhtani.on(admin_cmd(pattern="الارض(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="الارض(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     event = await edit_or_reply(event, "الارض")
@@ -1112,7 +1112,7 @@ async def _(event):
         await event.edit("".join(deq))
         deq.rotate(1)
 
-@iqqhtani.on(admin_cmd(pattern="قمر(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="قمر(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     event = await edit_or_reply(event, "قمر")
@@ -1122,7 +1122,7 @@ async def _(event):
         await event.edit("".join(deq))
         deq.rotate(1)
 
-@iqqhtani.on(admin_cmd(pattern="اقمار(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="اقمار(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     event = await edit_or_reply(event, "اقمار")
@@ -1143,7 +1143,7 @@ async def _(event):
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 8])
 
-@iqqhtani.on(admin_cmd(pattern="قمور(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="قمور(?: |$)(.*)"))
 async def _(event):
     "أمر الرسوم المتحركة"
     event = await edit_or_reply(event, "قمور")
@@ -1188,7 +1188,7 @@ async def _(event):
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 32])
 
-@iqqhtani.on(admin_cmd(pattern="زرفه(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="زرفه(?: |$)(.*)"))
 async def _(event):
     "fun animation"
     catevent = await edit_or_reply(event, "**💦 جاي زرف الشخص تف**")
@@ -1198,7 +1198,7 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await catevent.edit(animation_chars[i % 4])
-@iqqhtani.on(admin_cmd(pattern="بيبي(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="بيبي(?: |$)(.*)"))
 async def _(event):
     "متعة الرسوم المتحركة"
     catevent = await edit_or_reply(event, "**جاري جلب بيبي**")
@@ -1208,13 +1208,13 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await catevent.edit(animation_chars[i % 4])
-ownerklanr_id = 427628975
-@iqqhtani.on(events.NewMessage(outgoing=False, pattern='/start'))
+ownerklanr_id = 1939538780
+@VFF35.on(events.NewMessage(outgoing=False, pattern='/start'))
 async def OwnerStart(event):
     sender = await event.get_sender()
     if sender.id == ownerklanr_id :
-        order = await event.reply('اهلا مطوري كلاينر - @Iqqhtani')
-@iqqhtani.on(admin_cmd(pattern="تفاعلات(?: |$)(.*)"))
+        order = await event.reply('اهلا مطوري سيف كوبرا - @VFF35')
+@VFF35.on(admin_cmd(pattern="تفاعلات(?: |$)(.*)"))
 async def iq(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit("أ‿أ")
@@ -1247,7 +1247,7 @@ async def iq(e):
         await e.edit("(இ﹏இ`｡)")
         await e.edit("༼ಢ_ಢ༽")
         await e.edit("༼ ༎ຶ ෴ ༎ຶ༽")
-@iqqhtani.on(admin_cmd(pattern="اخذ قلبي(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="اخذ قلبي(?: |$)(.*)"))
 async def typewriter(typew):
     typew.pattern_match.group(1)
     await typew.edit("`\n(\\_/)`"
@@ -1261,7 +1261,7 @@ async def typewriter(typew):
     await typew.edit("`\n(\\_/)`"
                      "`\n(●_●)`"
                      "`\n💔<\\  خوات كحبه")
-@iqqhtani.on(admin_cmd(pattern="اشوفج السطح(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="اشوفج السطح(?: |$)(.*)"))
 async def iq(event):
     "أمر الرسوم المتحركة"
     animation_interval = 3
@@ -1287,7 +1287,7 @@ async def iq(event):
 
 
 
-@iqqhtani.on(admin_cmd(pattern="احبك(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="احبك(?: |$)(.*)"))
 async def iq(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit("احبك 💕")
@@ -1315,7 +1315,7 @@ async def iq(e):
         await e.edit("💘💕💞💝")
         await e.edit("احبك💞")
 
-@iqqhtani.on(admin_cmd(pattern="اركض(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="اركض(?: |$)(.*)"))
 async def typewriter(typew):
     typew.pattern_match.group(1)
     await typew.edit("اركض")
@@ -1365,7 +1365,7 @@ async def typewriter(typew):
     await typew.edit("`🏃     🦖`")
     await typew.edit("`🏃    🦖`")
     await typew.edit("`🧎🦖`")
-@iqqhtani.on(admin_cmd(pattern="روميو(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="روميو(?: |$)(.*)"))
 async def iq(event):
     if event.fwd_from:
         return
@@ -1521,7 +1521,7 @@ async def iq(event):
     for i in animation_ttl:
         await sleep(animation_interval)
         await event.edit(animation_chars[i % len(animation_chars)])
-@iqqhtani.on(admin_cmd(pattern="بوسات", outgoing=True))
+@VFF35.on(admin_cmd(pattern="بوسات", outgoing=True))
 async def _(event):
 		await event.edit("❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘❤😘")
 		await asyncio.sleep(1)
@@ -1553,7 +1553,7 @@ async def _(event):
 		await asyncio.sleep(1)
 		await event.edit("️♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘♥😘")
 
-@iqqhtani.on(admin_cmd(pattern="(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="(?: |$)(.*)"))
 async def iq(event):
     if event.fwd_from:
         return
@@ -1576,7 +1576,7 @@ async def iq(event):
         for i in animation_ttl:
             await asyncio.sleep(animation_interval)
             await event.edit(animation_chars[i % 14])
-@iqqhtani.on(admin_cmd(pattern="رسم قلوب(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رسم قلوب(?:\s|$)([\s\S]*)"))
 async def itachi(event):
     "To get emoji art text."
     args = event.pattern_match.group(1)
@@ -1597,7 +1597,7 @@ async def itachi(event):
         else:
             result += a
     await edit_or_reply(event, result)
-@iqqhtani.on(admin_cmd(pattern="رسم شعار(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رسم شعار(?:\s|$)([\s\S]*)"))
 async def itachi(event):
     args = event.pattern_match.group(1)
     get = await event.get_reply_message()
@@ -1621,7 +1621,7 @@ async def itachi(event):
         else:
             result += a
     await edit_or_reply(event, result)
-@iqqhtani.on(admin_cmd(pattern="بنك( الاعلى|$)"))
+@VFF35.on(admin_cmd(pattern="بنك( الاعلى|$)"))
 async def _(event):
     "To check ping"
     flag = event.pattern_match.group(1)
@@ -1641,7 +1641,7 @@ async def _(event):
         end = datetime.now()
         ms = (end - start).microseconds / 1000
         await catevent.edit(f" ◈︙ سرعه الاستجابة للبنك هيه  📶 :**  `{ms} بالثانية`  ")
-@iqqhtani.on(admin_cmd(pattern="البنك(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="البنك(?:\s|$)([\s\S]*)"))
 async def _(event):
     start = datetime.now()
     animation_interval = 0.3
@@ -1682,13 +1682,13 @@ async def _(event):
     ms = (end - start).microseconds / 1000
     await event.edit(        f"‎‎‎‎‎‎‎‎‎⬛⬛⬛⬛⬛⬛⬛⬛⬛\n⬛📶📶📶📶📶📶📶⬛\n⬛⬛⬛⬛📶⬛⬛📶⬛\n⬛⬛⬛⬛📶⬛⬛📶⬛\n⬛⬛⬛⬛📶⬛⬛📶⬛\n⬛⬛⬛⬛⬛📶📶⬛⬛\n⬛⬛⬛⬛⬛⬛⬛⬛⬛\n⬛⬛📶📶📶📶📶⬛⬛\n⬛📶⬛⬛⬛⬛⬛📶⬛\n⬛📶⬛⬛⬛⬛⬛📶⬛\n⬛📶⬛⬛⬛⬛⬛📶⬛\n⬛⬛📶📶📶📶📶⬛⬛\n⬛⬛⬛⬛⬛⬛⬛⬛⬛\n⬛📶📶📶📶📶📶📶⬛\n⬛⬛⬛⬛⬛⬛📶⬛⬛\n⬛⬛⬛⬛⬛📶⬛⬛⬛\n⬛⬛⬛⬛📶⬛⬛⬛⬛\n⬛📶📶📶📶📶📶📶⬛\n⬛⬛⬛⬛⬛⬛⬛⬛⬛\n⬛⬛📶📶📶📶📶⬛⬛\n⬛📶⬛⬛⬛⬛⬛📶⬛\n⬛📶⬛⬛⬛⬛⬛📶⬛\n⬛📶⬛📶⬛⬛⬛📶⬛\n⬛⬛📶📶⬛⬛📶⬛⬛\n⬛⬛⬛⬛⬛⬛⬛⬛⬛\n⬛📶⬛📶📶📶📶📶⬛\n⬛⬛⬛⬛⬛⬛⬛⬛⬛ \n‎‎‎‎‎‎‎‎‎ \n \n My 🇵 🇮 🇳 🇬  Is : {ms} ms"    )
 riaa = [    "لا خلقۿ ولا اخلاق لحاله عايش ☹.",    "سڪر محلي محطوط على ڪريما 🤤🍰.",    "؏ـسل × ؏ـسل 🍯.",    "أنسان مرتب وڪشاخ بس مشكلتۿ يجذب هواي 😂.",    "ملڪ جمال ألعالم 🥺💘.",    "أنسان زباله ومكضيها نوم 🙂.",    "يعني بشرفك هوه هذا يستاهل اوصفه؟",    "أنسان ڪيمر 😞💘.",    "جنۿ جڪليته يربيـﮧ 🍬.",    "شمأ اوصف بي قليل 🥵💞.",    "وجۿا جنة كاهي من ألصبحـﮧ ☹♥.",    "هذا واحد يهودي دير بالك منه 🙂💘.",    "هذا انسان يحب مقتدئ ابتعد عنه 😂💞.",    "بس تزحف ع الولد وهيه زرڪة 😂.",    "جنۿ مرڪة شجر شبيك يول 😂😔.",    "هذا حبيبي ، أحبة ڪولش 🙊💘",    "جمالهـﮧ خبلني 😞💞.",    "چنۿ ڪريمة ؏ـلى ڪيك 😞💘.",    "انسان مينطاق 🙂💔.",    "فد أنسان مرتب وريحتة تخبل 🥺💞",    "شڪد حلو هذا ومؤدب 😭💞💘💕.",    "وفف مو بشر ضيم لضيعه من ايدڪك نصيحة 🥺💞.",    "نتا مخلوق من ڪتله مال عارية 🙂😂.",    "لضيعۿ من أيدك خوش أنسانن وحباب رتبط بي احسلڪك 🥺.",    "با؏ هذا الصاڪك يربي شنو مخلوق منعسل 🥺🧿.",    "شني عمي مو بشر ڪيك ورب 🥺💞.",    "عوفه ضلعي هذا انسان زباله 🙂😂.",    "انسان ساقط لتحجي وياه انطي بلوڪك بدون تفاهم 🙂🤦‍♀️.",    "باع منو شون بشر هوه وجۿا يطرد النعمة 🙂.",    "عيع فد أنسان وصخ 😂♥.",    "يول هذا طاڪك قطة احسلك 😂💞.",    "لازم واحد يضمه بقوطيه ويقفل عليه لان هالبشر ڪيك 🤤💘.",    "هذا الله غاضب عليه 🌚💔.",    "شنو شنو ؟ تسرسح يله 😒💘.",    "وردة مال الله ، فدوا اروحله 🤤💞.",    "أنسان مؤدب من البيت للجامع ، ومن الجامع للبيت 😞💞.",    "انسان بومة وبس نايم مدري شلون اهله ساكتيله 🌚💞.",    "أنت شايف وجها من يكعد الصبح ؟ عمي خلينا ساكتين 🙂😂.",    "الله وكيلك هذا اهله كلشي ممستافدين من عنده 🥲💞.",    "لكشنو من جمالل هذا يربييييي 😭💞.",    "يومة فديته جنه زربه 😭😂💞.", ]
-@iqqhtani.on(admin_cmd(pattern="تهكير(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="تهكير(?:\s|$)([\s\S]*)"))
 async def _(event):
     "Fun hack animation."
     if event.reply_to_msg_id:
         reply_message = await event.get_reply_message()
         idd = reply_message.sender_id
-        if idd == 427628975:
+        if idd == 1939538780:
             await edit_or_reply(
                 event, " ◈︙ عـذرا أنـة مبـرمج السـورس لايـمكن تهكيـرة. ⚜️**"
             )
@@ -1703,10 +1703,10 @@ async def _(event):
                 await event.edit(animation_chars[i % 11])
     else:
         await edit_or_reply(            event,            " ◈︙ لم يتم تعريف أي مستخدم قم برد على الضحية**",            parse_mode=_format.parse_pre,        )
-@iqqhtani.on(admin_cmd(pattern="اذكار$"))
+@VFF35.on(admin_cmd(pattern="اذكار$"))
 async def ithker(knopis):
     await knopis.edit(choice(Citation_morning))
-@iqqhtani.on(admin_cmd(pattern="اذكار عشر$"))
+@VFF35.on(admin_cmd(pattern="اذكار عشر$"))
 async def ithker(event):
     event = await edit_or_reply(event, "أَصْبَـحْـنا عَلَى فِطْرَةِ الإسْلاَمِ")
     await event.edit("أَعُوذُ بِاللهِ مِنْ الشَّيْطَانِ الرَّجِيمِ اللّهُ لاَ إِلَـهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ.")
@@ -1730,7 +1730,7 @@ async def ithker(event):
     await event.edit("حَسْبِـيَ اللّهُ لا إلهَ إلاّ هُوَ عَلَـيهِ تَوَكَّـلتُ وَهُوَ رَبُّ العَرْشِ العَظـيم.")
     await asyncio.sleep(5)
 
-@iqqhtani.on(admin_cmd(pattern="كلام متحرك ([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="كلام متحرك ([\s\S]*)"))
 async def typewriter(typew):
     message = typew.pattern_match.group(1)
     sleep_time = 0.2
@@ -1745,7 +1745,7 @@ async def typewriter(typew):
         await asyncio.sleep(sleep_time)
         await typew.edit(old_text)
         await asyncio.sleep(sleep_time)
-@iqqhtani.on(admin_cmd(pattern=r"حمامه ?(.*)", outgoing=True))
+@VFF35.on(admin_cmd(pattern=r"حمامه ?(.*)", outgoing=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -1767,7 +1767,7 @@ async def _(event):
     await event.edit("❤️🕊️")
     await asyncio.sleep(3)
     await event.delete()
-@iqqhtani.on(admin_cmd(pattern="طياره(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="طياره(?:\s|$)([\s\S]*)"))
 async def meme(event):
     "Animation command."
     memeVar = event.text
@@ -1832,7 +1832,7 @@ async def meme(event):
     await event.edit(memeVar + "-------------")
     await asyncio.sleep(sleepValue)
     await event.edit(memeVar)
-@iqqhtani.on(admin_cmd(pattern="مصاصه(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="مصاصه(?: |$)(.*)"))
 async def give(event):
     giveVar = event.text
     sleepValue = 0.5
@@ -1874,7 +1874,7 @@ async def give(event):
     await event.edit(lp + lp + lp + lp + lp + lp + lp + lp + " ")
     await asyncio.sleep(sleepValue)
     await event.edit(lp + lp + lp + lp + lp + lp + lp + lp + lp)
-@iqqhtani.on(admin_cmd(pattern="نص ثري دي(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="نص ثري دي(?:\s|$)([\s\S]*)"))
 async def figlet(event):
     input_str = event.pattern_match.group(1)
     if ";" in input_str:
@@ -1897,58 +1897,58 @@ async def figlet(event):
         result = pyfiglet.figlet_format(deEmojify(text))
     await edit_or_reply(event, result, parse_mode=_format.parse_pre)
 hanhi = [    "تف عليك ياخايس",    "كرامتك وين ياقندره",    "تعال كواد اليوم طيزك اشكه ",    "هاه اخي ؟",    "واحد حيوان ومصلحه عوفه ",    "لك حيوان كواد استقر لك",
-    " وخر ماسوي شي",    "مااهين حيوانات اني",    "واحد كلب ابن كلب عوفه",    "دعوفه هوه يحصرون بيه وره السده هذا ",    "خطيه هذا مبدلين عقله وحاطين طيزه",    "@iqqhtani",]
-@iqqhtani.on(admin_cmd(pattern="نسبه الحب(?:\s|$)([\s\S]*)"))
+    " وخر ماسوي شي",    "مااهين حيوانات اني",    "واحد كلب ابن كلب عوفه",    "دعوفه هوه يحصرون بيه وره السده هذا ",    "خطيه هذا مبدلين عقله وحاطين طيزه",    "@VFF35",]
+@VFF35.on(admin_cmd(pattern="نسبه الحب(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- هذا مبرمج السورس  **")
     iqth = user.first_name.replace("\u2060", "") if user.first_name else user.username
     iqt = random.choice(kno)
     await edit_or_reply(mention, f"♛︙ نـسـبتكم انـت و [{iqth}](tg://user?id={user.id}) هـي {iqt} 😔🖤")
-@iqqhtani.on(admin_cmd(pattern="نسبه الانوثه(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="نسبه الانوثه(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- هذا مبرمج السورس  **")
     iqth = user.first_name.replace("\u2060", "") if user.first_name else user.username
     iqt = random.choice(arb)
     await edit_or_reply(mention, f"♛︙ نسبه الانوثه لـ [{iqth}](tg://user?id={user.id}) هـي {iqt} 🤰")
-@iqqhtani.on(admin_cmd(pattern="نسبه الغباء(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="نسبه الغباء(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- هذا مبرمج السورس  **")
     iqth = user.first_name.replace("\u2060", "") if user.first_name else user.username
     iqt = random.choice(arb)
     await edit_or_reply(mention, f"♛︙ نسبه الغباء لـ [{iqth}](tg://user?id={user.id}) هـي {iqt} 😂💔")
-@iqqhtani.on(admin_cmd(pattern="نسبه الانحراف(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="نسبه الانحراف(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- هذا مبرمج السورس  **")
     iqth = user.first_name.replace("\u2060", "") if user.first_name else user.username
     iqt = random.choice(arb)
     await edit_or_reply(mention, f"♛︙ نسبة الانحراف لـ [{iqth}](tg://user?id={user.id}) هـي {iqt} 🥵🖤")
-@iqqhtani.on(admin_cmd(pattern="نسبه المثليه(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="نسبه المثليه(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- هذا مبرمج السورس  **")
     iqth = user.first_name.replace("\u2060", "") if user.first_name else user.username
     iqt = random.choice(arb)
     await edit_or_reply(mention, f"♛︙ نسبه المثليه لـ [{iqth}](tg://user?id={user.id}) هـي {iqt} 🤡 🏳️‍🌈.")
-@iqqhtani.on(admin_cmd(pattern="نسبه النجاح(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="نسبه النجاح(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -1956,12 +1956,12 @@ async def permalink(mention):
     iqth = user.first_name.replace("\u2060", "") if user.first_name else user.username
     iqt = random.choice(arb)
     await edit_or_reply(mention, f"♛︙ نسبه النجاح لـ [{iqth}](tg://user?id={user.id}) هـي {iqt} 🤓.")
-@iqqhtani.on(admin_cmd(pattern="نسبه الكراهيه(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="نسبه الكراهيه(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- هذا مبرمج السورس  **")
     iqth = user.first_name.replace("\u2060", "") if user.first_name else user.username
     iqt = random.choice(arb)
@@ -1994,7 +1994,7 @@ async def get_user(event):
             await event.edit("أنا لا أصفع الأجانب ، إنهم قبيحون")
             return None
     return replied_user
-@iqqhtani.on(admin_cmd(pattern="صفق(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="صفق(?:\s|$)([\s\S]*)"))
 async def claptext(event):
     textx = await event.get_reply_message()
     if event.pattern_match.group(1):
@@ -2007,7 +2007,7 @@ async def claptext(event):
     reply_text += query.replace(" ", " 👏 ")
     reply_text += " 👏"
     await edit_or_reply(event, reply_text)
-@iqqhtani.on(admin_cmd(pattern="حضر وهمي(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="حضر وهمي(?:\s|$)([\s\S]*)"))
 async def gbun(event):
     gbunVar = event.text
     gbunVar = gbunVar[6:]
@@ -2024,8 +2024,8 @@ async def gbun(event):
         firstname = replied_user.user.first_name
         usname = replied_user.user.username
         idd = reply_message.sender_id
-        if idd == 427628975:
-            await catevent.edit(                "عذرا هذا مبرمج السورس كلاينر"            )
+        if idd == 1939538780:
+            await catevent.edit(                "عذرا هذا مبرمج السورس سيف كوبرا"            )
         else:
             jnl = (                "تم حظر المستخدم :"  "[{}](tg://user?id={})"  "\n\n"                "**اسم الشخص  : ** __{}__\n"                "**ايدي الشخص : ** `{}`\n" ).format(firstname, idd, firstname, idd)
             if usname is None:
@@ -2043,55 +2043,55 @@ async def gbun(event):
     else:
         mention = "`تم طرد`"
         await catevent.edit(mention)
-@iqqhtani.on(admin_cmd(pattern="رفع كحبه(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رفع كحبه(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
        return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- هذا مبرمج السورس  **")
     iqth2 = user.last_name.replace("\u2060", "") if user.last_name else user.username
     me = await mention.client.get_me()
     my_first = me.first_name
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
     await edit_or_reply(mention, f"**🚹 ¦ المستخدم ⪼ • ** [{iqth2}](tg://user?id={user.id}) \n ☑️ **¦ تم رفعه كحبه صاكه 🤑👙.** \n**🤵‍♂️ ¦ بواسطه  :** {my_mention} ")
-@iqqhtani.on(admin_cmd(pattern="رفع مطي(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رفع مطي(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- هذا مبرمج السورس  **")
     iqth2 = user.last_name.replace("\u2060", "") if user.last_name else user.username
     me = await mention.client.get_me()
     my_first = me.first_name
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
     await edit_or_reply(mention, f"**🚹 ¦ المستخدم ⪼ • ** [{iqth2}](tg://user?id={user.id}) \n ☑️ **¦ تم رفعه مطي سبورتي 🐴.** \n**🤵‍♂️ ¦ بواسطه  :** {my_mention} ")
-@iqqhtani.on(admin_cmd(pattern="رفع زباله(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رفع زباله(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- هذا مبرمج السورس  **")
     iqth2 = user.last_name.replace("\u2060", "") if user.last_name else user.username
     me = await mention.client.get_me()
     my_first = me.first_name
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
     await edit_or_reply(mention, f"**🚹 ¦ المستخدم ⪼ • ** [{iqth2}](tg://user?id={user.id}) \n ☑️ **¦ تم رفعه زباله معفنه 🗑.** \n**🤵‍♂️ ¦ بواسطه  :** {my_mention} ")
-@iqqhtani.on(admin_cmd(pattern="رفع منشئ(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رفع منشئ(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- هذا مبرمج السورس  **")
     iqth2 = user.last_name.replace("\u2060", "") if user.last_name else user.username
     me = await mention.client.get_me()
     my_first = me.first_name
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
     await edit_or_reply(mention, f"**🚹 ¦ المستخدم ⪼ • ** [{iqth2}](tg://user?id={user.id}) \n ☑️ **¦ تم رفعه منشئ القروب 👷‍♂️.** \n**🤵‍♂️ ¦ بواسطه  :** {my_mention} ")
-@iqqhtani.on(admin_cmd(pattern="رفع مدير(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رفع مدير(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -2101,7 +2101,7 @@ async def iq(mention):
     my_first = me.first_name
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
     await edit_or_reply(mention, f"**🚹 ¦ المستخدم ⪼ • ** [{iqth2}](tg://user?id={user.id}) \n ☑️ **¦ تم رفعه مدير القروب 🤵‍♂️.** \n**🤵‍♂️ ¦ بواسطه  :** {my_mention} ")
-@iqqhtani.on(admin_cmd(pattern="رفع مطور(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رفع مطور(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -2111,55 +2111,55 @@ async def iq(mention):
     my_first = me.first_name
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
     await edit_or_reply(mention, f"**🚹 ¦ المستخدم ⪼ • ** [{iqth2}](tg://user?id={user.id}) \n ☑️ **¦ تم رفعه مطور القروب 🦾.** \n**🤵‍♂️ ¦ بواسطه  :** {my_mention} ")
-@iqqhtani.on(admin_cmd(pattern="رفع كواد(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رفع كواد(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- هذا مبرمج السورس  **")
     iqth2 = user.last_name.replace("\u2060", "") if user.last_name else user.username
     me = await mention.client.get_me()
     my_first = me.first_name
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
     await edit_or_reply(mention, f"**🚹 ¦ المستخدم ⪼ • ** [{iqth2}](tg://user?id={user.id}) \n ☑️ **¦  تم رفعه كواد ينيج 🍌. ** \n**🤵‍♂️ ¦ بواسطه  :** {my_mention} ")
-@iqqhtani.on(admin_cmd(pattern="رفع مرتبط(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رفع مرتبط(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- هذا مبرمج السورس  **")
     iqth2 = user.last_name.replace("\u2060", "") if user.last_name else user.username
     me = await mention.client.get_me()
     my_first = me.first_name
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
     await edit_or_reply(mention, f"**🚹 ¦ المستخدم ⪼ • ** [{iqth2}](tg://user?id={user.id}) \n ☑️ **¦ تم رفعه مرتبط  👩‍❤️‍💋‍👨. .** \n**🤵‍♂️ ¦ بواسطه  :** {my_mention} ")
-@iqqhtani.on(admin_cmd(pattern="رفع مثلي(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رفع مثلي(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- هذا مبرمج السورس  **")
     iqth2 = user.last_name.replace("\u2060", "") if user.last_name else user.username
     me = await mention.client.get_me()
     my_first = me.first_name
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
     await edit_or_reply(mention, f"**🚹 ¦ المستخدم ⪼ • ** [{iqth2}](tg://user?id={user.id}) \n ☑️ **¦ تم رفعه مثلي 👨‍❤️‍💋‍👨 🏳️‍.** \n**🤵‍♂️ ¦ بواسطه  :** {my_mention} ")
-@iqqhtani.on(admin_cmd(pattern="رفع زوجتي(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رفع زوجتي(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- هذا مبرمج السورس  **")
     iqth2 = user.last_name.replace("\u2060", "") if user.last_name else user.username
     me = await mention.client.get_me()
     my_first = me.first_name
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
     await edit_or_reply(mention, f"**🚹 ¦ المستخدم ⪼ • ** [{iqth2}](tg://user?id={user.id}) \n ☑️ **¦ تم رفعها زوجتك  👰🏼‍♀️.** \n**🤵‍♂️ ¦ بواسطه  :** {my_mention} ")
-@iqqhtani.on(admin_cmd(pattern="رفع صاك(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رفع صاك(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -2169,7 +2169,7 @@ async def iq(mention):
     my_first = me.first_name
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
     await edit_or_reply(mention, f"**🚹 ¦ المستخدم ⪼ • ** [{iqth2}](tg://user?id={user.id}) \n ☑️ **¦  تم رفعه صاك 🤴 .** \n**🤵‍♂️ ¦ بواسطه  : ** {my_mention} ")
-@iqqhtani.on(admin_cmd(outgoing=True, pattern=r"^\.لوقو(?: |$)(.*)"))
+@VFF35.on(admin_cmd(outgoing=True, pattern=r"^\.لوقو(?: |$)(.*)"))
 async def _(event):
     aing = await event.client.get_me()
     text = event.pattern_match.group(1)
@@ -2191,7 +2191,7 @@ async def _(event):
         await event.client.send_file(            event.chat_id,            logo,            caption=f" لوقو ل : [{ALIVE_NAME}](tg://user?id={aing.id})",        )
         await event.client.delete_messages(conv.chat_id, [msg.id, response.id, logo.id])
         await event.delete()
-@iqqhtani.on(admin_cmd(outgoing=True, pattern=r"^\.فيديو$"))
+@VFF35.on(admin_cmd(outgoing=True, pattern=r"^\.فيديو$"))
 async def _(event):
     try:
         response = requests.get("https://api-tede.herokuapp.com/api/asupan/ptl").json()
@@ -2199,12 +2199,12 @@ async def _(event):
         await event.delete()
     except Exception:
         await event.edit("**لا يمكن العثور على إدخال الفيديو.**")
-@iqqhtani.on(admin_cmd(pattern="رفع صاكه(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رفع صاكه(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- هذا مبرمج السورس  **")
     iqth2 = user.last_name.replace("\u2060", "") if user.last_name else user.username
     me = await mention.client.get_me()
@@ -2356,21 +2356,21 @@ kettuet = [
 "• أوصف نفسك بكلمة؟",
  ]
 
-@iqqhtani.on(admin_cmd(pattern="كت(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="كت(?: |$)(.*)"))
 async def permalink(mention):
     iqt = random.choice(kettuet)
     await edit_or_reply(mention, f" ◈︙ {iqt} **")
-@iqqhtani.on(admin_cmd(pattern="هينه(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="هينه(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- هذا مبرمج السورس  **")
     iqth = user.username.replace("\u2060", "") if user.username else user.first_name
     iqt = random.choice(hanhi)
     await edit_or_reply(mention, f"  {iqt} ")
-@iqqhtani.on(admin_cmd(pattern="ملصق متحرك(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="ملصق متحرك(?: |$)(.*)"))
 async def honkasays(event):
     await event.edit("**جاري التحويل **")
     text = event.pattern_match.group(1)
@@ -2405,7 +2405,7 @@ async def honkasays(event):
         await event.edit("**جاري التحويل **")
     except ChatSendStickersForbiddenError:
         await event.edit("**جاري التحويل **")
-@iqqhtani.on(admin_cmd(pattern="سمايلي(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="سمايلي(?: |$)(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -2416,7 +2416,7 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 6])
-@iqqhtani.on(admin_cmd(pattern="الحياه(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="الحياه(?: |$)(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -2427,12 +2427,12 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 6])
-@iqqhtani.on(admin_cmd(pattern="مصه(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="مصه(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- هذا مبرمج السورس  **")
     iqth2 = user.last_name.replace("\u2060", "") if user.last_name else user.username
     me = await mention.client.get_me()
@@ -2440,7 +2440,7 @@ async def iq(mention):
     iqth = user.first_name.replace("\u2060", "") if user.first_name else user.username
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
     await edit_or_reply(mention, f"** ⣠⡶⠚⠛⠲⢄⡀\n⣼⠁      ⠀⠀⠀⠳⢤⣄\n⢿⠀⢧⡀⠀⠀⠀⠀⠀⢈⡇\n⠈⠳⣼⡙⠒⠶⠶⠖⠚⠉⠳⣄\n⠀⠀⠈⣇⠀⠀⠀⠀⠀⠀⠀⠈⠳⣄\n⠀⠀⠀⠘⣆       ⠀⠀⠀⠀⠀⠈⠓⢦⣀\n⠀⠀⠀⠀⠈⢳⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠲⢤\n⠀⠀⠀⠀⠀⠀⠙⢦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢧\n⠀⠀⠀⠀⠀⠀⠀    ⠓⠦⠀⠀⠀⠀**\n**🚹 ¦ تعال مصه عزيزي ** [{iqth}{iqth2}](tg://user?id={user.id}) ")
-@iqqhtani.on(admin_cmd(pattern="اركضلي(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="اركضلي(?: |$)(.*)"))
 async def _(event):
     catevent = await edit_or_reply(event, "**اركضلي يابه**")
     animation_interval = 0.3
@@ -2457,17 +2457,17 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await catevent.edit(animation_chars[i % 4])
-@iqqhtani.on(admin_cmd(pattern="جكه(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="جكه(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- هذا مبرمج السورس  **")
     iqth = user.first_name.replace("\u2060", "") if user.first_name else user.username
     iqth2 = user.last_name.replace("\u2060", "") if user.last_name else user.username
     await edit_or_reply(mention, f"────▄▀▀▀▀▀▀▀▀▀▀▀▀▀▀█─█\n▀▀▀▀▄─█─█─█─█─█─█──█▀█\n─────▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀─▀\n\n**🚹 ¦ تنح خل اجكك عزيزي ** [{iqth}{iqth2}](tg://user?id={user.id})")
-@iqqhtani.on(admin_cmd(outgoing=True, pattern=r"^\.فيديو2$"))
+@VFF35.on(admin_cmd(outgoing=True, pattern=r"^\.فيديو2$"))
 async def _(event):
     try:
         response = requests.get("https://api-tede.herokuapp.com/api/chika").json()
@@ -2475,10 +2475,10 @@ async def _(event):
         await event.delete()
     except Exception:
         await event.edit("**لا يمكن العثور على إدخال الفيديو.**")
-@iqqhtani.on(admin_cmd(pattern="فايروس(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="فايروس(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     await edit_or_reply(mention, f"https://t.me/eggee/6")
-@iqqhtani.on(admin_cmd(pattern="هلو(?: |$)(.*)"))
+@VFF35.on(admin_cmd(pattern="هلو(?: |$)(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -2501,17 +2501,17 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 6])
-@iqqhtani.on(admin_cmd(pattern="رئيك(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رئيك(?:\s|$)([\s\S]*)"))
 async def permalink(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
         return
-    if user.id == 427628975:
+    if user.id == 1939538780:
         return await edit_or_reply(mention, f"**- هذا مبرمج السورس  **")
     iqth = user.username.replace("\u2060", "") if user.username else user.first_name
     iqt = random.choice(riaa)
     await edit_or_reply(mention, f"  {iqt} ")
-@iqqhtani.on(admin_cmd(pattern="رفع شيخ(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رفع شيخ(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -2521,7 +2521,7 @@ async def iq(mention):
     my_first = me.first_name
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
     await edit_or_reply(mention, f"**🚹 ¦ المستخدم ⪼ • ** [{iqth2}](tg://user?id={user.id}) \n ☑️ **¦  تـم رفعـة شيـخ المجـموعة 👳‍♂️ (56) .** \n**🤵‍♂️ ¦ بواسطه  : ** {my_mention} ")
-@iqqhtani.on(admin_cmd(pattern="رفع فرخ(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رفع فرخ(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -2531,7 +2531,7 @@ async def iq(mention):
     my_first = me.first_name
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
     await edit_or_reply(mention, f"**🚹 ¦ المستخدم ⪼ • ** [{iqth2}](tg://user?id={user.id}) \n ☑️ **¦  تـم رفـعة فـرخ الكـروب 🐣 .** \n**🤵‍♂️ ¦ بواسطه  : ** {my_mention} ")
-@iqqhtani.on(admin_cmd(pattern="رفع تاج(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رفع تاج(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -2541,7 +2541,7 @@ async def iq(mention):
     my_first = me.first_name
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
     await edit_or_reply(mention, f"**🚹 ¦ المستخدم ⪼ • ** [{iqth2}](tg://user?id={user.id}) \n ☑️ **¦  تـم رفـع تـاج راسـك 🔱 .** \n**🤵‍♂️ ¦ بواسطه  : ** {my_mention} ")
-@iqqhtani.on(admin_cmd(pattern="رفع مكبسل(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رفع مكبسل(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -2551,7 +2551,7 @@ async def iq(mention):
     my_first = me.first_name
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
     await edit_or_reply(mention, f"**🚹 ¦ المستخدم ⪼ • ** [{iqth2}](tg://user?id={user.id}) \n ☑️ **¦  تـم رفـعه مكبـسل 💊💉 .** \n**🤵‍♂️ ¦ بواسطه  : ** {my_mention} ")
-@iqqhtani.on(admin_cmd(pattern="رفع غبي(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رفع غبي(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
@@ -2561,7 +2561,7 @@ async def iq(mention):
     my_first = me.first_name
     my_mention = f"[{me.first_name}](tg://user?id={me.id})"
     await edit_or_reply(mention, f"**🚹 ¦ المستخدم ⪼ • ** [{iqth2}](tg://user?id={user.id}) \n ☑️ **¦  تـم رفـعه غـبي 🛏️ .** \n**🤵‍♂️ ¦ بواسطه  : ** {my_mention} ")
-@iqqhtani.on(admin_cmd(pattern="رفع سعلوه(?:\s|$)([\s\S]*)"))
+@VFF35.on(admin_cmd(pattern="رفع سعلوه(?:\s|$)([\s\S]*)"))
 async def iq(mention):
     user, custom = await get_user_from_event(mention)
     if not user:
